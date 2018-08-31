@@ -30,9 +30,20 @@ In contrast, **biological replicates are absolutely essential**. For differentia
 
 *Image credit: [Liu, Y., et al., Bioinformatics (2014) **30**(3): 301–304](https://doi.org/10.1093/bioinformatics/btt688)*
 
-As the figure above illustrates, **biological replicates are of greater importance than sequencing depth**. The figure shows the relationship between sequencing depth and number of replicates on the number of differentially expressed genes identified [[1](https://academic.oup.com/bioinformatics/article/30/3/301/228651/RNA-seq-differential-expression-studies-more)]. Note that an **increase in the number of replicates tends to return more DE genes than increasing the sequencing depth**. Therefore, generally more replicates are better than higher sequencing depth, with the caveat that higher depth is required for detection of lowly expressed DE genes and for performing isoform-level differential expression. 
+As the figure above illustrates, **biological replicates are of greater importance than sequencing depth**, which is the total number of reads sequenced per sample. The figure shows the relationship between sequencing depth and number of replicates on the number of differentially expressed genes identified [[1](https://academic.oup.com/bioinformatics/article/30/3/301/228651/RNA-seq-differential-expression-studies-more)]. Note that an **increase in the number of replicates tends to return more DE genes than increasing the sequencing depth**. Therefore, generally more replicates are better than higher sequencing depth, with the caveat that higher depth is required for detection of lowly expressed DE genes and for performing isoform-level differential expression. 
 
 Replicates are almost always preferred to greater sequencing depth for bulk RNA-Seq. However, guidelines depend on the experiment performed and the desired analysis. Below we list some general guidelines for replicates and sequencing depth to help with experimental planning:
+
+> **NOTE:** The factor used to estimate the depth of sequencing for genomes is "coverage" - how many times do the number nucleotides sequenced "cover" the genome.
+>
+>  *DNA-seq example:*
+>     Genome size = 3.5 x 108 bases (350Mb genome)
+>     Data collected = 35 million (106) reads, each read is 100 bases
+>                        = 3.5 x 109 bases
+>                        = 10x coverage
+>
+> This metric is not exact for genomes, but it works okay. It **does not work for transcriptomes** because expression of the genes depend on the condition being studied.
+
 
 - **General gene-level differential expression:**
 
