@@ -34,16 +34,7 @@ As the figure above illustrates, **biological replicates are of greater importan
 
 Replicates are almost always preferred to greater sequencing depth for bulk RNA-Seq. However, guidelines depend on the experiment performed and the desired analysis. Below we list some general guidelines for replicates and sequencing depth to help with experimental planning:
 
-> **NOTE:** The factor used to estimate the depth of sequencing for genomes is "coverage" - how many times do the number nucleotides sequenced "cover" the genome.
->
->  *DNA-seq example:*
->     Genome size = 3.5 x 108 bases (350Mb genome)
->     Data collected = 35 million (106) reads, each read is 100 bases
->                        = 3.5 x 109 bases
->                        = 10x coverage
->
-> This metric is not exact for genomes, but it works okay. It **does not work for transcriptomes** because expression of the genes depend on the condition being studied.
-
+> **NOTE:** The factor used to estimate the depth of sequencing for genomes is "coverage" - how many times do the number nucleotides sequenced "cover" the genome. This metric is not exact for genomes, but it works okay. It **does not work for transcriptomes** because expression of the genes depend on the condition being studied.
 
 - **General gene-level differential expression:**
 
