@@ -17,7 +17,7 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 
 ### Workshop Schedule
 
-The schedule for using the materials in a trainer-led workshop can be [found here](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/schedule/)
+The schedule for using the materials in a trainer-led workshop can be [found here](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/schedule/)
 
 ### Contents
 
@@ -28,18 +28,18 @@ The schedule for using the materials in a trainer-led workshop can be [found her
 |[Introduction to the Vim text editor ](https://hbctraining.github.io/Intro-to-Shell/lessons/03_vim.html) | 30 min |
 |[Shell scripts and `for` loops](https://hbctraining.github.io/Intro-to-Shell/lessons/04_loops_and_scripts.html) | 75 min |
 |[Permissions and environment variables](https://hbctraining.github.io/Intro-to-Shell/lessons/05_permissions_and_environment_variables.html) | 50 min |
-|[Project and data organization](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/01_data_organization.html) | 40 min |
+|[Project and data organization](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/01_data_organization.html) | 40 min |
 |[Introduction to High-Performance Computing for HMS-RC's O2 cluster](lectures/HPC_intro_O2.pdf) | 45 min |
 |[Introduction to RNA-seq and Library Prep](lectures/rna-seq_design.pdf) | 50 min |
 |[NGS Workflows and Data Standards]() | 35 min |
-|[RNA-seq data QC with FastQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/02_assessing_quality.html) | 55 min |
-|[RNA-seq Alignment with STAR](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/03_alignment.html) | 75 min |
-|[Assessing Alignment Quality](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/04_alignment_quality.html) | 60 min |
-|[Generating a Count Matrix](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/05_counting_reads.html) | 75 min |
-|[Documenting Steps in the Workflow with MultiQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/06_multiQC.html) | 30 min |
-|[Automating the RNA-seq workflow](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/07_automating_workflow.html) | 60 min |
+|[RNA-seq data QC with FastQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/02_assessing_quality.html) | 55 min |
+|[RNA-seq Alignment with STAR](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/03_alignment.html) | 75 min |
+|[Assessing Alignment Quality](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/04_alignment_quality.html) | 60 min |
+|[Generating a Count Matrix](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/05_counting_reads.html) | 75 min |
+|[Documenting Steps in the Workflow with MultiQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/06_multiQC.html) | 30 min |
+|[Automating the RNA-seq workflow](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/07_automating_workflow.html) | 60 min |
 |[Alternative workflows for analyzing RNA-seq data](lectures/RNAseq-analysis-methods.pdf) | 15 min |
-|[Quantifying expression using alignment-free methods (Salmon)](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/08_salmon.html) | 75 min |
+|[Quantifying expression using alignment-free methods (Salmon)](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/08_salmon.html) | 75 min |
 
 ### Dataset
 
