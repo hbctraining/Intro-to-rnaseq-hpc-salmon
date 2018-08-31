@@ -1,7 +1,7 @@
 ---
 title: "Quality control: Assessing FASTQC results"
 author: "Mary Piper, Radhika Khetani"
-date: Wednesday, September 20, 2017
+date: Wednesday, September 5, 2018
 duration: 45 minutes
 ---
 
@@ -9,23 +9,39 @@ duration: 45 minutes
 
 * Evaluate the quality of your NGS data using FastQC
 
-## Asessing quality metrics	
-	
-***FastQC is just an indicator of what's going on with your data, don't take the "PASS"es and "FAIL"s too seriously.***
+## Assessing quality metrics	
 
-FastQC has a really well documented [manual page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/) with [more details](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/) about all the plots in the report. We recommend looking at [this post](http://bioinfo-core.org/index.php/9th_Discussion-28_October_2010) for more information on what bad plots look like and what they mean for your data.
+Now that we have run and downloaded the FASTQC report, we can take a look at the metrics and assess the quality of our sequencing data.
 
-> **We also have a [slidedeck](https://github.com/hbctraining/Intro-to-rnaseq-hpc-O2/raw/master/lectures/error_profiles_mm.pdf) of error profiles for Illumina sequencing, where we discuss specific FASTQC plots and possible sources of these types of errors.**
+FastQC has a really well documented [manual page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/) with [detailed explanations](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/) about all the plots in the report. 
 
-Below are two of the most important analysis modules in FastQC, the **"Per base sequence quality"** plot and the **"Overrepresented sequences"** table. 
+A summary of all of the modules is given on the left-hand side of the report. Don't take the yellow "WARNING"s and red "FAIL"s too seriously, these are more indicative of a module that you should take a look at to make sure there is nothing worrisome about the data. 
 
-The **"Per base sequence quality"** plot provides the distribution of quality scores across all bases at each position in the reads.
+The first module gives the basic statistics for the sample. Generally it is good to keep track of the total number of reads for each sample and make sure the read length and %GC content is expected.
+
+<img src>
+
+One of the most important analysis modules is the **"Per base sequence quality"** plot. This plot provides the distribution of quality scores at each position in the read across all reads. This plot can alert us to whether there were any problems occuring during sequencing, and whether we might need to contact the sequencing facility.
 
 ![FastQC_seq_qual](../img/FastQC_seq_qual.png)
+
+The y-axis gives the quality scores, while the x-axis represents the position in the read. The color coding of the plot is denotes what are considered high, medium and low quality scores. 
+
+For example, the box plot at nucleotide 1 shows the distribution of quality scores for the first nucleotide of all reads in the `Mov10_oe_1` sample. The yellow box represents the 25th and 75th percentiles, with the red line as the median. The whiskers are the 10th and 90th percentiles. The blue line represents the average quality score for the nucleotide. The quality scores for the first nucleotide are quite high, with nearly all reads having scores above 28.
+
+The quality scores appear to drop going from the beginning toward the end of the reads. This is not unexpected, and there are known causes for this drop in quality. To better interpret this plot it is helpful to understand the different sequencing error profiles, including expected and unexpected quality issues.
+
+### Quality error profiles
+
+
 
 The **"Overrepresented sequences"** table displays the sequences (at least 20 bp) that occur in more than 0.1% of the total number of sequences. This table aids in identifying contamination, such as vector or adapter sequences. 
 
 ![FastQC_contam](../img/FastQC_contam.png)
+
+
+***FastQC is just an indicator of what's going on with your data, don't take the "PASS"es and "FAIL"s too seriously.***
+We recommend looking at [this post](http://bioinfo-core.org/index.php/9th_Discussion-28_October_2010) for more information on what bad plots look like and what they mean for your data.
 
 We will go over the remaining plots in class. Remember, our report only represents a subset of reads (chromosome 1) for `Mov10_oe_1.subset.fq`, which can skew the QC results. We encourage you to look at the [full set of reads](../fastqc/Mov10oe_1-fastqc_report.html) and note how the QC results differ when using the entire dataset.
    
