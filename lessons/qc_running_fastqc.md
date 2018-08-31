@@ -276,6 +276,8 @@ Within the 'Site Manager' window, do the following:
 7. Click 'Connect'
 
 <img src="../img/filezilla_login.png" width="400">	
+---
+
 Once you have the html file copied over to your laptop, you should be able to open it in a browser. We are now all setup to look through our report and evaluate the quality of our sequence reads. 
 
 ---
