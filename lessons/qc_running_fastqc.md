@@ -13,7 +13,7 @@ duration: 45 minutes
 
 ## Quality Control of FASTQ files
 
-<img src="../img/RNAseqWorkflow.png" width="400">
+<img src="../img/QC_workflow_Sept2018.png" width="400">
 
 The first step in the RNA-Seq workflow is to take the FASTQ files received from the sequencing facility and assess the quality of the sequence reads. 
 
