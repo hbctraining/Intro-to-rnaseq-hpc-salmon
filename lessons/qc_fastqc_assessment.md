@@ -111,7 +111,7 @@ As our report only represents a subset of reads (chromosome 1) for `Mov10_oe_1.s
 
 While the data for this analysis is quite good, it's unfortunate that that's not always the case. So now that we know a bit about the types of quality issues to check for in the raw RNA-seq data, how do we troubleshoot them?
 
-<img src="../img/qc_troubleshooting.png" width="500">
+<img src="../img/qc_troubleshooting.png" width="800">
    
 To help think through the troubleshooting, we can arrange the data by the main problems encountered:
 
