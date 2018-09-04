@@ -139,7 +139,7 @@ Exit the interactive session and start a new one with 6 cores, and use the multi
 ```bash
 $ exit  #exit the current interactive session
 
-$ srun --pty -n 6 -p short -t 0-12:00 --mem 8G --reservation=HBC /bin/bash  #start a new one with 6 cpus (-n 6) and 8G RAM (--mem 8G)
+$ srun --pty -c 6 -p short -t 0-12:00 --mem 8G --reservation=HBC /bin/bash  #start a new one with 6 cpus (-c 6) and 8G RAM (--mem 8G)
 
 $ module load fastqc/0.11.3  #reload the module for the new session
 
@@ -198,7 +198,7 @@ Following the shebang line are the O2 options. For the script to run, we need to
 ```bash
 #SBATCH -p short 		# partition name
 #SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
-#SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
+#SBATCH -c 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
 #SBATCH --job-name rnaseq_mov10_fastqc 		# Job name
 #SBATCH -o %j.out			# File to which standard out will be written
 #SBATCH -e %j.err 		# File to which standard err will be written
@@ -228,7 +228,7 @@ $ sbatch mov10_fastqc.run
 You can check on the status of your job with:
 
 ```bash
-$ sacct
+$ O2sacct
 ```
 
 ```bash
@@ -275,8 +275,31 @@ Within the 'Site Manager' window, do the following:
 6. Password: ECommons password
 7. Click 'Connect'
 
-<img src="../img/filezilla_login.png" width="500">	
----
+<img src="../img/filezilla_login.png" width="500">
+
+
+___
+
+> **NOTE:** The other output of FastQC is a .zip file. These .zip files need to be unpacked with the `unzip` program. If we try to `unzip` them all at once:
+>
+> ```bash
+> $ cd ~/rnaseq/results/fastqc/
+> $ unzip *.zip
+> ```
+>
+> Did it work?
+>
+> No, because `unzip` expects to get only one zip file. Instead we can use a `for loop` to iterate through the list of files in *.zip.
+>
+>
+```bash
+>$ for zip in *.zip
+> do
+> unzip $zip
+> done
+>>```
+> 
+
 
 Once you have the html file copied over to your laptop, you should be able to open it in a browser. We are now all setup to look through our report and evaluate the quality of our sequence reads. 
 
