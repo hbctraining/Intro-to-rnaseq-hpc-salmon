@@ -73,7 +73,7 @@ As sequencing progresses from the first cycle to the last cycle we often anticip
 
 ### Quality assessment
 
-Now if we return back to our plot, we can see a drop in quality toward the ends of the reads, which could be explained by signal decay or phasing. No other worrisome signs are present, so we it appears the sequencing proceeded as expected.
+Now if we return back to our plot, we can see a drop in quality towards the ends of the reads, which could be explained by signal decay or phasing. No other worrisome signs are present, so the sequencing data from the facility is of good quality. 
 
 ![FastQC_seq_qual](../img/FastQC_seq_qual.png)
 
