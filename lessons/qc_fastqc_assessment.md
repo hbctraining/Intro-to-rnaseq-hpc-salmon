@@ -21,7 +21,7 @@ A summary of all of the modules is given on the left-hand side of the report. Do
 
 The first module gives the basic statistics for the sample. Generally it is a good idea to keep track of the total number of reads sequenced for each sample and to make sure the read length and %GC content is expected.
 
-<img src="../img/fastqc_basic_stats.png" width="300">
+<img src="../img/fastqc_basic_stats.png" width="400">
 
 One of the most important analysis modules is the **"Per base sequence quality"** plot. This plot provides the distribution of quality scores at each position in the read across all reads. This plot can alert us to whether there were any problems occuring during sequencing and whether we might need to contact the sequencing facility.
 
