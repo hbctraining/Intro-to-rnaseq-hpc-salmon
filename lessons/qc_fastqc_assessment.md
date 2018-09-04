@@ -17,11 +17,11 @@ FastQC has a really well documented [manual page](http://www.bioinformatics.babr
 
 A summary of all of the modules is given on the left-hand side of the report. Don't take the yellow "WARNING"s and red "FAIL"s too seriously, these are more indicative of a module that you should take a look at to make sure there is nothing worrisome about the data. 
 
-<img src="../img/fastqc_summary.png" width="100">
+<img src="../img/fastqc_summary.png" width="200">
 
 The first module gives the basic statistics for the sample. Generally it is a good idea to keep track of the total number of reads sequenced for each sample and to make sure the read length and %GC content is expected.
 
-<img src="../img/fastqc_basic_stats.png" width="200">
+<img src="../img/fastqc_basic_stats.png" width="300">
 
 One of the most important analysis modules is the **"Per base sequence quality"** plot. This plot provides the distribution of quality scores at each position in the read across all reads. This plot can alert us to whether there were any problems occuring during sequencing and whether we might need to contact the sequencing facility.
 
