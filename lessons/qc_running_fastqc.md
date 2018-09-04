@@ -296,9 +296,10 @@ ___
 >$ for zip in *.zip
 > do
 > unzip $zip
-> done
->```
+> done```
 > 
+
+---
 
 Once you have the html file copied over to your laptop, you should be able to open it in a browser. We are now all setup to look through our report and evaluate the quality of our sequence reads. 
 
