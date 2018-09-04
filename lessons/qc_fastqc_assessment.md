@@ -103,30 +103,53 @@ Since our data is just a subset of the original data and it contains the over-ex
 
 As our report only represents a subset of reads (chromosome 1) for `Mov10_oe_1.subset.fq`, which can skew the QC results. We encourage you to look at the [full set of reads](../fastqc/Mov10oe_1-fastqc_report.html) and note how the QC results differ when using the entire dataset.
    
+## Troubleshooting quality issues of raw data
 
+While the data for this analysis is quite good, it's unfortunate that it is not always good. So now that we know a bit of what quality issues to check for in the raw data, how do we troubleshoot them?
 
-## Quality Control (*Optional*) - Trimming 
+<img src="../img/qc_troubleshooting.png" width="500">
+   
+To help think through the troubleshooting, we can arrange the data by the main problems encountered:
 
-We want to make sure that as many reads as possible map or align accurately to the genome. To ensure accuracy, only a small number of mismatches between the read sequence and the genome sequence are allowed, and any read with more than a few mismatches will be marked as being unaligned. 
+- **Poor quality data**
+   - Poor quality across sequence
+   - Drop in quality in the middle
+   - Large percentage of sequences with low mean quality scores
+   - **Probable cause(s):** Problems at the sequencing facility - contact them
+   
+- **Issues based on read sequence expectations**
+   
+   - Unexpected %GC for organism and/or % of each nucleotide does not remain similar across the read (except for first 10-12 bases for RNA-Seq)
+   - **Probable cause(s):** Contaminating sequences: different species, adapters, vector, mitochondrial/rRNA
+   
+   - High level of sequence duplications 
+   - **Probable cause(s):** Low complexity library, too many cycles of PCR amplification / too little starting material
+   
+   - Over-represented sequences more than 1-2%, unless expected based on experimental design
+   - **Probable cause(s):** Contaminating sequences: adapters, vector, mitochondrial/rRNA
 
-Therefore, to make sure that all the reads in the dataset have a chance to map/align to the genome, unwanted information can be trimmed off from every read, one read at a time. The types of unwanted information can include one or more of the following:
-- leftover adapter sequences
-- known contaminants (strings of As/Ts, other sequences)
-- poor quality bases at read ends
+>**NOTE:** Trimming 
+>
+>We want to make sure that as many reads as possible map or align accurately to the genome. To ensure accuracy, only a small number of mismatches between the read sequence and the genome sequence are allowed, and any read with more than a few mismatches will be marked as being unaligned. 
+>
+>Therefore, to make sure that all the reads in the dataset have a chance to map/align to the genome, unwanted information can be trimmed off from every read, one read at a time. The types of unwanted information can include one or more of the following:
+>- leftover adapter sequences
+>- known contaminants (strings of As/Ts, other sequences)
+>- poor quality bases at read ends
+>
+>**We will not be performing this step** because:
+>* our data does not have an appreciable amount of leftover adapter sequences or other contaminating sequences based on FastQC.
+>* the alignment tools we use (salmon and STAR) are able to account for low-quality bases at the ends of reads when matching them to the genome.
+>
+>If you need to perform trimming on your fastq data to remove unwanted sequences/bases, the recommended tool is [cutadapt](http://cutadapt.readthedocs.io/en/stable/index.html). 
+>
+>Example of cutadapt usage:
+>
+>```bash
+>$ cutadapt --adapter=AGATCGGAAGAG --minimum-length=25  -o myfile_trimmed.fastq.gz myfile.fastq.gz 
+>```
 
-**We will not be performing this step** because:
-* our data does not have an appreciable amount of leftover adapter sequences or other contaminating sequences based on FastQC.
-* the alignment tool we have picked (STAR) is able to account for low-quality bases at the ends of reads when matching them to the genome.
-
-If you need to perform trimming on your fastq data to remove unwanted sequences/bases, the recommended tool is [cutadapt](http://cutadapt.readthedocs.io/en/stable/index.html). 
-
-Example of cutadapt usage:
-
-```bash
-$ cutadapt --adapter=AGATCGGAAGAG --minimum-length=25  -o myfile_trimmed.fastq.gz myfile.fastq.gz 
-```
-
-After trimming, cutadapt can remove any reads that are too short to ensure that you do not get spurious mapping of very short sequences to multiple locations on the genome. In addition to adapter trimming, cutadapt can trim off any low-quality bases too, but **please note that quality-based trimming is not considered best practice, since majority of the newer, recommended alignment tools can account for this.**
+>After trimming, cutadapt can remove any reads that are too short to ensure that you do not get spurious mapping of very short sequences to multiple locations on the genome. In addition to adapter trimming, cutadapt can trim off any low-quality bases too, but **please note that quality-based trimming is not considered best practice, since majority of the newer, recommended alignment tools can account for this.**
 
 ---
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
