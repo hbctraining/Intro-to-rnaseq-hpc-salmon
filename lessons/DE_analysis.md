@@ -47,7 +47,7 @@ In order to run R on O2, let's first **log on to the cluster and start an intera
 
 Once you are in an interactive session, navigate to the `rnaseq` directory:
 
-	$ cd ~/unix_lesson/rnaseq
+	$ cd ~/rnaseq
 
 We will be running an R script that uses the R package [DESeq2](http://bioconductor.org/packages/release/bioc/html/DESeq2.html) to identify differentially expressed genes. This package is available from [Bioconductor](https://www.bioconductor.org/), which is a repository of packages for the analysis of high-throughput genomic data. There are also a few other packages that are required to generate some additional figures.
 
@@ -84,7 +84,7 @@ $ export R_LIBS_USER="/n/groups/hbctraining/R/library/"
 To run differential expression analysis, we are going to run a script from the `results` directory, so let's navigate there and create a directory for the results of our analysis. We will call the directory `diffexpression`:
 
 ```bash
-$ cd ~/unix_lesson/rnaseq/results
+$ cd ~/rnaseq/results
 $ mkdir diffexpression
 ```
 First, let's copy over the script file:

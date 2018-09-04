@@ -129,7 +129,7 @@ The basic options to **generate genome indices** using STAR are as follows:
 Now let's create a job submission script to generate the genome index:
 
 ```bash
-$ vim ~/unix_lesson/rnaseq/scripts/genome_index.run
+$ vim ~/rnaseq/scripts/genome_index.run
 ```
 Within `vim` we now add our shebang line, the SLURM directives, and our STAR command. 
 
@@ -157,7 +157,7 @@ STAR --runThreadN 6 \
 ```
 
 ```bash
-$ sbatch ~/unix_lesson/rnaseq/scripts/genome_index.run
+$ sbatch ~/rnaseq/scripts/genome_index.run
 ```
 
 ### Aligning reads
@@ -167,7 +167,7 @@ After you have the genome indices generated, you can perform the read alignment.
 Create an output directory for our alignment files:
 
 ```bash
-$ cd ~/unix_lesson/rnaseq/raw_data
+$ cd ~/rnaseq/raw_data
 
 $ mkdir ../results/STAR
 ```

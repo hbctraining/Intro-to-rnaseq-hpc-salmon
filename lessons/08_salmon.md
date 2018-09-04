@@ -96,9 +96,9 @@ First start an interactive session and create a new directory for our Salmon ana
 ```bash
 $ srun --pty -p short -t 0-12:00 --mem 8G --reservation=HBC /bin/bash
 
-$ mkdir ~/unix_lesson/rnaseq/salmon
+$ mkdir ~/rnaseq/salmon
 
-$ cd ~/unix_lesson/rnaseq/salmon
+$ cd ~/rnaseq/salmon
 ```   
 
 > Salmon is not available as a module on O2, but it is installed as part of the bcbio pipeline. Since we already have the appropriate path (`/n/app/bcbio/tools/bin/`) in our `$PATH` variable we can use it by simply typing in `salmon`.     
@@ -133,7 +133,7 @@ To run the quantification step on a single sample we have the command provided b
 ```bash
 $ salmon quant -i /n/groups/hbctraining/intro_rnaseq_hpc/salmon.ensembl37.idx/ \
  -l SR \
- -r ~/unix_lesson/rnaseq/raw_data/Mov10_oe_1.subset.fq \
+ -r ~/rnaseq/raw_data/Mov10_oe_1.subset.fq \
  -o Mov10_oe_1.subset.salmon \
  --writeMappings=salmon.out \
  --useVBOpt 

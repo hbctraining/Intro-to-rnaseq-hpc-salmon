@@ -102,7 +102,7 @@ $ o2i
 
 The O2 cluster supports symbolic links also known as symlinks. This is a kind of “file” that is **essentially a pointer to another file name**. Symbolic links can be made to directories or across file systems with no restrictions. You can also make a symbolic link to a name which is not the name of any file. (Opening this link will fail until a file by that name is created.) Likewise, if the symbolic link points to an existing file which is later deleted, the symbolic link continues to point to the same file name even though the name no longer names any file.
 
-Symlinks can be used in lieu of copying over large files. For example, when we began the RNA-seq part of this workshop we had copied over FASTQ files from `~/unix_lesson/raw_fastq` to `~/unix_lesson/rnaseq/raw_data`. But what we could have done instead is created symlinks to those files.
+Symlinks can be used in lieu of copying over large files. For example, when we began the RNA-seq part of this workshop we had copied over FASTQ files from `~/unix_lesson/raw_fastq` to `~/rnaseq/raw_data`. But what we could have done instead is created symlinks to those files.
 
 The basic syntax for creating a symlink is:
 
@@ -113,19 +113,19 @@ ln -s /path/to/file /path/to/symlink
 So if we wanted to have symlinks to our FASTQ files instead of having duplicate copies, we can first remove the files that are currrently there:
 
 ```bash
-$ rm ~/unix_lesson/rnaseq/raw_data/*
+$ rm ~/rnaseq/raw_data/*
 ```
 
 And then we can symlink the files:
 
 ```bash
-$ ln -s ~/unix_lesson/raw_fastq/*.fq ~/unix_lesson/rnaseq/raw_data/
+$ ln -s ~/unix_lesson/raw_fastq/*.fq ~/rnaseq/raw_data/
 ```
 
 Now, if you check the directory where we created the symlinks you should see the filenames listed in cyan text followed by an arrow pointing the actual file location. (_NOTE: If your files are flashing red text, this is an indication your links are broken so you might want to double check the paths._)
 
 ```bash
-$ ll ~/unix_lesson/rnaseq/raw_data
+$ ll ~/rnaseq/raw_data
 ```
 
 ## Transferring files with `rsync` <a name="rsync"></a>

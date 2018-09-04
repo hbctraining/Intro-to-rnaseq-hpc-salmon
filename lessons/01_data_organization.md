@@ -52,14 +52,9 @@ $ pwd
 ```
 
 This should return `/home/username`.
+`
 
-We will change into the `unix_lesson` directory:
-
-```bash
-cd unix_lesson
-```
-
-Next, we will create a project directory and set up the following structure within it to keep files organized. 
+Next, we will create a project directory and set up the following structure to keep files organized. 
 
 ```bash
 rnaseq

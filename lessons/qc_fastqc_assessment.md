@@ -50,7 +50,7 @@ We will go over the remaining plots in class. Remember, our report only represen
 >The other output of FastQC is a .zip file. These .zip files need to be unpacked with the `unzip` program. If we try to `unzip` them all at once:
 >
 >```bash
->$ cd ~/unix_lesson/rnaseq/results/fastqc/    
+>$ cd ~/rnaseq/results/fastqc/    
 >$ unzip *.zip
 >```
 >
@@ -90,11 +90,11 @@ We will go over the remaining plots in class. Remember, our report only represen
 >$ head Mov10_oe_1.subset_fastqc/summary.txt
 >```
 >
->To save a record, let's `cat` all `fastqc summary.txt` files into one `full_report.txt` and move this to `~/unix_lesson/rnaseq/docs`. 
+>To save a record, let's `cat` all `fastqc summary.txt` files into one `full_report.txt` and move this to `~/rnaseq/docs`. 
 >You can use wildcards in paths as well as file names.  Do you remember how we said `cat` is really meant for concatenating text files?
 >    
 >```bash
->$ cat */summary.txt > ~/unix_lesson/rnaseq/logs/fastqc_summaries.txt
+>$ cat */summary.txt > ~/rnaseq/logs/fastqc_summaries.txt
 >```
 
 ## Quality Control (*Optional*) - Trimming 
