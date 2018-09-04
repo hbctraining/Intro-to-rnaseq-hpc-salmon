@@ -277,10 +277,12 @@ Within the 'Site Manager' window, do the following:
 
 <img src="../img/filezilla_login.png" width="500">
 
+Once you have the html file copied over to your laptop, you should be able to open it in a browser. We are now all setup to look through our report and evaluate the quality of our sequence reads. 
 
 ___
 
-> **NOTE:** The other output of FastQC is a .zip file. These .zip files need to be unpacked with the `unzip` program. If we try to `unzip` them all at once:
+> #### Other FAStQC output files
+**NOTE:** The other output of FastQC is a .zip file. These .zip files need to be unpacked with the `unzip` program. If we try to `unzip` them all at once:
 >
 > ```bash
 > $ cd ~/rnaseq/results/fastqc/
@@ -291,17 +293,13 @@ ___
 >
 > No, because `unzip` expects to get only one zip file. Instead we can use a `for loop` to iterate through the list of files in *.zip.
 >
->
-```bash
->$ for zip in *.zip
+>```bash
+> $ for zip in *.zip
 > do
 > unzip $zip
-> done```
+> done
+> ```
 > 
-
----
-
-Once you have the html file copied over to your laptop, you should be able to open it in a browser. We are now all setup to look through our report and evaluate the quality of our sequence reads. 
 
 ---
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
