@@ -279,9 +279,9 @@ Within the 'Site Manager' window, do the following:
 
 Once you have the html file copied over to your laptop, you should be able to open it in a browser. We are now all setup to look through our report and evaluate the quality of our sequence reads. 
 
-___
 
-> #### Other FAStQC output files
+
+> #### Other FastQC output files
 > The other output of FastQC is a .zip file. These .zip files need to be unpacked with the `unzip` program. If we try to `unzip` them all at once:
 >
 > ```bash
