@@ -95,7 +95,7 @@ This plot would indicate some type of over-represented sequence with the sharp p
 
 <img src="../img/fastqc_GC.png" width="400">
 
-The next module explores numbers of duplicated sequences
+The next module explores numbers of duplicated sequences in the library. This plot can help identify a low complexity library, which could result from too many cycles of PCR amplification or too little starting material. For RNA-seq we don't normally do anything to address this in the analysis, but if this were a pilot experiment, we might adjust the number of PCR cycles, amount of input, or amount of sequencing for future libraries. In this analysis we seem to have a large number of duplicated sequences, but this is expected due to the subset of data we are working with containing the over-expression of MOV10.
 
 <img src="../img/fastqc_duplication.png" width="400">
 
@@ -109,7 +109,7 @@ As our report only represents a subset of reads (chromosome 1) for `Mov10_oe_1.s
    
 ## Troubleshooting quality issues of raw data
 
-While the data for this analysis is quite good, it's unfortunate that that's not always the case. So now that we know a bit of what quality issues to check for in the raw data, how do we troubleshoot them?
+While the data for this analysis is quite good, it's unfortunate that that's not always the case. So now that we know a bit about the types of quality issues to check for in the raw RNA-seq data, how do we troubleshoot them?
 
 <img src="../img/qc_troubleshooting.png" width="500">
    
@@ -136,6 +136,8 @@ To help think through the troubleshooting, we can arrange the data by the main p
    - Over-represented sequences more than 1-2%, unless expected based on experimental design
       - **Probable cause(s):** Contaminating sequences: adapters, vector, mitochondrial/rRNA
 
+After exploring the quality of the data, we determine from which gene or transcript the reads originated from using mapping tools. The quality of the data is important when determining where it aligns to on the genome, but the mapping tools we use (salmon and STAR) are able to account for adapter contamination, vector contamination and low-quality bases at the ends of reads when matching them to the genome/transcriptome. Therefore, after noting any QC issues, we can use our raw reads for alignment or mapping to the reference genome or transcriptome.
+
 >**NOTE:** Trimming 
 >
 >We want to make sure that as many reads as possible map or align accurately to the genome. To ensure accuracy, only a small number of mismatches between the read sequence and the genome sequence are allowed, and any read with more than a few mismatches will be marked as being unaligned. 
@@ -146,8 +148,7 @@ To help think through the troubleshooting, we can arrange the data by the main p
 >- poor quality bases at read ends
 >
 >**We will not be performing this step** because:
->* our data does not have an appreciable amount of leftover adapter sequences or other contaminating sequences based on FastQC.
->* the alignment tools we use (salmon and STAR) are able to account for low-quality bases at the ends of reads when matching them to the genome.
+>* the alignment tools we use (salmon and STAR) are able to account for adapters/vector contamination and low-quality bases at the ends of reads when matching them to the genome/transcriptome.
 >
 >If you need to perform trimming on your fastq data to remove unwanted sequences/bases, the recommended tool is [cutadapt](http://cutadapt.readthedocs.io/en/stable/index.html). 
 >
@@ -156,7 +157,7 @@ To help think through the troubleshooting, we can arrange the data by the main p
 >```bash
 >$ cutadapt --adapter=AGATCGGAAGAG --minimum-length=25  -o myfile_trimmed.fastq.gz myfile.fastq.gz 
 >```
-
+>
 >After trimming, cutadapt can remove any reads that are too short to ensure that you do not get spurious mapping of very short sequences to multiple locations on the genome. In addition to adapter trimming, cutadapt can trim off any low-quality bases too, but **please note that quality-based trimming is not considered best practice, since majority of the newer, recommended alignment tools can account for this.**
 
 ---
