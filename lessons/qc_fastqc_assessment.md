@@ -129,10 +129,8 @@ To help think through the troubleshooting, we can arrange the data by the main p
    
    - Unexpected %GC for organism and/or % of each nucleotide does not remain similar across the read (except for first 10-12 bases for RNA-Seq)
       - **Probable cause(s):** Contaminating sequences: different species, adapters, vector, mitochondrial/rRNA
-   
    - High level of sequence duplications 
       - **Probable cause(s):** Low complexity library, too many cycles of PCR amplification / too little starting material
-   
    - Over-represented sequences more than 1-2%, unless expected based on experimental design
       - **Probable cause(s):** Contaminating sequences: adapters, vector, mitochondrial/rRNA
 
