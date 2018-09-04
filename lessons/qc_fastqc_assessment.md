@@ -95,6 +95,10 @@ This plot would indicate some type of over-represented sequence with the sharp p
 
 <img src="../img/fastqc_GC.png" width="400">
 
+The next module explores numbers of duplicated sequences
+
+<img src="../img/fastqc_duplication.png" width="400">
+
 The **"Overrepresented sequences"** table is another important module as it displays the sequences (at least 20 bp) that occur in more than 0.1% of the total number of sequences. This table aids in identifying contamination, such as vector or adapter sequences. If the %GC content was off in the above module, this table can help identify the source. If not listed as a known adapter or vector, it can help to BLAST the sequence to determine the identity.
 
 Since our data is just a subset of the original data and it contains the over-expressed MOV10 gene, if we BLAST the sequences we will find they belong to MOV10. For this experiment, these over-represented sequences are not concerning.
@@ -105,7 +109,7 @@ As our report only represents a subset of reads (chromosome 1) for `Mov10_oe_1.s
    
 ## Troubleshooting quality issues of raw data
 
-While the data for this analysis is quite good, it's unfortunate that it is not always good. So now that we know a bit of what quality issues to check for in the raw data, how do we troubleshoot them?
+While the data for this analysis is quite good, it's unfortunate that that's not always the case. So now that we know a bit of what quality issues to check for in the raw data, how do we troubleshoot them?
 
 <img src="../img/qc_troubleshooting.png" width="500">
    
