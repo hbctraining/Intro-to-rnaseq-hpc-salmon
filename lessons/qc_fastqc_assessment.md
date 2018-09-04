@@ -35,6 +35,7 @@ The quality scores appear to drop going from the beginning toward the end of the
 
 
 
+
 The **"Overrepresented sequences"** table displays the sequences (at least 20 bp) that occur in more than 0.1% of the total number of sequences. This table aids in identifying contamination, such as vector or adapter sequences. 
 
 ![FastQC_contam](../img/FastQC_contam.png)
