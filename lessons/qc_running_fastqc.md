@@ -282,7 +282,7 @@ Once you have the html file copied over to your laptop, you should be able to op
 ___
 
 > #### Other FAStQC output files
-**NOTE:** The other output of FastQC is a .zip file. These .zip files need to be unpacked with the `unzip` program. If we try to `unzip` them all at once:
+> The other output of FastQC is a .zip file. These .zip files need to be unpacked with the `unzip` program. If we try to `unzip` them all at once:
 >
 > ```bash
 > $ cd ~/rnaseq/results/fastqc/
