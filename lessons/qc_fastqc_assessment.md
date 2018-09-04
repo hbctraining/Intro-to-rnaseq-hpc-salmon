@@ -15,7 +15,7 @@ Now that we have run and downloaded the FASTQC report, we can take a look at the
 
 FastQC has a really well documented [manual page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/) with [detailed explanations](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/) about all the plots in the report. 
 
-A summary of all of the modules is given on the left-hand side of the report. Don't take the yellow "WARNING"s and red "FAIL"s too seriously, these are more indicative of a module that you should take a look at to make sure there is nothing worrisome about the data. 
+A summary of all of the modules is given on the left-hand side of the report. Don't take the **yellow "WARNING"s** and **red "FAIL"s** too seriously; they should be interpreted as flag for a module to check out. 
 
 <img src="../img/fastqc_summary.png" width="200">
 
