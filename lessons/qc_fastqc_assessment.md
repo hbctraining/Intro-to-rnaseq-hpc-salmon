@@ -63,7 +63,7 @@ As sequencing progresses from the first cycle to the last cycle we often anticip
 
    <img src="../img/qc_overclustering.png" width="800">
    
-- **Instrumentation breakdown:** Sequencing facilities can occasionally have issues with the sequencing instruments during a run. Any sudden drop in quality or a large percentage of low quality reads across the read could indicate a problem at the facility. Examples of such issues are shown below, including a manifold burst, cycles lost, and read 2 failure. For such data, the sequencing facility should be contacted for resolution, if possible.
+- **Instrumentation breakdown:** Sequencing facilities can occasionally have issues with the sequencing instruments during a run. **Any sudden drop in quality or a large percentage of low quality reads across the read could indicate a problem at the facility.** Examples of such issues are shown below, including a manifold burst, cycles lost, and read 2 failure. For such data, the sequencing facility should be contacted for resolution, if possible.
 
    <img src="../img/qc_manifold_burst.png" width="300">
    
