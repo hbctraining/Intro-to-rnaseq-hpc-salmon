@@ -55,21 +55,21 @@ As sequencing progresses from the first cycle to the last cycle we often anticip
    1. Incomplete removal of the 3' terminators and fluorophores
    2. Incorporation of nucleotides without effective 3' terminators
 
-   <img src="../img/qc_phasing.png" width="400">
+   <img src="../img/qc_phasing.png" width="500">
    
 #### Worrisome
 
 - **Overclustering:** Sequencing facilities can overcluster the flow cells, which results in small distances between clusters and an overlap in the signals. The two clusters can be interpreted as a single cluster with mixed fluorescent signals being detected, decreasing signal purity, generating lower quality scores across the **entire read**.
 
-   <img src="../img/qc_overclustering.png" width="400">
+   <img src="../img/qc_overclustering.png" width="600">
    
 - **Instrumentation breakdown:** Sequencing facilities can occasionally have issues with the sequencing instruments during a run. Any sudden drop in quality or a large percentage of low quality reads across the read could indicate a problem at the facility. Examples of such issues are shown below, and the sequencing facility should be contacted for resolution, if possible.
 
-   <img src="../img/qc_manifold_burst.png" width="400">
+   <img src="../img/qc_manifold_burst.png" width="300">
    
-   <img src="../img/qc_cycles_lost.png" width="400">
+   <img src="../img/qc_cycles_lost.png" width="300">
    
-   <img src="../img/qc_read2_failed.png" width="400">
+   <img src="../img/qc_read2_failed.png" width="300">
 
 ### Quality assessment
 
