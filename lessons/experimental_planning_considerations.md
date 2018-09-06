@@ -22,7 +22,7 @@ Experimental replicates can be performed as **technical replicates** or **biolog
 
 - **Biological replicates** use different biological samples of the same condition to measure the biological variation between samples. 
 
-For mice or rats, this might be easy to determine what constitutes a different biological sample, but it's a bit more difficult to determine for cell lines. When using cell lines it's best to include as much variation between samples as possible, and [this article](http://paasp.net/accurate-design-of-in-vitro-experiments-why-does-it-matter/) gives some great recommendations for cell line replicates.
+  For mice or rats, this might be easy to determine what constitutes a different biological sample, but it's a bit more difficult to determine for cell lines. When using cell lines it's best to include as much variation between samples as possible, and [this article](http://paasp.net/accurate-design-of-in-vitro-experiments-why-does-it-matter/) gives some great recommendations for cell line replicates.
 
 In the days of microarrays, technical replicates were considered a necessity; however, with the current RNA-Seq technologies, technical variation is much lower than biological variation and **technical replicates are unneccessary**.
 
