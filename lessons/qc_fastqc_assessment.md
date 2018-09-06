@@ -69,7 +69,7 @@ As sequencing progresses from the first cycle to the last cycle we often anticip
    
    <img src="../img/qc_cycles_lost.png" width="300">
    
-   <img src="../img/qc_read2_failed.png" width="400">
+   <img src="../img/qc_read2_failed.png" width="350">
 
 ### Quality assessment
 
