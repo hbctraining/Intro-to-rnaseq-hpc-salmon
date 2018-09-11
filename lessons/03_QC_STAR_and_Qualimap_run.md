@@ -8,20 +8,20 @@ Approximate time: 50 minutes
 
 ## Learning Objectives:
 
-* Running an alignement tool to generate BAM files
+* Running an alignment tool to generate BAM files
 * Brief explanation about SAM file
 * Running Qualimap to compute metrics on alignment files
 
 
 ## Alignment of Raw Counts
 
-<img src="../img/full_workflow_Sept2018.png" width="400">
+<img src="../img/workflow_align_qualimap.png">
 
 Now that we have explored the quality of our raw reads, we can align the raw reads to the genome to explore other quality metrics, such as DNA or rRNA contamination, 5'-3' biases, and coverage biases. We perform read alignment or mapping to determine where in the genome the reads originated from. To explore these QC metrics, we need to use a traditional, splice-aware alignment tool that outputs an alignment file, BAM or SAM, with information on the genome coordinates for where the entire read mapped.
 
 The alignment process consists of choosing an appropriate reference genome to map our reads against and performing the read alignment using one of several splice-aware alignment tools such as [STAR](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635) or [HISAT2](http://ccb.jhu.edu/software/hisat2/index.shtml). The choice of aligner is often a personal preference and also dependent on the computational resources that are available to you. 
 
->**NOTE:** If using the latest human genome build, grch38, which contains information about alternative alleles for various locations on the genome, then the HISAT2 genome can utilize this information during the alignment. STAR, however, will need to use a genome that does not have the alternate alleles present, as it does not have the functionality to deal with the alternate alleles.
+>**NOTE:** The latest human genome build, GRCh38, contains information about alternative alleles for various locations on the genome. If using this genome then it is advisable to use the HISAT2 aligner as it is able to utilize this information during the alignment. STAR, however, will need to use a genome that does not have the alternate alleles present, as it does not have the functionality to deal with the alternate alleles.
 
 ## STAR Aligner
 
@@ -75,7 +75,7 @@ To get started with this lesson, start an interactive session with 6 cores:
 $ srun --pty -p short -t 0-12:00 -n 6 --mem 8G --reservation=HBC /bin/bash	
 ```
 
-You should have a directory tree setup similar to that shown below. it is best practice to have all files you intend on using for your workflow present within the same directory. In our case, we have our original FASTQ files generated in the previous section. 
+You should have a directory tree setup similar to that shown below. It is best practice to have all files you intend on using for your workflow present within the same directory. In our case, we have our original FASTQ files generated in the previous section. 
 
 ```bash
 rnaseq
@@ -113,12 +113,6 @@ Aligning reads using STAR is a two step process:
 
 For this workshop we are using reads that originate from a small subsection of chromosome 1 (~300,000 reads) and so we are using only chr1 as the reference genome from hg38 without the alternative alleles. 
 
-To store our genome indices, we will use the `/n/scratch2/` space with large temporary storage capacity. We need to create a directory for the indices within this space:
-
-```bash
-$ mkdir -p /n/scratch2/username/chr1_hg38_index
-```
-
 The basic options to **generate genome indices** using STAR are as follows:
 
 * `--runThreadN`: number of threads
@@ -130,7 +124,7 @@ The basic options to **generate genome indices** using STAR are as follows:
 
 > *NOTE:* In case of reads of varying length, the ideal value for `--sjdbOverhang` is max(ReadLength)-1. In most cases, the default value of 100 will work similarly to the ideal value.
 
-We previously generated the genome indices for you in `/n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/` directory so that we don't get held up waiting on the generation of the indices. A job submission script for creating the indices can be accessed [here](../scripts/star_genome_index.sh).
+The final command to create an index can be found in the job submission script we have linked [here](../scripts/star_genome_index.sh). We have generated the genome indices for you, so that we don't get held up waiting on the generation of the indices. The index can be found in the `/n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/` directory. 
 
 ### Aligning reads
 
@@ -144,7 +138,7 @@ $ cd ~/rnaseq/raw_data
 $ mkdir ../results/STAR
 ```
 
-### STAR command in interactive bash
+### Running STAR interactively
 
 For now, we're going to work on just one sample to set up our workflow. To start we will use the first replicate in the Mov10 over-expression group, `Mov10_oe_1.subset.fq`. Details on STAR and its functionality can be found in the [user manual](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf); we encourage you to peruse through to get familiar with all available options.
 
@@ -166,7 +160,7 @@ The full command is provided below for you to copy paste into your terminal. If 
 
 ```bash
 
-STAR --genomeDir /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/ \
+$ STAR --genomeDir /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/ \
 --runThreadN 6 \
 --readFilesIn Mov10_oe_1.subset.fq \
 --outFileNamePrefix ../results/STAR/Mov10_oe_1_ \
@@ -178,7 +172,7 @@ STAR --genomeDir /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38
 
 ## Assessing alignment quality
 
-After running our single FASTQ file through the STAR aligner, you should have noticed a number of output files in the `~/rnaseq/results/STAR` directory. Let's take a quick look at some of the files that were generated and explore the content of some of them. 
+After running our single FASTQ file through the STAR aligner, you should have a number of output files in the `~/rnaseq/results/STAR` directory. Let's take a quick look at some of the files that were generated and explore their content. 
 
 	$ cd ~/rnaseq/results/STAR
 	
@@ -192,13 +186,13 @@ What you should see, is that for each FASTQ file you have **5 output files** and
 * `Log.progress.out` -  job progress with the number of processed reads, % of mapped reads etc., updated every ~1 minute
 * `SJ.out.tab` - high confidence collapsed splice junctions in tab-delimited format. Only junctions supported by uniquely mapping reads are reported
 
-## Alignment file format: SAM/BAM
+### Alignment file format: SAM/BAM
 
 The output we requested from the STAR aligner (using the appropriate parameters) is a BAM file. By default STAR will return a file in SAM format. BAM is a binary, compressed version of the SAM file, also known as **Sequence Alignment Map format**. The SAM file is a tab-delimited text file that contains all information from the FASTQ file, with additional alignment information for each read. We will explore these files in more detail in later sessions, but the paper by [Heng Li et al](http://bioinformatics.oxfordjournals.org/content/25/16/2078.full) provides a lot more detail on the specification.
 
 ![SAM1](../img/sam_bam.png)
 
-## Mapping statistics
+### Mapping statistics
 
 To determine whether we have any contamination or biases in our data, we want to know is how well did our reads align to the reference. Rather than looking at each read alignment, it can be more useful to evaluate statistics that give a general overview for the sample. The `Log.final.out` file output from STAR contains mapping statistics. Let's use the `less` command to scroll through it: 
 
@@ -208,34 +202,34 @@ The log file provides information on reads that 1) mapped uniquely, 2) reads tha
 
 In addition to the aligner-specific summary, we can also obtain quality metrics using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html#what-is-qualimap) or [RNASeQC](http://archive.broadinstitute.org/cancer/cga/rna-seqc). 
 
-## Qualimap
+### Qualimap
 
 The Qualimap tool is written in Java and R and explores the features of mapped reads and their genomic properties. Qualimap **provides an overall view of the data that helps to detect biases in the sequencing and/or mapping of the data**. The input can be one or more BAM files and the output consists of HTML or PDF reports with useful figures and tab delimited files of metrics data.
 
 To run Qualimap, change directories to the `rnaseq` folder and make a `qualimap` folder inside the `results` directory:
 
 ```bash
-cd ~/rnaseq
+$ cd ~/rnaseq
 
-mkdir -p results/qualimap
+$ mkdir -p results/qualimap
 ```
 
 By default, Qualimap will try to open a GUI to run Qualimap, so we need to run the `unset DISPLAY` command:
 
 ```bash
-unset DISPLAY
+$ unset DISPLAY
 ```
 
 We also need to add the location of the Qualimap tool to our PATH variable:
 
 ```bash
-export PATH=/n/app/bcbio/dev/anaconda/bin:$PATH
+$ export PATH=/n/app/bcbio/dev/anaconda/bin:$PATH
 ```
 
 Now we can run Qualimap on our aligned data. There are different tools or modules available through Qualimap, and the [documentation](http://qualimap.bioinfo.cipf.es/doc_html/command_line.html) details the tools and options available. We are interested in the `rnaseq` tool. To see the arguments available for this tool we can search the help:
 
 ```bash
-qualimap rnaseq --help
+$ qualimap rnaseq --help
 ```
 
  We will be running Qualimap with the following specifications:
@@ -248,7 +242,7 @@ qualimap rnaseq --help
 -  `--java-mem-size=`: set Java memory
 
 ```bash
-qualimap rnaseq \
+$ qualimap rnaseq \
 -outdir results/qualimap/Mov10_oe_1 \
 -a proportional \
 -bam results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam \
