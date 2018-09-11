@@ -75,7 +75,7 @@ To get started with this lesson, start an interactive session with 6 cores:
 $ srun --pty -p short -t 0-12:00 -n 6 --mem 8G --reservation=HBC /bin/bash	
 ```
 
-You should have a directory tree setup similar to that shown below. it is best practice to have all files you intend on using for your workflow present within the same directory. In our case, we have our original FASTQ files generated in the previous section. 
+You should have a directory tree setup similar to that shown below. It is best practice to have all files you intend on using for your workflow present within the same directory. In our case, we have our original FASTQ files generated in the previous section. 
 
 ```bash
 rnaseq
@@ -138,7 +138,7 @@ $ cd ~/rnaseq/raw_data
 $ mkdir ../results/STAR
 ```
 
-### STAR command in interactive bash
+### Running STAR interactively
 
 For now, we're going to work on just one sample to set up our workflow. To start we will use the first replicate in the Mov10 over-expression group, `Mov10_oe_1.subset.fq`. Details on STAR and its functionality can be found in the [user manual](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf); we encourage you to peruse through to get familiar with all available options.
 
@@ -172,7 +172,7 @@ STAR --genomeDir /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38
 
 ## Assessing alignment quality
 
-After running our single FASTQ file through the STAR aligner, you should have noticed a number of output files in the `~/rnaseq/results/STAR` directory. Let's take a quick look at some of the files that were generated and explore the content of some of them. 
+After running our single FASTQ file through the STAR aligner, you should have a number of output files in the `~/rnaseq/results/STAR` directory. Let's take a quick look at some of the files that were generated and explore their content. 
 
 	$ cd ~/rnaseq/results/STAR
 	
@@ -186,13 +186,13 @@ What you should see, is that for each FASTQ file you have **5 output files** and
 * `Log.progress.out` -  job progress with the number of processed reads, % of mapped reads etc., updated every ~1 minute
 * `SJ.out.tab` - high confidence collapsed splice junctions in tab-delimited format. Only junctions supported by uniquely mapping reads are reported
 
-## Alignment file format: SAM/BAM
+### Alignment file format: SAM/BAM
 
 The output we requested from the STAR aligner (using the appropriate parameters) is a BAM file. By default STAR will return a file in SAM format. BAM is a binary, compressed version of the SAM file, also known as **Sequence Alignment Map format**. The SAM file is a tab-delimited text file that contains all information from the FASTQ file, with additional alignment information for each read. We will explore these files in more detail in later sessions, but the paper by [Heng Li et al](http://bioinformatics.oxfordjournals.org/content/25/16/2078.full) provides a lot more detail on the specification.
 
 ![SAM1](../img/sam_bam.png)
 
-## Mapping statistics
+### Mapping statistics
 
 To determine whether we have any contamination or biases in our data, we want to know is how well did our reads align to the reference. Rather than looking at each read alignment, it can be more useful to evaluate statistics that give a general overview for the sample. The `Log.final.out` file output from STAR contains mapping statistics. Let's use the `less` command to scroll through it: 
 
@@ -202,7 +202,7 @@ The log file provides information on reads that 1) mapped uniquely, 2) reads tha
 
 In addition to the aligner-specific summary, we can also obtain quality metrics using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html#what-is-qualimap) or [RNASeQC](http://archive.broadinstitute.org/cancer/cga/rna-seqc). 
 
-## Qualimap
+### Qualimap
 
 The Qualimap tool is written in Java and R and explores the features of mapped reads and their genomic properties. Qualimap **provides an overall view of the data that helps to detect biases in the sequencing and/or mapping of the data**. The input can be one or more BAM files and the output consists of HTML or PDF reports with useful figures and tab delimited files of metrics data.
 
