@@ -247,7 +247,7 @@ $ qualimap rnaseq \
 -a proportional \
 -bam results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam \
 -p strand-specific-reverse \
--gtf /groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.92.chr1.gtf\
+-gtf /groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.92.chr1.gtf \
 --java-mem-size=8G
 ```
 
