@@ -8,20 +8,20 @@ Approximate time: 50 minutes
 
 ## Learning Objectives:
 
-* Running an alignement tool to generate BAM files
+* Running an alignment tool to generate BAM files
 * Brief explanation about SAM file
 * Running Qualimap to compute metrics on alignment files
 
 
 ## Alignment of Raw Counts
 
-<img src="../img/full_workflow_Sept2018.png" width="400">
+<img src="../img/workflow_align_qualimap.png">
 
 Now that we have explored the quality of our raw reads, we can align the raw reads to the genome to explore other quality metrics, such as DNA or rRNA contamination, 5'-3' biases, and coverage biases. We perform read alignment or mapping to determine where in the genome the reads originated from. To explore these QC metrics, we need to use a traditional, splice-aware alignment tool that outputs an alignment file, BAM or SAM, with information on the genome coordinates for where the entire read mapped.
 
 The alignment process consists of choosing an appropriate reference genome to map our reads against and performing the read alignment using one of several splice-aware alignment tools such as [STAR](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635) or [HISAT2](http://ccb.jhu.edu/software/hisat2/index.shtml). The choice of aligner is often a personal preference and also dependent on the computational resources that are available to you. 
 
->**NOTE:** If using the latest human genome build, grch38, which contains information about alternative alleles for various locations on the genome, then the HISAT2 genome can utilize this information during the alignment. STAR, however, will need to use a genome that does not have the alternate alleles present, as it does not have the functionality to deal with the alternate alleles.
+>**NOTE:** The latest human genome build, GRCh38, contains information about alternative alleles for various locations on the genome. If using this genome then it is advisable to use the HISAT2 aligner as it is able to utilize this information during the alignment. STAR, however, will need to use a genome that does not have the alternate alleles present, as it does not have the functionality to deal with the alternate alleles.
 
 ## STAR Aligner
 
@@ -113,12 +113,6 @@ Aligning reads using STAR is a two step process:
 
 For this workshop we are using reads that originate from a small subsection of chromosome 1 (~300,000 reads) and so we are using only chr1 as the reference genome from hg38 without the alternative alleles. 
 
-To store our genome indices, we will use the `/n/scratch2/` space with large temporary storage capacity. We need to create a directory for the indices within this space:
-
-```bash
-$ mkdir -p /n/scratch2/username/chr1_hg38_index
-```
-
 The basic options to **generate genome indices** using STAR are as follows:
 
 * `--runThreadN`: number of threads
@@ -130,7 +124,7 @@ The basic options to **generate genome indices** using STAR are as follows:
 
 > *NOTE:* In case of reads of varying length, the ideal value for `--sjdbOverhang` is max(ReadLength)-1. In most cases, the default value of 100 will work similarly to the ideal value.
 
-We previously generated the genome indices for you in `/n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/` directory so that we don't get held up waiting on the generation of the indices. A job submission script for creating the indices can be accessed [here](../scripts/star_genome_index.sh).
+The final command to create an index can be found in the job submission script we have linked [here](../scripts/star_genome_index.sh). We have generated the genome indices for you, so that we don't get held up waiting on the generation of the indices. The index can be found in the `/n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/` directory. 
 
 ### Aligning reads
 

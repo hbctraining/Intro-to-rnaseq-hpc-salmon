@@ -208,6 +208,8 @@ do
 done
 ```
 
+Run this without the reservation!!
+
 Save and close the script. This is now ready to run. **We are not going to run this script in class**, since it might take a while.
 
 > *NOTE:* **Window users** will want to add the `--auxDir` parameter to the Salmon command and provide an alternate name for the directory. By default it will be named `aux` which interferes with the decompressing process when bringing files over locally to run `tximport/DESeq2` in R.  
