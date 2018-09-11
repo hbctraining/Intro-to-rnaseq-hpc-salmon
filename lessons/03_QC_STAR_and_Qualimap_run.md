@@ -160,7 +160,7 @@ The full command is provided below for you to copy paste into your terminal. If 
 
 ```bash
 
-STAR --genomeDir /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/ \
+$ STAR --genomeDir /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/ \
 --runThreadN 6 \
 --readFilesIn Mov10_oe_1.subset.fq \
 --outFileNamePrefix ../results/STAR/Mov10_oe_1_ \
@@ -209,27 +209,27 @@ The Qualimap tool is written in Java and R and explores the features of mapped r
 To run Qualimap, change directories to the `rnaseq` folder and make a `qualimap` folder inside the `results` directory:
 
 ```bash
-cd ~/rnaseq
+$ cd ~/rnaseq
 
-mkdir -p results/qualimap
+$ mkdir -p results/qualimap
 ```
 
 By default, Qualimap will try to open a GUI to run Qualimap, so we need to run the `unset DISPLAY` command:
 
 ```bash
-unset DISPLAY
+$ unset DISPLAY
 ```
 
 We also need to add the location of the Qualimap tool to our PATH variable:
 
 ```bash
-export PATH=/n/app/bcbio/dev/anaconda/bin:$PATH
+$ export PATH=/n/app/bcbio/dev/anaconda/bin:$PATH
 ```
 
 Now we can run Qualimap on our aligned data. There are different tools or modules available through Qualimap, and the [documentation](http://qualimap.bioinfo.cipf.es/doc_html/command_line.html) details the tools and options available. We are interested in the `rnaseq` tool. To see the arguments available for this tool we can search the help:
 
 ```bash
-qualimap rnaseq --help
+$ qualimap rnaseq --help
 ```
 
  We will be running Qualimap with the following specifications:
@@ -242,7 +242,7 @@ qualimap rnaseq --help
 -  `--java-mem-size=`: set Java memory
 
 ```bash
-qualimap rnaseq \
+$ qualimap rnaseq \
 -outdir results/qualimap/Mov10_oe_1 \
 -a proportional \
 -bam results/STAR/Mov10_oe_1_Aligned.sortedByCoord.out.bam \
