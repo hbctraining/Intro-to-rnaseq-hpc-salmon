@@ -15,7 +15,7 @@ Approximate time: 50 minutes
 
 ## Alignment of Raw Counts
 
-<img src="../img/full_workflow_Sept2018.png" width="400">
+<img src="../img/full_workflow_Sept2018.png" width="600">
 
 Now that we have explored the quality of our raw reads, we can align the raw reads to the genome to explore other quality metrics, such as DNA or rRNA contamination, 5'-3' biases, and coverage biases. We perform read alignment or mapping to determine where in the genome the reads originated from. To explore these QC metrics, we need to use a traditional, splice-aware alignment tool that outputs an alignment file, BAM or SAM, with information on the genome coordinates for where the entire read mapped.
 
