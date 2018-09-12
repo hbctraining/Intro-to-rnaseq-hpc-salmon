@@ -138,7 +138,7 @@ Exit the interactive session and start a new one with 6 cores, and use the multi
 ```bash
 $ exit  #exit the current interactive session
 
-$ srun --pty -n 6 -p short -t 0-12:00 --mem 8G --reservation=HBC /bin/bash  #start a new one with 6 cpus (-n 6) and 8G RAM (--mem 8G)
+$ srun --pty -c 6 -p short -t 0-12:00 --mem 8G --reservation=HBC /bin/bash  #start a new one with 6 cpus (-n 6) and 8G RAM (--mem 8G)
 
 $ module load fastqc/0.11.3  #reload the module for the new session
 
@@ -197,7 +197,7 @@ Following the shebang line are the O2 options. For the script to run, we need to
 ```bash
 #SBATCH -p short 		# partition name
 #SBATCH -t 0-2:00 		# hours:minutes runlimit after which job will be killed
-#SBATCH -n 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
+#SBATCH -c 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
 #SBATCH --job-name rnaseq_mov10_fastqc 		# Job name
 #SBATCH -o %j.out			# File to which standard out will be written
 #SBATCH -e %j.err 		# File to which standard err will be written
