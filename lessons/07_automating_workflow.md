@@ -21,7 +21,7 @@ Before we start with the script, let's check how many cores our interactive sess
 $ sacct
 ```
 
-We need to have an interactive session with 6 cores, if you already have one you are set. If you have a session with fewer cores then `exit` out of your current interactive session and start a new one with `-n 6`.
+We need to have an interactive session with 6 cores, if you already have one you are set. If you have a session with fewer cores then `exit` out of your current interactive session and start a new one with `-c 6`.
 
 ```bash
 $ srun --pty -p short -t 0-12:00 -c 6 --mem 8G --reservation=HBC /bin/bash
