@@ -37,6 +37,7 @@ Next, we are going to run multiQC on the following 3 outputs from our workflow:
 
 * `.zip` files from FastQC
 * `.Log.final.out` files from STAR
+* `.qualimap` files from Qualimap
 * `.salmon` directories from salmon
 
 > Note that `multiqc` is not a module on O2 and we will be using the version in `/n/app/bcbio/tools/bin/`, which is in our `$PATH`.
@@ -48,15 +49,15 @@ Now, let's run multiQC!
 
 ```bash
 $ multiqc -n multiqc_report_rnaseq \
-/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/fastqc/ /*zip \
-/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/ /*Log.final.out \
-/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/ /qualimap/* \
-/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/salmon.hg38-full
+/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/full_dataset_results/fastqc/*zip \
+/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/full_dataset_results/STAR/*Log.final.out \
+/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/full_dataset_results/qualimap/* \
+/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/full_dataset_results/salmon/*salmon
 ```
 
 > If you want to save the output on the terminal into a log file, you can use `2>` operator to redirect it to a file.
 
-The output of multiQC is 1 HTML file and a data folder. Let's transfer the interactive HTML report over to our laptops using FileZilla and visualize the outputs of the 3 tools we used to generate the report.
+The output of multiQC is 1 HTML file and a data folder. Let's transfer the interactive HTML report over to our laptops using **FileZilla** and visualize the outputs of the 4 tools we used to generate the report.
 
 The multiQC report is relatively quick to generate and provides a really clear method for comparing the samples to determine consistency, and to identify problematic samples.
 
