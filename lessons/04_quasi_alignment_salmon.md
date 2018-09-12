@@ -275,7 +275,7 @@ Save and close the script. This is now ready to run.
 >    --writeMappings=salmon.out -o $base.salmon"
 >    sleep 1	# wait 1 second between each job submission
 > done
-```
+> ```
 
 
 
