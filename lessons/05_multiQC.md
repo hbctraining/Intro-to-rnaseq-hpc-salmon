@@ -48,17 +48,17 @@ Now, let's run multiQC!
 
 ```bash
 $ multiqc -n multiqc_report_rnaseq \
-/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/fastqc/ /*zip \
-/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/ /*Log.final.out \
-/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/ /qualimap/* \
-/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/salmon.hg38-full
+/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/results_allfiles/fastqc/*zip \
+/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/results_allfiles/STAR/*_Log.final.out \
+/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/results_allfiles/qualimap/*.qualimap \
+/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/snapshots/results_allfiles/salmon/*.salmon
 ```
 
 > If you want to save the output on the terminal into a log file, you can use `2>` operator to redirect it to a file.
 
-The output of multiQC is 1 HTML file and a data folder. Let's transfer the interactive HTML report over to our laptops using FileZilla and visualize the outputs of the 3 tools we used to generate the report.
-
 The multiQC report is relatively quick to generate and provides a really clear method for comparing the samples to determine consistency, and to identify problematic samples.
+
+The output of multiQC is 1 HTML file and a data folder. Let's transfer the interactive HTML report over to our laptops using FileZilla and visualize the outputs of the 4 tools we used to generate the report.
 
 ## Assessing the quality control metrics
 
