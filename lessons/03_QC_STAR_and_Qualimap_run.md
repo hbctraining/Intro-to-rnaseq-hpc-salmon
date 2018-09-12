@@ -124,7 +124,7 @@ The basic options to **generate genome indices** using STAR are as follows:
 
 > *NOTE:* In case of reads of varying length, the ideal value for `--sjdbOverhang` is max(ReadLength)-1. In most cases, the default value of 100 will work similarly to the ideal value.
 
-The final command to create an index can be found in the job submission script we have linked [here](../scripts/star_genome_index.sh). We have generated the genome indices for you, so that we don't get held up waiting on the generation of the indices. The index can be found in the `/n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/` directory. 
+The final command to create an index can be found in the job submission script we have linked [here](../scripts/star_genome_index.run). We have generated the genome indices for you, so that we don't get held up waiting on the generation of the indices. The index can be found in the `/n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/` directory. 
 
 ### Aligning reads
 
