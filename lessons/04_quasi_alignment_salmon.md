@@ -256,7 +256,7 @@ Save and close the script. This is now ready to run.
 ---
 
 > ## Running Salmon on all samples in parallel
-> Rather than having each sample run one after the other, we can also run this in parallel. Here, we would create a shell script. Inside the script we have a for loop which is used to iterate over all FASTQ files, but this time the command in the loop is a sbatch command.
+> Rather than having each sample run one after the other, we can also run this in parallel. Here, we would create a shell script called `salmon_all_samples.sh`. Inside the script we have a for loop which is used to iterate over all FASTQ files, but this time the command in the loop is an sbatch command.
 > 
 > The `sbatch` command is followed by all of the resources we are requesting from O2. The last option is `--wrap=`. Here, we provide the Salmon command encapsulated in quotations. Then we finish and close the loop with `done`.
 >
@@ -265,7 +265,10 @@ Save and close the script. This is now ready to run.
 > 
 > for fq in /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/full_dataset/*.fastq
 > do 
+>    # Create prefix for output
 >    base=`basename $fq .fastq`
+>
+>    # Submit job for one sample
 >    sbatch -p short -n 6 -t 0-1:30 --mem 8G --job-name $base.salmon -o %j.$base.out -e %j.$base.err \
 >    --wrap="salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx \
 >    -p 6 \
@@ -274,7 +277,8 @@ Save and close the script. This is now ready to run.
 >    --useVBOpt \
 >    --seqBias \
 >    --numBootstraps 30 \
->    --writeMappings=salmon.out -o $base.salmon"
+>    --writeMappings=salmon.out -o ~/rnaseq/results/salmon/$base.salmon"
+> 
 >    sleep 1	# wait 1 second between each job submission
 > done
 > ```
