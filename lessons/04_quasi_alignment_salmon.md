@@ -192,35 +192,92 @@ ENST00000439842.1       11      2.95387 0       0
  
 ## Running Salmon on multiple samples 
 
-We just ran Salmon on a single sample (and keep in mind only on a subset of chr1 from the original data). To obtain meaningful results we need to run this on **all samples for the full dataset**. To do so, we will create a shell script which will submit each Salmon run as a job to O2.
-
-Open up a script in `vim`:
-
-	$ vim salmon_all_samples.sh
-
-Now we can create a for loop to iterate over all FASTQ samples, and submit a job to **run Salmon on each sample in parallel**. We begin by listing all SBATCH directives to specify the resources we are requesting including memory, cores and wall time.
-
-Next comes the Salmon command. Note, that we are adding a parameter called `--numBootstraps` to the Salmon command. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. Bootstrapping essentially takes a different sub-sample of reads for each bootstapping run for estimating the transcript abundances. The technical variance is the variation in transcript abundance estimates calculated for each of the different sub-samplings (or bootstraps). We will discuss this in more detail when we talk about transcript-level differential exporession analysis.
+We just ran Salmon on a single sample (and keep in mind only on a subset of chr1 from the original data). To obtain meaningful results we need to run this on **all samples for the full dataset**. To do so, we will need to create a job submission script.
 
 > *NOTE:* We are iterating over FASTQ files in the **full dataset directory**, located at `/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/full_dataset`
 
 
-```bash
-#!/bin/bash/
+### Create a job submission script to run Salmon in serial
 
-for fq in /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/full_dataset/*.fastq
-do 
-   base=`basename $fq .fastq`
-   sbatch -p short -n 6 -t 0-1:30 --mem 8G --job-name $base.salmon -o %j.$base.out -e %j.$base.err \
-   --wrap="salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx \
-   -p 6 -l A -r $fq --useVBOpt --seqBias --numBootstraps 30 \
-   --writeMappings=salmon.out -o $base.salmon"
+Since Salmon is only able to take a single file as input, one way in which we can do this is to use a for loop to run Salmon on all samples in serial. What this means is that Salmon will process the dataset one sample at a time.
+
+Let's start by opening up a script in `vim`:
+
+	$ vim salmon_all_samples.sbatch
+
+
+Let's start our script with a shebang line followed by SBATCH directives which describe the resources we are requesting from O2. We will ask for 6 cores and take advantage of Salmon's multi-threading capabilities. Note that we also removed the `--reservation` from our SBATCH options. This is because we expect it to run overnight and do not want to run the chance of any problems since the reservation was set aside for class time.
+
+
+Next we can create a for loop to iterate over all FASTQ samples. Inside the loop we will create a variable that stores the prefix we will use for naming output files, then we run Salmon. Note, that we are adding a couple of new parameters. First, since we are multi-threading with 6 cores we will use `-p 6`. Another new parameter we have added is called `--numBootstraps`. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. Bootstrapping essentially takes a different sub-sample of reads for each bootstapping run for estimating the transcript abundances. The technical variance is the variation in transcript abundance estimates calculated for each of the different sub-samplings (or bootstraps). We will discuss this in more detail when we talk about transcript-level differential exporession analysis.
+
+The final script is shown below:
+
+```
+#!/bin/bash
+
+#SBATCH -p short 
+#SBATCH -c 6 
+#SBATCH -t 0-12:00 
+#SBATCH --mem 8G 
+#SBATCH --job-name $base.salmon 
+#SBATCH -o %j.$base.out 
+#SBATCH -e %j.$base.err
+
+for fq in /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/full_dataset/*.fastq 
+
+do
+
+# create a prefix
+base=`basename $fq .fastq`
+
+# run salmon
+salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx \
+ -l A \
+ -r $fq \
+ -p 6 \
+ -o $base.salmon \
+ --writeMappings=salmon.out \
+ --seqBias \
+ --useVBOpt \
+ --numBootstraps 30
+
 done
+
 ```
 
-Save and close the script. This is now ready to run. **Note that we removed the reservation from our SBATCH.** This is because we expect it to run overnight and do not want to run the chance of any problems since the reservation was set aside for class time.
+Save and close the script. This is now ready to run.
 
-> *NOTE:* **PC users** will want to add the `--auxDir` parameter to the Salmon command and provide an alternate name for the directory. By default it will be named `aux` which interferes with the decompressing process when bringing files over locally to run differential gene expression analysis in R.  
+	$ sbatch salmon_all_samples.sbatch
+
+> **NOTE: PC users** will want to add the `--auxDir` parameter to the Salmon command and provide an alternate name for the directory. By default it will be named `aux` which interferes with the decompressing process when bringing files over locally to run differential gene expression analysis in R.  
+
+
+> ## Running Salmon on all samples in parallel
+> Rather than having each sample run one after the other, we can also run this in parallel. Here, we would create a shell script. Inside the script we have a for loop which is used to iterate over all FASTQ files, but this time the command in the loop is a sbatch command.
+> 
+> The `sbatch` command is followed by all of the resources we are requesting from O2. The last option is `--wrap=`. Here, we provide the Salmon command encapsulated in quotations. Then we finish and close the loop with `done`.
+>
+> ```bash
+> #!/bin/bash/
+> 
+> for fq in /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/full_dataset/*.fastq
+> do 
+>    base=`basename $fq .fastq`
+>    sbatch -p short -n 6 -t 0-1:30 --mem 8G --job-name $base.salmon -o %j.$base.out -e %j.$base.err \
+>    --wrap="salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx \
+>    -p 6 \
+>    -l A \
+>    -r $fq \
+>    --useVBOpt \
+>    --seqBias \
+>    --numBootstraps 30 \
+>    --writeMappings=salmon.out -o $base.salmon"
+>    sleep 1	# wait 1 second between each job submission
+> done
+```
+
+
 
 
 ***
