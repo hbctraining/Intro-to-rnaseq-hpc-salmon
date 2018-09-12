@@ -80,7 +80,7 @@ The main functions of FastQC are:
 Before we run FastQC, let's start an interactive session on the cluster (if you don't already have one going):
 
 ```bash
-$ srun --pty -p short -t 0-12:00 --mem 8G --reservation=HBC /bin/bash
+$ srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=HBC /bin/bash
 ```
 
 ***An interactive session is very useful to test tools, workflows, run jobs that open new interactive windows (X11-forwarding) and so on.***
@@ -138,7 +138,7 @@ Exit the interactive session and start a new one with 6 cores, and use the multi
 ```bash
 $ exit  #exit the current interactive session
 
-$ srun --pty -c 6 -p short -t 0-12:00 --mem 8G --reservation=HBC /bin/bash  #start a new one with 6 cpus (-c 6) and 8G RAM (--mem 8G)
+$ srun --pty -c 6 -p interactive -t 0-12:00 --mem 8G --reservation=HBC /bin/bash  #start a new one with 6 cpus (-c 6) and 8G RAM (--mem 8G)
 
 $ module load fastqc/0.11.3  #reload the module for the new session
 
@@ -167,7 +167,7 @@ $ mv *fastqc* ~/rnaseq/results/fastqc/
 ```
 
 ### Performing quality assessment using job submission scripts
-So far in our FASTQC analysis, we have been directly submitting commands to O2 using an interactive session (ie. `srun --pty -c 6 -p short -t 0-12:00 --mem 8G bash`). However, there are many more partitions available on O2 than just the interactive partition. We can submit commands or series of commands to these partitions using job submission scripts. 
+So far in our FASTQC analysis, we have been directly submitting commands to O2 using an interactive session (ie. `srun --pty -c 6 -p interactive -t 0-12:00 --mem 8G bash`). However, there are many more partitions available on O2 than just the interactive partition. We can submit commands or series of commands to these partitions using job submission scripts. 
 
 **Job submission scripts** for O2 are just regular scripts, but contain the O2 **options/directives** for job submission, such as *number of cores, name of partition, runtime limit, etc*. We can submit these scripts to whichever partition we specify in the script using the `sbatch` command as follows:
 
