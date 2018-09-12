@@ -219,9 +219,11 @@ The final script is shown below:
 #SBATCH -c 6 
 #SBATCH -t 0-12:00 
 #SBATCH --mem 8G 
-#SBATCH --job-name $base.salmon 
+#SBATCH --job-name salmon_in_serial 
 #SBATCH -o %j.$base.out 
 #SBATCH -e %j.$base.err
+
+cd ~/rnaseq/results/salmon
 
 for fq in /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/full_dataset/*.fastq 
 
