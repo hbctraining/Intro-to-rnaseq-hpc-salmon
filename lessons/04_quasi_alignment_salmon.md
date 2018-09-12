@@ -99,7 +99,7 @@ Using multiple complex modeling approaches, like Expectation Maximization (EM), 
 First start an interactive session and create a new directory for our Salmon analysis:
 
 ```bash
-$ srun --pty -p short -t 0-12:00 --mem 8G --reservation=HBC /bin/bash
+$ srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=HBC /bin/bash
 
 $ mkdir ~/rnaseq/salmon
 
