@@ -206,10 +206,9 @@ Let's start by opening up a script in `vim`:
 	$ vim salmon_all_samples.sbatch
 
 
-Let's start our script with a shebang line followed by SBATCH directives which describe the resources we are requesting from O2. We will ask for 6 cores and take advantage of Salmon's multi-threading capabilities. Note that we also removed the `--reservation` from our SBATCH options. This is because we expect it to run overnight and do not want to run the chance of any problems since the reservation was set aside for class time.
+Let's start our script with a s**hebang line followed by SBATCH directives which describe the resources we are requesting from O2**. We will ask for 6 cores and take advantage of Salmon's multi-threading capabilities. Note that we also removed the `--reservation` from our SBATCH options. This is because we expect it to run overnight and do not want to run the chance of any problems since the reservation was set aside for class time.
 
-
-Next we can create a for loop to iterate over all FASTQ samples. Inside the loop we will create a variable that stores the prefix we will use for naming output files, then we run Salmon. Note, that we are adding a couple of new parameters. First, since we are multi-threading with 6 cores we will use `-p 6`. Another new parameter we have added is called `--numBootstraps`. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. Bootstrapping essentially takes a different sub-sample of reads for each bootstapping run for estimating the transcript abundances. The technical variance is the variation in transcript abundance estimates calculated for each of the different sub-samplings (or bootstraps). We will discuss this in more detail when we talk about transcript-level differential exporession analysis.
+Next we can **create a for loop to iterate over all FASTQ samples**. Inside the loop we will create a variable that stores the prefix we will use for naming output files, then we run Salmon. Note, that we are **adding a couple of new parameters**. First, since we are **multithreading** with 6 cores we will use `-p 6`. Another new parameter we have added is called `--numBootstraps`. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. Bootstrapping essentially takes a different sub-sample of reads for each bootstapping run for estimating the transcript abundances. The technical variance is the variation in transcript abundance estimates calculated for each of the different sub-samplings (or bootstraps). We will discuss this in more detail when we talk about transcript-level differential exporession analysis.
 
 The final script is shown below:
 
@@ -252,6 +251,7 @@ Save and close the script. This is now ready to run.
 
 > **NOTE: PC users** will want to add the `--auxDir` parameter to the Salmon command and provide an alternate name for the directory. By default it will be named `aux` which interferes with the decompressing process when bringing files over locally to run differential gene expression analysis in R.  
 
+---
 
 > ## Running Salmon on all samples in parallel
 > Rather than having each sample run one after the other, we can also run this in parallel. Here, we would create a shell script. Inside the script we have a for loop which is used to iterate over all FASTQ files, but this time the command in the loop is a sbatch command.
@@ -280,7 +280,8 @@ Save and close the script. This is now ready to run.
 
 
 
-***
+---
+
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
 
 
