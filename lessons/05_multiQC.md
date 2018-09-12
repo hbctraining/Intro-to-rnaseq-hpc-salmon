@@ -71,7 +71,7 @@ The main metrics to explore first are:
 
 To view the total number of reads, we may need to configure the columns, which is a button just underneath the 'General Statistics' heading. 
 
-<img src="../img/multiqc_table.png" width="600">
+<img src="../img/multiqc_table.png" width="750">
 
 We are going to choose the following columns:
 
