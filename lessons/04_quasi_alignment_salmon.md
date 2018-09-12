@@ -220,8 +220,8 @@ The final script is shown below:
 #SBATCH -t 0-12:00 
 #SBATCH --mem 8G 
 #SBATCH --job-name salmon_in_serial 
-#SBATCH -o %j.$base.out 
-#SBATCH -e %j.$base.err
+#SBATCH -o %j.out 
+#SBATCH -e %j.err
 
 cd ~/rnaseq/results/salmon
 
@@ -238,7 +238,6 @@ salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon
  -r $fq \
  -p 6 \
  -o $base.salmon \
- --writeMappings=salmon.out \
  --seqBias \
  --useVBOpt \
  --numBootstraps 30
@@ -276,8 +275,8 @@ Save and close the script. This is now ready to run.
 >    -r $fq \
 >    --useVBOpt \
 >    --seqBias \
->    --numBootstraps 30 \
->    --writeMappings=salmon.out -o ~/rnaseq/results/salmon/$base.salmon"
+> .  -o ~/rnaseq/results/salmon/$base.salmon
+>    --numBootstraps 30"
 > 
 >    sleep 1	# wait 1 second between each job submission
 > done
