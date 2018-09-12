@@ -24,7 +24,7 @@ $ sacct
 We need to have an interactive session with 6 cores, if you already have one you are set. If you have a session with fewer cores then `exit` out of your current interactive session and start a new one with `-c 6`.
 
 ```bash
-$ srun --pty -p short -t 0-12:00 -c 6 --mem 8G --reservation=HBC /bin/bash
+$ srun --pty -p interactive -t 0-12:00 -c 6 --mem 8G --reservation=HBC /bin/bash
 ```
 
 ### More Flexibility with variables
@@ -129,7 +129,7 @@ Now that we have already created our output directories, we can now specify vari
 
 fastqc_out=results/fastqc/
 align_out=results/STAR/${base}_
-align_out_bam=../results/STAR/${base}_Aligned.sortedByCoord.out.bam
+align_out_bam=results/STAR/${base}_Aligned.sortedByCoord.out.bam
 qualimap_out=results/qualimap/${base}.qualimap
 salmon_out=results/salmon/${base}.salmon
 salmon_mappings=results/salmon/${base}_salmon.out
