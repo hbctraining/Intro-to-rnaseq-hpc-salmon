@@ -185,7 +185,7 @@ ENST00000439842.1       11      2.95387 0       0
 ```
 
 *  The first two columns are self-explanatory, the **name** of the transcript and the **length of the transcript** in base pairs (bp). 
-*  The **effective length** represents the the various factors that effect the length of transcript due to technical limitations of the sequencing platform.
+*  The **effective length** represents the the various factors that effect the length of transcript (i.e degraation, technical limitations of the sequencing platform)
 * Salmon outputs ‘pseudocounts’ which predict the relative abundance of different isoforms in the form of three possible metrics (KPKM, RPKM, and TPM). **TPM (transcripts per million)** is a commonly used normalization method as described in [[1]](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2820677/) and is computed based on the effective length of the transcript.
 * Estimated **number of reads** (an estimate of the number of reads drawn from this transcript given the transcript’s relative abundance and length)
 
