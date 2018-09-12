@@ -1,7 +1,7 @@
 ---
-title: "Automating an RNA-Seq workflow"
-author: "Bob Freeman, Meeta Mistry, Radhika Khetani"
-date: "Tuesday, August 22, 2017"
+title: "Automating the RNA-seq workflow"
+author: "Meeta Mistry, Radhika Khetani"
+date: "Wednesday, September 12, 2018"
 ---
 
 ## Learning Objectives:
@@ -104,8 +104,9 @@ Next we'll initialize 2 more variables named `genome` and `gtf`, these will cont
 ```
 # directory with genome reference FASTA and index files + name of the gene annotation file
 
-genome=/n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index/
-gtf=/n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.92.gtf
+genome=/n/groups/shared_databases/igenome/Homo_sapiens/UCSC/hg38/Sequence/starIndex/
+transcriptome=/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx
+gtf=/n/groups/shared_databases/igenome/Homo_sapiens/UCSC/hg38/Annotation/Genes/genes.gtf
 ```
 
 We'll create output directories, but with the `-p` option. This will make sure that `mkdir` will create the directory only if it does not exist, and it won't throw an error if it does exist.
@@ -115,9 +116,10 @@ We'll create output directories, but with the `-p` option. This will make sure t
 # The -p option means mkdir will create the whole path if it 
 # does not exist and refrain from complaining if it does exist
 
-mkdir -p ~/rnaseq/results/fastqc/
-mkdir -p ~/rnaseq/results/STAR
-mkdir -p ~/rnaseq/results/counts
+mkdir -p results/fastqc/
+mkdir -p results/STAR/
+mkdir -p results/qualimap/
+mkdir -p results/salmon/
 ```
 
 Now that we have already created our output directories, we can now specify variables with the path to those directories both for convenience but also to make it easier to see what is going on in a long command.
@@ -125,10 +127,12 @@ Now that we have already created our output directories, we can now specify vari
 ```
 # set up output filenames and locations
 
-fastqc_out=~/rnaseq/results/fastqc/
-align_out=~/rnaseq/results/STAR/${base}_
-counts_input_bam=~/rnaseq/results/STAR/${base}_Aligned.sortedByCoord.out.bam
-counts=~/rnaseq/results/counts/${base}_featurecounts.txt
+fastqc_out=results/fastqc/
+align_out=results/STAR/${base}_
+align_out_bam=../results/STAR/${base}_Aligned.sortedByCoord.out.bam
+qualimap_out=results/qualimap/${base}.qualimap
+salmon_out=results/salmon/${base}.salmon
+salmon_mappings=results/salmon/${base}_salmon.out
 ```
 
 ### Keeping track of tool versions
@@ -140,9 +144,10 @@ All of our variables are now staged. Next, let's make sure all the modules are l
 
 module load fastqc/0.11.3
 module load gcc/6.2.0  
-module load star/2.5.2b
+module load star/2.5.4a
 module load samtools/1.3.1
-export PATH=/n/app/bcbio/tools/bin:$PATH 	# for using featureCounts if not already in $PATH
+unset DISPLAY
+export PATH=/n/app/bcbio/dev/anaconda/bin:$PATH
 ```
 
 ### Preparing for future debugging
@@ -167,11 +172,22 @@ fastqc $fq
 # Run STAR
 STAR --runThreadN $cores --genomeDir $genome --readFilesIn $fq --outFileNamePrefix $align_out --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard
 
-# Create BAM index
-samtools index $counts_input_bam
+# Run Qualimap
+qualimap rnaseq \
+-outdir $qualimap_out \
+-a proportional \
+-bam $align_out_bam \
+-p strand-specific-reverse \
+-gtf $gtf \
+--java-mem-size=8G
 
-# Count mapped reads
-featureCounts -T $cores -s 2 -a $gtf -o $counts $counts_input_bam
+# Run salmon
+#salmon quant -i $transcriptome \
+-l A \
+-r $fq \
+-o $salmon_out \
+--writeMappings=$salmon_mappings \
+--useVBOpt
 ```
 
 ### Last addition to the script
@@ -179,7 +195,7 @@ featureCounts -T $cores -s 2 -a $gtf -o $counts $counts_input_bam
 It is best practice to have the script **usage** specified at the top any script. This should have information such that when your future self, or a co-worker, uses the script they know what it will do and what input(s) are needed. For our script, we should have the following lines of comments right at the top after `#!/bin/bash/`:
 
 ```
-# This script takes a fastq file of RNA-Seq data, runs FastQC and outputs a counts file for it.
+# This script takes a fastq file of RNA-seq data, runs FastQC, STAR, Qualimap and Salmon.
 # USAGE: sh rnaseq_analysis_on_input_file.sh <name of fastq file>
 ```
 
@@ -275,14 +291,6 @@ You can use `sacct` to check progress.
 Don't forget about the `scancel` command, should something go wrong and you need to cancel your jobs.
 
 > **NOTE:** All job schedulers are similar, but not the same. Once you understand how one works, you can transition to another one without too much trouble. They all have their pros and cons which are considered by the system administrators when picking one for a given HPC environment. 
-
-#### Generating a Count Matrix
-
-The above script will generate separate count files for each sample. Hence, after the script has run, you will have to merge them using `paste` and do some cleanup using `cut` to generate a full count matrix wherein the first column is gene names and the rest of the columns are gene counts in each sample (as shown below).
-
-<img src="../img/count_matrix.png" width="500">
-
-Alternatively, you could remove featureCounts from the original script, and run it after all the jobs finish generating BAM files.
 
 ---
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
