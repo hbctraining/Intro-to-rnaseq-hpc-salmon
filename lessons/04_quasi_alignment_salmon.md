@@ -277,7 +277,6 @@ Save and close the script. This is now ready to run.
 >    --useVBOpt \
 >    --seqBias \
 >    -o ~/rnaseq/results/salmon/$base.salmon \
->     # too large output --writeMappings=salmon.out \
 >    --numBootstraps 30"
 > 
 >    sleep 1	# wait 1 second between each job submission
