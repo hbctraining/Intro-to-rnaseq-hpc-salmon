@@ -217,7 +217,9 @@ $ vim rnaseq_analysis_on_input_file.sh
 We should all have an interactive session with 6 cores, so we can run the script as follows:
 
 ```bash
-$ sh rnaseq_analysis_on_input_file.sh ~/rnaseq/raw_data/Mov10_oe_1.subset.fq
+$ cd ..     # pwd should be ~/rnaseq/
+
+$ sh scripts/rnaseq_analysis_on_input_file.sh ~/rnaseq/raw_data/Mov10_oe_1.subset.fq
 ```
 
 ## Running the script to submit jobs in parallel to the SLURM scheduler
