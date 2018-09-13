@@ -101,9 +101,9 @@ First start an interactive session and create a new directory for our Salmon ana
 ```bash
 $ srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=HBC /bin/bash
 
-$ mkdir ~/rnaseq/salmon
+$ mkdir ~/rnaseq/results/salmon
 
-$ cd ~/rnaseq/salmon
+$ cd ~/rnaseq/results/salmon
 ```   
 
 > Salmon is not available as a module on O2, but it is installed as part of the bcbio pipeline. Since we already have the appropriate path (`/n/app/bcbio/tools/bin/`) in our `$PATH` variable we can use it by simply typing in `salmon`. 
