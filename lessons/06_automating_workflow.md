@@ -239,6 +239,7 @@ Below is what this second script (`rnaseq_analysis_on_allfiles.slurm`) would loo
 #SBATCH -p medium 		# partition name
 #SBATCH -t 0-6:00 		# hours:minutes runlimit after which job will be killed
 #SBATCH -c 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
+#SBATCH --mem 8G
 #SBATCH --job-name STAR_mov10 		# Job name
 #SBATCH -o %j.out			# File to which standard out will be written
 #SBATCH -e %j.err 		# File to which standard err will be written
@@ -247,7 +248,7 @@ Below is what this second script (`rnaseq_analysis_on_allfiles.slurm`) would loo
 for fq in ~/rnaseq/raw_data/*.fq
 do
   echo "running analysis on $fq"
-  rnaseq_analysis_on_input_file.sh $fq
+  sh ~/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq
 done
 ```
 
@@ -286,6 +287,11 @@ sleep 1	# wait 1 second between each job submission
 done
 ```
 > Please note that after the `sbatch` directives the command `sh ~/rnaseq/scripts/rnaseq_analysis_on_input_file.sh $fq` is in quotes.
+
+```bash
+$ cd ~/rnaseq/scripts/
+$ sh rnaseq_analysis_on_allfiles_for-slurm.sh
+```
 
 What you should see on the output of your screen would be the jobIDs that are returned from the scheduler for each of the jobs that your script submitted.
 
