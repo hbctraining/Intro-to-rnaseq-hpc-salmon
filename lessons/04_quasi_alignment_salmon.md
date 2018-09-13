@@ -240,7 +240,6 @@ salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon
  -o $base.salmon \
  --seqBias \
  --useVBOpt \
- # too large output --writeMappings=salmon.out \
  --numBootstraps 30
 
 done
