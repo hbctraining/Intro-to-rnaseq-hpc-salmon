@@ -240,6 +240,7 @@ salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon
  -o $base.salmon \
  --seqBias \
  --useVBOpt \
+ # too large output --writeMappings=salmon.out \
  --numBootstraps 30
 
 done
@@ -275,7 +276,8 @@ Save and close the script. This is now ready to run.
 >    -r $fq \
 >    --useVBOpt \
 >    --seqBias \
-> .  -o ~/rnaseq/results/salmon/$base.salmon
+>    -o ~/rnaseq/results/salmon/$base.salmon \
+>     # too large output --writeMappings=salmon.out \
 >    --numBootstraps 30"
 > 
 >    sleep 1	# wait 1 second between each job submission
