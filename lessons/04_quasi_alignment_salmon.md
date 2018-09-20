@@ -144,7 +144,6 @@ $ salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salm
  -l A \
  -r ~/rnaseq/raw_data/Mov10_oe_1.subset.fq \
  -o Mov10_oe_1.subset.salmon \
- --writeMappings=salmon.out \
  --seqBias \
  --useVBOpt 
 ```
