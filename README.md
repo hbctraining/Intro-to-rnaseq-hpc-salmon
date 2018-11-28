@@ -17,7 +17,7 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 
 ### Lessons
 
-The schedule for using the materials in a trainer-led workshop can be [found here](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/schedule/)
+[Click here](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/schedule/) for links to lessons and the suggested schedule.
 
 ### Installation Requirements
 
