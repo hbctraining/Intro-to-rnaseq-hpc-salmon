@@ -1,12 +1,12 @@
 # Introduction to RNA-seq using high-performance computing (HPC)
 
-| Audience | Computational Skills | Prerequisites | Duration |
-:----------|:----------|:----------|:----------|
-| Biologists | Beginner/Intermediate | None | 2-day workshop (~13 hours of trainer-led time)|
+| Audience | Computational skills required | Duration |
+:----------|:----------|:----------|
+| Biologists | None | 2- or 3-day workshop (~13 - 19.5 hours of trainer-led time)|
 
 ### Description
 
-This repository has teaching materials for a 2-day Introduction to RNA-sequencing data analysis workshop. This workshop focuses on teaching basic computational skills to enable the effective use of an high-performance computing environment to implement an RNA-seq data analysis workflow. It includes an introduction to shell (bash) and shell scripting. In addition to running the RNA-seq workflow from FASTQ files to count data, the workshop covers best practice guidlelines for RNA-seq experimental design and data organization/management.
+This repository has teaching materials for a 2-day Introduction to RNA-sequencing data analysis workshop. This workshop focuses on teaching basic computational skills to enable the effective use of an high-performance computing environment to implement an RNA-seq data analysis workflow. It includes an introduction to shell (bash) and shell scripting. In addition to running the RNA-seq workflow from FASTQ files to count data using Salmon, the workshop covers best practice guidlelines for RNA-seq experimental design and data organization/management.
 
 > These materials were developed for a trainer-led workshop, but are also amenable to self-guided learning.
 
@@ -15,33 +15,30 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 1.	Understand the necessity for, and use of, the command line interface (bash) and HPC for analyzing high-throughput sequencing data.
 2.	Understand best practices for designing an RNA-seq experiment and analysis the resulting data.
 
-### Workshop Schedule
+### Lessons
 
 The schedule for using the materials in a trainer-led workshop can be [found here](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/schedule/)
 
-### Contents
+### Installation Requirements
 
-| Lessons            | Estimated Duration |
-|:------------------------|:----------|
-|[Introduction to the shell](https://hbctraining.github.io/Intro-to-Shell/lessons/01_the_filesystem.html) | 70 min |
-|[Searching and redirection in shell](https://hbctraining.github.io/Intro-to-Shell/lessons/02_searching_files.html) | 45 min |
-|[Introduction to the Vim text editor ](https://hbctraining.github.io/Intro-to-Shell/lessons/03_vim.html) | 30 min |
-|[Shell scripts and `for` loops](https://hbctraining.github.io/Intro-to-Shell/lessons/04_loops_and_scripts.html) | 75 min |
-|[Permissions and environment variables](https://hbctraining.github.io/Intro-to-Shell/lessons/05_permissions_and_environment_variables.html) | 50 min |
-|[Project and data organization](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/01_data_organization.html) | 40 min |
-|[Introduction to High-Performance Computing for HMS-RC's O2 cluster](lectures/HPC_intro_O2.pdf) | 45 min |
-|[Introduction to RNA-seq and Library Prep](lectures/rna-seq_design.pdf) | 50 min |
-|[NGS Workflows and Data Standards]() | 35 min |
-|[RNA-seq data QC with FastQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/02_assessing_quality.html) | 55 min |
-|[RNA-seq Alignment with STAR](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/03_alignment.html) | 75 min |
-|[Assessing Alignment Quality](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/04_alignment_quality.html) | 60 min |
-|[Generating a Count Matrix](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/05_counting_reads.html) | 75 min |
-|[Documenting Steps in the Workflow with MultiQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/06_multiQC.html) | 30 min |
-|[Automating the RNA-seq workflow](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/07_automating_workflow.html) | 60 min |
-|[Alternative workflows for analyzing RNA-seq data](lectures/RNAseq-analysis-methods.pdf) | 15 min |
-|[Quantifying expression using alignment-free methods (Salmon)](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/08_salmon.html) | 75 min |
+***All:***
+
+* [FileZilla](https://filezilla-project.org/download.php?type=client) (make sure you get ‘FileZilla Client')
+* [Integrative Genomics Viewer (IGV)](http://software.broadinstitute.org/software/igv/) (scroll down on the page for Download options). If you have trouble opening IGV after installing it, you may need to install [Java](https://www.java.com/en/download/).
+
+***Mac users:***
+
+* Plain text editor like [Sublime text](http://www.sublimetext.com/) or similar
+
+***Windows users:***
+
+* [GitBash](https://git-scm.com/download/win)
+* Plain text editor like [Notepad++](http://notepad-plus-plus.org/) or similar
 
 ### Dataset
+
+* Day 1 - [Introduction to Shell: Dataset](https://www.dropbox.com/s/3lua2h1oo18gbug/unix_lesson.tar.gz?dl=1)
+* Days 2 and 3 - RNA-seq analysis (coming soon)
 
 ***
 *These materials have been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
