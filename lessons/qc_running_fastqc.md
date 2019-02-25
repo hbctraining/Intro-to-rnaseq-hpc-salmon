@@ -69,7 +69,7 @@ Now we understand what information is stored in a FASTQ file, the next step is t
 
 The main functions of FastQC are:
 
-* Import of data from BAM, SAM or FastQ files (any variant)
+* Import of data from FASTQ files (also accepts BAM and SAM alignment files)
 * Providing a quick overview to tell you in which areas there may be problems
 * Summary graphs and tables to quickly assess your data
 * Export of results to an HTML based permanent report
