@@ -31,7 +31,7 @@ The "quasi-mapping" approach utilized by Salmon requires a reference index to de
 
 <img src="../img/salmon_workflow_subset.png" width="300">
 
-### **Indexing** 
+### **Creating transcriptome index** 
 
 This step involves creating an index to evaluate the sequences for all possible unique sequences of length k (kmer) in the **transcriptome** (genes/transcripts).
 
