@@ -13,7 +13,7 @@
 | | [Unix review and Working in an HPC environment]() | Radhika |
 | | Lunch | |
 || [Project Organization and Best Practices in Data Management](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/01_data_organization.html) | Meeta |
-| | [Quality Control of Sequence Data: Running FASTQC]() | Mary | 
+| 45 min | [Quality Control of Sequence Data: Running FASTQC]() | Mary | 
 | | [Assessing the quality of Sequence Data using FASTQC]() | Radhika | 
 
 
