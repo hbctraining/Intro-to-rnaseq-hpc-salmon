@@ -29,7 +29,7 @@ Common to all of these tools is that **base-to-base alignment of the reads is av
 
 The "quasi-mapping" approach utilized by Salmon requires a reference index to determine the position and orientation information for where the fragments best map prior to quantification [[2](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)]. 
 
-<img src="../img/salmon_workflow.png" width="500">
+<img src="../img/salmon_workflow_subset.png" width="500">
 
 ### **Indexing** 
 
