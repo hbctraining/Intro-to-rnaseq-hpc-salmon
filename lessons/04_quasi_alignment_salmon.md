@@ -15,34 +15,15 @@ Approximate time: 1.25 hours
 
 ## Lightweight alignment and quantification of gene expression
 
-Now that we have explored the quality of our raw reads, we can move on to quantifying expression at the transcript level. The goal of this step is to identify from which transcript each of the reads originated from and the total number of reads associated with each transcript. Tools that have been found to be most accurate for this step in the analysis are referred to as lightweight alignment tools, which include [Kallisto](https://pachterlab.github.io/kallisto/about), [Sailfish](http://www.nature.com/nbt/journal/v32/n5/full/nbt.2862.html) and [Salmon](https://combine-lab.github.io/salmon/); each working slightly different from one another. We will focus on Salmon, which is the successor of Sailfish for this workshop; however, Kallisto is an equally good choice with similar performance metrics for speed and accuracy.
+Now that we have explored the quality of our raw reads, we can move on to quantifying expression at the transcript level. The goal of this step is to identify from which transcript each of the reads originated from and the total number of reads associated with each transcript. Tools that have been found to be most accurate for this step in the analysis are referred to as lightweight alignment tools, which include [Kallisto](https://pachterlab.github.io/kallisto/about), [Sailfish](http://www.nature.com/nbt/journal/v32/n5/full/nbt.2862.html) and [Salmon](https://combine-lab.github.io/salmon/); each working slightly different from one another. We will focus on Salmon for this workshop, which is the successor of Sailfish. However, Kallisto is an equally good choice with similar performance metrics for speed and accuracy.
 
 Common to all of these tools is that **base-to-base alignment of the reads is avoided**, which is the time-consuming step of older splice-aware alignment tools such as STAR and HISAT2. These lightweight alignment tools **provide quantification estimates much faster than older tools** (typically more than 20 times faster) with **improvements in accuracy**. These transcript expression estimates, often referred to as 'pseudocounts' or 'abundance estimates', can be converted for use with differential gene expression tools like [DESeq2](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) or the estimates can be used directly for isoform-level differential expression using a tool like [Sleuth](http://www.biorxiv.org/content/biorxiv/early/2016/06/10/058164.full.pdf). 
 
 <img src="../img/workflow_salmon.png">
 
-The improvement in accuracy for lightweight alignment tools in comparison with the standard alignment/counting methods primarily relate to the ability of the lightweight alignment tools to quantify multimapping reads. This has been shown by Robert et. al by comparing the accuracy of 12 different alignment/quantification methods using simulated data to estimate the gene expression of 1000 perfect RNA-Seq read pairs from each of of the genes [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0734-x)]. As shown in the figures below taken from the paper, the **standard alignment and counting methods such as STAR/htseq or Tophat2/htseq result in underestimates of many genes - particularly those genes comprised of multimapping reads** [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0734-x)]. 
-
-
-
-<img src="../img/pseudo_count_comparison-star_sm.png" width="400">
-
-_**NOTE:** Scatter plots are comparing FPKM for each of the 12 methods against the known FPKM from simulated data. The red line indicates the y = x line. For histograms of read counts, we expect a single peak at 1000 therefore tails represent over and under estimates._ 
-
-While the STAR/htseq standard method of alignment and counting is a bit conservative and can result in false negatives, **Cufflinks tends to overestimate gene expression and results in many false positives**, which is why Cufflinks is generally not recommended for gene expression quantification.
-
-<img src="../img/pseudo_count_comparison-cufflinks.png" width="750">
-
-Finally, the most accurate quantification of gene expression was achieved using the lightweight alignment tool Sailfish (if used without bias correction).
-
-<img src="../img/pseudo_count_comparison-sailfish_sm.png" width="400">
-
-Lightweight alignment tools such as Sailfish, Kallisto, and Salmon have generally been found to yield the most accurate estimations of transcript/gene expression. Salmon is considered to have some improvements relative to Sailfish, and it is considered to give very similar results to Kallisto. 
-
-
 ## What is Salmon?
 
-[Salmon](http://salmon.readthedocs.io/en/latest/salmon.html#using-salmon) is based on the philosophy of lightweight algorithms, which use the reference transcriptome (in FASTA format) and raw sequencing reads (in FASTQ format) as input, but do not align the full reads. These tools perform both mapping and quantification. Unlike most lightweight and standard alignment/quantification tools, **Salmon utilizes sample-specific bias models for transcriptome-wide abundance estimation**. Sample-specific bias models are helpful when needing to account for known biases present in RNA-Seq data including:
+[Salmon](http://salmon.readthedocs.io/en/latest/salmon.html#using-salmon) uses the reference transcriptome (in FASTA format) and raw sequencing reads (in FASTQ format) as input to perform both mapping and quantification of the reads, in addition to **utilizing sample-specific bias models for transcriptome-wide abundance estimation**. Sample-specific bias models are helpful when needing to account for known biases present in RNA-Seq data including:
 
 - GC bias
 - positional coverage biases
@@ -50,12 +31,11 @@ Lightweight alignment tools such as Sailfish, Kallisto, and Salmon have generall
 - fragment length distribution
 - strand-specific methods
 
-If not accounted for, these biases can lead to unacceptable false positive rates in differential expression studies [[2](http://salmon.readthedocs.io/en/latest/salmon.html#quasi-mapping-based-mode-including-lightweight-alignment)]. The **Salmon algorithm can learn these sample-specific biases and account for them in the transcript abundance estimates**. Salmon is extremely fast at "mapping" reads to the transcriptome and often more accurate than standard approaches [[2](http://salmon.readthedocs.io/en/latest/salmon.html#quasi-mapping-based-mode-including-lightweight-alignment)]. 
-
+If not accounted for, these biases can lead to unacceptable false positive rates in differential expression studies [[1](http://salmon.readthedocs.io/en/latest/salmon.html#quasi-mapping-based-mode-including-lightweight-alignment)]. The **Salmon algorithm can learn these sample-specific biases and account for them in the transcript abundance estimates**. 
 
 ## How does Salmon estimate transcript abundances?
 
-Similar to standard base-to-base alignment approaches, the quasi-mapping approach utilized by Salmon requires a reference index to determine the position and orientation information for where the fragments best map prior to quantification [[3](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)]. 
+The "quasi-mapping" approach utilized by Salmon requires a reference index to determine the position and orientation information for where the fragments best map prior to quantification [[2](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)]. 
 
 ### **Indexing** 
 
@@ -76,7 +56,7 @@ The quasi-mapping approach estimates the numbers of reads mapping to each transc
 	
 	>RapMap: a rapid, sensitive and accurate tool for mapping RNA-seq reads to transcriptomes. A. Srivastava, H. Sarkar, N. Gupta, R. Patro. Bioinformatics (2016) 32 (12): i192-i200.
 	
-	To determine the best mapping for each read/fragment and estimate the number of reads/fragments mapping to each transcript, the quasi-mapping procedure performs the following steps [[3](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)]:
+	To determine the best mapping for each read/fragment and estimate the number of reads/fragments mapping to each transcript, the quasi-mapping procedure performs the following steps [[2](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)]:
 
 	1. The read is scanned from left to right until a k-mer that appears in the hash table is discovered.
 	2. The k-mer is looked up in the hash table and the SA intervals are retrieved, giving all suffixes containing that k-mer
@@ -189,10 +169,9 @@ ENST00000439842.1       11      2.95387 0       0
  
 ## Running Salmon on multiple samples 
 
-We just ran Salmon on a single sample (and keep in mind only on a subset of chr1 from the original data). To obtain meaningful results we need to run this on **all samples for the full dataset**. To do so, we will need to create a job submission script.
+We just ran Salmon on a single sample (and keep in mind only on a subset of chr1 from the original data). To obtain meaningful results we need to run this on **all samples**. To do so, we will need to create a job submission script.
 
-> *NOTE:* We are iterating over FASTQ files in the **full dataset directory**, located at `/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/full_dataset`
-
+> *NOTE:* We are iterating over FASTQ files in the **`raw_data` directory**.
 
 ### Create a job submission script to run Salmon in serial
 
@@ -203,7 +182,7 @@ Let's start by opening up a script in `vim`:
 	$ vim salmon_all_samples.sbatch
 
 
-Let's start our script with a s**hebang line followed by SBATCH directives which describe the resources we are requesting from O2**. We will ask for 6 cores and take advantage of Salmon's multi-threading capabilities. Note that we also removed the `--reservation` from our SBATCH options. This is because we expect it to run overnight and do not want to run the chance of any problems since the reservation was set aside for class time.
+Let's start our script with a **shebang line followed by SBATCH directives which describe the resources we are requesting from O2**. We will ask for 6 cores and take advantage of Salmon's multi-threading capabilities. Note that we also removed the `--reservation` from our SBATCH options. This is because we expect it to run overnight and do not want to run the chance of any problems since the reservation was set aside for class time.
 
 Next we can **create a for loop to iterate over all FASTQ samples**. Inside the loop we will create a variable that stores the prefix we will use for naming output files, then we run Salmon. Note, that we are **adding a couple of new parameters**. First, since we are **multithreading** with 6 cores we will use `-p 6`. Another new parameter we have added is called `--numBootstraps`. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. Bootstrapping essentially takes a different sub-sample of reads for each bootstapping run for estimating the transcript abundances. The technical variance is the variation in transcript abundance estimates calculated for each of the different sub-samplings (or bootstraps). We will discuss this in more detail when we talk about transcript-level differential exporession analysis.
 
@@ -219,10 +198,11 @@ The final script is shown below:
 #SBATCH --job-name salmon_in_serial 
 #SBATCH -o %j.out 
 #SBATCH -e %j.err
+#SBATCH --reservation=HBC
 
 cd ~/rnaseq/results/salmon
 
-for fq in /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/full_dataset/*.fastq 
+for fq in ~/rnaseq/raw_data/*.fastq 
 
 do
 
@@ -248,39 +228,6 @@ Save and close the script. This is now ready to run.
 	$ sbatch salmon_all_samples.sbatch
 
 > **NOTE: PC users** will want to add the `--auxDir` parameter to the Salmon command and provide an alternate name for the directory. By default it will be named `aux` which interferes with the decompressing process when bringing files over locally to run differential gene expression analysis in R.  
-
----
-
-> ## Running Salmon on all samples in parallel
-> Rather than having each sample run one after the other, we can also run this in parallel. Here, we would create a shell script called `salmon_all_samples.sh`. Inside the script we have a for loop which is used to iterate over all FASTQ files, but this time the command in the loop is an sbatch command.
-> 
-> The `sbatch` command is followed by all of the resources we are requesting from O2. The last option is `--wrap=`. Here, we provide the Salmon command encapsulated in quotations. Then we finish and close the loop with `done`.
->
-> ```bash
-> #!/bin/bash/
-> 
-> for fq in /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/full_dataset/*.fastq
-> do 
->    # Create prefix for output
->    base=`basename $fq .fastq`
->
->    # Submit job for one sample
->    sbatch -p short -n 6 -t 0-1:30 --mem 8G --job-name $base.salmon -o %j.$base.out -e %j.$base.err \
->    --wrap="salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx \
->    -p 6 \
->    -l A \
->    -r $fq \
->    --useVBOpt \
->    --seqBias \
->    -o ~/rnaseq/results/salmon/$base.salmon \
->    --numBootstraps 30"
-> 
->    sleep 1	# wait 1 second between each job submission
-> done
-> ```
-
-
-
 
 ---
 
