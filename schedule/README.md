@@ -9,7 +9,7 @@
 |9:00 - 9:30 | [Introduction to Workshop]() | Radhika |
 |9:30 - 10:15 | [Introduction to RNA-seq]() | Meeta |
 |10:15 - 10:30 | Break | |
-| | [Experimental design considerations]() | Mary |
+|10:30 - 11:20 | [Experimental design considerations]() | Mary |
 | | [Unix review and Working in an HPC environment]() | Radhika |
 | | Lunch | |
 || [Project Organization and Best Practices in Data Management](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/01_data_organization.html) | Meeta |
