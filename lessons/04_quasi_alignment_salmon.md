@@ -13,19 +13,17 @@ Approximate time: 1.25 hours
 * Explore using lightweight algorithms to quantify reads to pseudocounts
 * Understand how Salmon performs quasi-mapping and transcript abundance estimation
 
-
 ## Lightweight alignment and quantification of gene expression
 
-The goal is to identify the genomic location where these reads originated from. After a quality control analysis of our raw sequence reads, we took a small detour from our workflow to identify any biases in our data. Although this involved aligning reads to the genome, we will not be using  the resulting BAM file to quantify expression.
+Now that we have explored the quality of our raw reads, we can move on to quantifying expression at the transcript level. The goal of this step is to identify from which transcript each of the reads originated from and the total number of reads associated with each transcript. Tools that have been found to be most accurate for this step in the analysis are referred to as lightweight alignment tools, which include [Kallisto](https://pachterlab.github.io/kallisto/about), [Sailfish](http://www.nature.com/nbt/journal/v32/n5/full/nbt.2862.html) and [Salmon](https://combine-lab.github.io/salmon/); each working slightly different from one another. We will focus on Salmon, which is the successor of Sailfish for this workshop; however, Kallisto is an equally good choice with similar performance metrics for speed and accuracy.
 
-> **NOTE:** The older, standard approach to quantifying RNA-seq data involves alignment to the genome followed by counting. Although this method is still commonly implemented we will not be addressing it in this course. However, if you are interested in more detail we have [materials linked here](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/counting_reads.html).
-
-
-**A strategy for quantification which has more recently been introduced involves transcriptome mapping**. Tools that fall in this category include [Kallisto](https://pachterlab.github.io/kallisto/about), [Sailfish](http://www.nature.com/nbt/journal/v32/n5/full/nbt.2862.html) and [Salmon](https://combine-lab.github.io/salmon/); each working slightly different from one another. (For this workshop we will explore Salmon in more detail.) Common to all of these tools is that **base-to-base alignment of the reads is avoided**, which is a time-consuming step, and these tools **provide quantification estimates much faster than do standard approaches** (typically more than 20 times faster) with **improvements in accuracy** at **the transcript level**. These transcript expression estimates, often referred to as 'pseudocounts', can be converted for use with differential gene expression tools like [DESeq2](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) or the estimates can be used directly for isoform-level differential expression using a tool like [Sleuth](http://www.biorxiv.org/content/biorxiv/early/2016/06/10/058164.full.pdf). 
+Common to all of these tools is that **base-to-base alignment of the reads is avoided**, which is the time-consuming step of older splice-aware alignment tools such as STAR and HISAT2. These lightweight alignment tools **provide quantification estimates much faster than older tools** (typically more than 20 times faster) with **improvements in accuracy**. These transcript expression estimates, often referred to as 'pseudocounts' or 'abundance estimates', can be converted for use with differential gene expression tools like [DESeq2](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) or the estimates can be used directly for isoform-level differential expression using a tool like [Sleuth](http://www.biorxiv.org/content/biorxiv/early/2016/06/10/058164.full.pdf). 
 
 <img src="../img/workflow_salmon.png">
 
 The improvement in accuracy for lightweight alignment tools in comparison with the standard alignment/counting methods primarily relate to the ability of the lightweight alignment tools to quantify multimapping reads. This has been shown by Robert et. al by comparing the accuracy of 12 different alignment/quantification methods using simulated data to estimate the gene expression of 1000 perfect RNA-Seq read pairs from each of of the genes [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0734-x)]. As shown in the figures below taken from the paper, the **standard alignment and counting methods such as STAR/htseq or Tophat2/htseq result in underestimates of many genes - particularly those genes comprised of multimapping reads** [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0734-x)]. 
+
+
 
 <img src="../img/pseudo_count_comparison-star_sm.png" width="400">
 
