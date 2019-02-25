@@ -1,4 +1,18 @@
-# Experimental planning considerations
+---
+title: "Experimental design considerations"
+author: "Mary Piper, Meeta Mistry, Radhika Khetani"
+date: "Monday, February 25, 2019"
+---
+
+Approximate time: 90 minutes
+
+## Learning Objectives:
+
+* Describe the importance of replicates for RNA-seq differential expression experiments
+* Explain the relationship between the number of biological replicates, sequencing depth and the differentially expressed genes identified
+* Demonstrate how to design an RNA-seq experiment that avoids confounding and batch effects
+
+## Experimental planning considerations
 
 Understanding the steps in the experimental process of RNA extraction and preparation of RNA-Seq libraries is helpful for designing an RNA-Seq experiment, but there are special considerations that should be highlighted that can greatly affect the quality of a differential expression analysis. 
 
@@ -14,7 +28,7 @@ We will go over each of these considerations in detail, discussing best practice
 
 Experimental replicates can be performed as **technical replicates** or **biological replicates**. 
 
-<img src="../img/replicates.png" width="400">
+<img src="../img/replicates.png" width="500">
 
 *Image credit: [Klaus B., EMBO J (2015) **34**: 2727-2730](https://dx.doi.org/10.15252%2Fembj.201592958)*
 
@@ -22,7 +36,7 @@ Experimental replicates can be performed as **technical replicates** or **biolog
 
 - **Biological replicates** use different biological samples of the same condition to measure the biological variation between samples. 
 
-  For mice or rats, this might be easy to determine what constitutes a different biological sample, but it's a bit more difficult to determine for cell lines. When using cell lines it's best to include as much variation between samples as possible, and [this article](http://paasp.net/accurate-design-of-in-vitro-experiments-why-does-it-matter/) gives some great recommendations for cell line replicates.
+For mice or rats, this might be easy to determine what constitutes a different biological sample, but it's a bit more difficult to determine for cell lines. When using cell lines it's best to include as much variation between samples as possible, and [this article](http://paasp.net/accurate-design-of-in-vitro-experiments-why-does-it-matter/) gives some great recommendations for cell line replicates.
 
 In the days of microarrays, technical replicates were considered a necessity; however, with the current RNA-Seq technologies, technical variation is much lower than biological variation and **technical replicates are unneccessary**.
 
@@ -55,7 +69,7 @@ Replicates are almost always preferred to greater sequencing depth for bulk RNA-
 
   - Of known isoforms, suggested to have a depth of at least 30 million reads per sample and paired-end reads.
 
-  - OF novel isoforms should have more depth (> 60 million reads per sample).
+  - Of novel isoforms should have more depth (> 60 million reads per sample).
 
   - Choose biological replicates over paired/deeper sequencing.
 
@@ -138,7 +152,9 @@ Your experiment has three different treatment groups, A, B, and C. Due to the le
 
 1. Fill in the `RNA isolation` column of the metadata table. Since we can only prepare 2 samples at a time and we have 12 samples total, you will need to isolate RNA in 6 batches. In the `RNA isolation` column, enter one of the following values for each sample: `group1`, `group2`, `group3`, `group4`, `group5`, `group6`. Make sure to fill in the table so as to avoid confounding by batch of `RNA isolation`. 
 
-2. **BONUS:** To perform the RNA isolations more quickly, you devote two researchers to perform the RNA isolations. Fill in their initials to the `researcher` column for the samples they will prepare: use initials `AB` or `CD`.
+	Click [here](../data/exp_design_table.xlsx) download table below as an Excel file.
+
+2. **BONUS:** To perform the RNA isolations more quickly, you devote two researchers to perform the RNA isolations. Create a `researcher` column and fill in their initials for the samples they will prepare: use initials `AB` or `CD`.
 
   | sample | treatment | sex | replicate | RNA isolation |
   | --- | --- | --- | --- | --- |
