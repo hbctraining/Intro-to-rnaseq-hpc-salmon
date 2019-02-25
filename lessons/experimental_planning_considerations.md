@@ -154,7 +154,7 @@ Your experiment has three different treatment groups, A, B, and C. Due to the le
 
 	Click [here](https://github.com/hbctraining/Intro-to-rnaseq-hpc-salmon/blob/master/data/exp_design_table.xlsx?raw=true) to download the below table as an **Excel file**.
 
-2. **BONUS:** To perform the RNA isolations more quickly, you devote two researchers to perform the RNA isolations. Create a `researcher` column and fill in their initials for the samples they will prepare: use initials `AB` or `CD`.
+2. **BONUS:** To perform the RNA isolations more quickly, you devote two researchers to perform the RNA isolations. Create a `researcher` column and fill in the researchers' initials for the samples they will prepare: use initials `AB` or `CD`.
 
   | sample | treatment | sex | replicate | RNA isolation |
   | --- | --- | --- | --- | --- |
