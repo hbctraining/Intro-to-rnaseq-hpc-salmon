@@ -70,10 +70,9 @@ Now we understand what information is stored in a FASTQ file, the next step is t
 The main functions of FastQC are:
 
 * Import of data from FASTQ files (also accepts BAM and SAM alignment files)
-* Providing a quick overview to tell you in which areas there may be problems
+* Quick overview of any likely sequencing problems
 * Summary graphs and tables to quickly assess your data
-* Export of results to an HTML based permanent report
-* Offline operation to allow automated generation of reports without running the interactive application
+* Export of results as an HTML-based report
 
 ### Run FastQC  
 
@@ -227,7 +226,7 @@ $ sbatch mov10_fastqc.run
 You can check on the status of your job with:
 
 ```bash
-$ O2sacct
+$ sacct
 ```
 
 ```bash
