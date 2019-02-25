@@ -226,6 +226,10 @@ $ sbatch mov10_fastqc.run
 You can check on the status of your job with:
 
 ```bash
+$ O2sacct
+
+# Or
+
 $ sacct -u $USER
 ```
 
