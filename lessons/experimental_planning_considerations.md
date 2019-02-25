@@ -40,7 +40,7 @@ For mice or rats, this might be easy to determine what constitutes a different b
 
 In the days of microarrays, technical replicates were considered a necessity; however, with the current RNA-Seq technologies, technical variation is much lower than biological variation and **technical replicates are unneccessary**.
 
-In contrast, **biological replicates are absolutely essential**. For differential expression analysis, the more biological replicates, the better the estimates of biological variation and the more precise our estimates of the mean expression levels. This leads to more accurate modeling of our data and identification of more differentially expressed genes.
+In contrast, **biological replicates are absolutely essential**. For differential expression analysis, the more biological replicates, the **better the estimates of biological variation** and the **more precise our estimates of the mean** expression levels. This leads to **more accurate modeling** of our data and identification of **more differentially expressed genes**.
 
 <img src="../img/de_replicates_img.png" width="500">
 
