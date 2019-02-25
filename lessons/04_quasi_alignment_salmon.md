@@ -66,11 +66,11 @@ The quasi-mapping approach estimates the numbers of reads mapping to each transc
 - **Step 2: Improving abundance estimates**
 Using multiple complex modeling approaches, like Expectation Maximization (EM), Salmon can also correct the abundance estimates for any sample-specific biases/factors [[4](http://www.nature.com.ezp-prod1.hul.harvard.edu/nmeth/journal/v14/n4/full/nmeth.4197.html?WT.feed_name=subjects_software&foxtrotcallback=true)]. Sample-specific bias models are helpful when needing to account for known biases present in RNA-Seq data including:
 
-- GC bias
-- positional coverage biases
-- sequence biases at 5' and 3' ends of the fragments
-- fragment length distribution
-- strand-specific methods
+	- GC bias
+	- positional coverage biases
+	- sequence biases at 5' and 3' ends of the fragments
+	- fragment length distribution
+	- strand-specific methods
 
 If not accounted for, these biases can lead to unacceptable false positive rates in differential expression studies [[1](http://salmon.readthedocs.io/en/latest/salmon.html#quasi-mapping-based-mode-including-lightweight-alignment)]. The **Salmon algorithm can learn these sample-specific biases and account for them in the transcript abundance estimates**. 
 Generally, this step results in more accurate transcript abundance estimation.
