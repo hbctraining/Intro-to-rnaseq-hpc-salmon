@@ -1,5 +1,5 @@
 ---
-title: "Library preparation and sequencing"
+title: "Intro to RNA-seq"
 author: "Mary Piper, Meeta Mistry, Radhika Khetani"
 date: "Monday, February 25, 2019"
 ---
@@ -11,9 +11,7 @@ Approximate time: 90 minutes
 * Describe the process of RNA-seq library preparation
 * Describe the Illumina sequencing method
 
-# Experimental steps and considerations
-
-## Introduction to RNA-seq
+# Introduction to RNA-seq
 
 RNA-seq is an exciting experimental technique that is utilized to explore and/or quantify gene expression within or between conditions. 
 
@@ -34,12 +32,14 @@ To be translated into proteins, the RNA must undergo processing to generate the 
 
 **While mRNA transcripts have a polyA tail, many of the non-coding RNA transcripts do not as the post-transcriptional processing is different for these transcripts.**
 
-RNA-seq data can be used to explore and/or quantify the RNA transcripts, which can be utilized for the following types of experiments:
+## Transcriptomics
 
-- Differential Gene Expression: *quantitative* evaluation and comparison of transcript levels
-- Transcriptome assembly: building the profile of transcribed regions of the genome, a *qualitative* evaluation. 
-- Can be used to help build better gene models, and verify them using the assembly
-- Metatranscriptomics or community transcriptome analysis
+The transcriptome is defined as a collection of all the transcript readouts present in a cell. RNA-seq data can be used to explore and/or quantify the transcriptome of an organism, which can be utilized for the following types of experiments:
+
+- **Differential Gene Expression**: *quantitative* evaluation and comparison of transcript levels
+- **Transcriptome assembly**: building the profile of transcribed regions of the genome, a *qualitative* evaluation. 
+- Can be used to **help build better gene models**, and verify them using the assembly
+- **Metatranscriptomics** or community transcriptome analysis
 
 
 ## Illumina library preparation
