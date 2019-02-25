@@ -152,7 +152,7 @@ Your experiment has three different treatment groups, A, B, and C. Due to the le
 
 1. Fill in the `RNA isolation` column of the metadata table. Since we can only prepare 2 samples at a time and we have 12 samples total, you will need to isolate RNA in 6 batches. In the `RNA isolation` column, enter one of the following values for each sample: `group1`, `group2`, `group3`, `group4`, `group5`, `group6`. Make sure to fill in the table so as to avoid confounding by batch of `RNA isolation`. 
 
-	Click [here](../data/exp_design_table.xlsx) download table below as an Excel file.
+	Click [here](https://github.com/hbctraining/Intro-to-rnaseq-hpc-salmon/blob/master/data/exp_design_table.xlsx?raw=true) download table below as an Excel file.
 
 2. **BONUS:** To perform the RNA isolations more quickly, you devote two researchers to perform the RNA isolations. Create a `researcher` column and fill in their initials for the samples they will prepare: use initials `AB` or `CD`.
 
