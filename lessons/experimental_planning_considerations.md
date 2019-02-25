@@ -4,7 +4,7 @@ author: "Mary Piper, Meeta Mistry, Radhika Khetani"
 date: "Monday, February 25, 2019"
 ---
 
-Approximate time: 90 minutes
+Approximate time: 50 minutes
 
 ## Learning Objectives:
 
