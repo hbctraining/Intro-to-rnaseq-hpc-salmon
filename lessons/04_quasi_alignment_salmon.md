@@ -67,6 +67,7 @@ The parameters for the indexing step are as follows:
 ## DO NOT RUN THIS CODE
 $ salmon index -t transcripts.fa -i transcripts_index -k 31
 ```	
+
 >
 > **NOTE:** Default for salmon is -k 31, so we do not need to include these parameters in the index command. However, the kmer default of 31 is optimized for 75bp or longer reads, so if your reads are shorter, you may want a smaller kmer to use with shorter reads (kmer size needs to be an odd number).
 > 
