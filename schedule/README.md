@@ -28,7 +28,7 @@
 || [Automating the RNA-seq workflow]() | Radhika |
 | | Lunch | |
 || [Documenting Steps in the Workflow with MultiQC]() | Meeta |
-| | [Troubleshooting RNA-seq Data Analysis](https://github.com/hbctraining/Intro-to-rnaseq-hpc-salmon/raw/master/lectures/RNA-seq_troubleshooting.pdf) | Mary |
+| 45 min | [Troubleshooting RNA-seq Data Analysis](https://github.com/hbctraining/Intro-to-rnaseq-hpc-salmon/raw/master/lectures/RNA-seq_troubleshooting.pdf) | Mary |
 | | [Wrap-up]() | Radhika |
 
 
