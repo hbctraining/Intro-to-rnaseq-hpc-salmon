@@ -235,12 +235,12 @@ The final script is shown below:
 
 cd ~/rnaseq/results/salmon
 
-for fq in ~/rnaseq/raw_data/*.fastq 
+for fq in ~/rnaseq/raw_data/*.fq
 
 do
 
 # create a prefix
-base=`basename $fq .fastq`
+base=`basename $fq .fq`
 
 # run salmon
 salmon quant -i /n/groups/hbctraining/rna-seq_2019_02/reference_data/salmon.ensembl38.idx \
