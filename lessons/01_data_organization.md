@@ -43,19 +43,22 @@ During this stage it is important to keep track of how the experiment was perfor
 
 Every computational analysis you do is going to spawn many files, and inevitability you'll want to run some of those analyses again. For each experiment you work on and analyze data for, it is considered best practice to get organized by creating a planned storage space (directory structure).
 
-We will start by creating a directory that we can use for the rest of the RNA-seq session.
-
-First, make sure that you are in your home directory.
+We will start by creating a directory that we can use for the rest of the RNA-seq session. Log into O2 using `ssh` if you are not already in and start an interactive session on the cluster:
 
 ```bash
-$ cd
+$ srun --pty -p interactive -t 0-12:00 --mem 1G --reservation=HBC /bin/bash
+```
+
+Next, let's make sure that you are in your home directory.
+
+```bash
 $ pwd
 ```
 
 This should return `/home/username`.
 `
 
-Next, we will create a project directory and set up the following structure to keep files organized. 
+Before we start any analysis, we will create a project directory and set up the following structure to keep files organized. 
 
 ```bash
 rnaseq
