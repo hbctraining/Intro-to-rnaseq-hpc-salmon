@@ -111,7 +111,7 @@ The quasi-mapping approach estimates where the reads best map to on the transcri
 	***
 	
 	
-- **Step 2: Abundance quantification**
+	- **Step 2: Abundance quantification**
 
 	After determining the best mapping for each read/fragment using the quasi-mapping method, salmon will generate the final transcript abundance estimates after modeling sample-specific parameters and biases. Note that reads/fragments that map equally well to more than one transcript will have the count divided between all of the mappings; thereby not losing information for the various gene isoforms.
 	
