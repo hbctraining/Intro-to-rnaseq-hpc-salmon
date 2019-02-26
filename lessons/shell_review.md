@@ -102,8 +102,8 @@ We are going to start this review with more exercises, this time hands on! Remem
 **Searching and redirection**
 
 12. How many lines are in `~/unix_lesson/reference_data/chr1-hg19_genes.gtf`?
- * How many of those lines have the string "MOV10" in them?
- * How many of the lines with the string "MOV10" in them have the word "exon" in them?
+      * How many of those lines have the string "MOV10" in them?
+      * How many of the lines with the string "MOV10" in them have the word "exon" in them?
 13. Create a new directory called `shell_review/` within the `unix_lesson/` directory.
 14. Grab the lines in `~/unix_lesson/reference_data/chr1-hg19_genes.gtf` with the string "MOV10" in them and save it in the `shell_review/` directory with a new name "Mov10_hg19.gtf".
 15. Use `vim` to open the newly created file `~/unix_lesson/shell_review/Mov10_hg19.gtf` and add a comment at the top specifying how this file was created and the source of the content. Save the modified file and come back to the command prompt.
@@ -111,19 +111,19 @@ We are going to start this review with more exercises, this time hands on! Remem
 **Loops and shell scripts**
 
 16. Use the `for` loop to iterate over each FASTQ file in `~/unix_lesson/raw_fastq/` and do the following:
- * Generate a prefix to use for naming our output files
- * Print the name of the current file
- * Dump out the first 40 lines into a new file that will be saved in `~/unix_lesson/shell_review/`
+      * Generate a prefix to use for naming our output files
+      * Print the name of the current file
+      * Dump out the first 40 lines into a new file that will be saved in `~/unix_lesson/shell_review/`
 17. Place the above `for` loop into a shell script using `vim` and run it.
 
 **Permissions**
 
 18. List `/n/groups/hbctraining/intro_rnaseq_hpc/` directory in long listing format
- * How many owners have files in this folder?
- * How many groups?
- * Are there any executable *files* in this folder?
- * What kind of access do you have to the `full_dataset/` directory?
- * What could user `mm573` do to take away your ability to look inside the `full_dataset/` directory?
+      * How many owners have files in this folder?
+      * How many groups?
+      * Are there any executable *files* in this folder?
+      * What kind of access do you have to the `full_dataset/` directory?
+      * What could user `mm573` do to take away your ability to look inside the `full_dataset/` directory?
 
 **Environment variables**
 
