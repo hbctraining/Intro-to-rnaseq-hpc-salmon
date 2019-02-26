@@ -23,7 +23,7 @@ Now that we have explored the quality of our raw reads, we can move on to quanti
 
 Tools that have been found to be most accurate for this step in the analysis are referred to as lightweight alignment tools, which include [Kallisto](https://pachterlab.github.io/kallisto/about), [Sailfish](http://www.nature.com/nbt/journal/v32/n5/full/nbt.2862.html) and [Salmon](https://combine-lab.github.io/salmon/); each working slightly different from one another. We will focus on Salmon for this workshop, which is the successor of Sailfish. However, Kallisto is an equally good choice with similar performance metrics for speed and accuracy.
 
-Common to all of these tools is that **base-to-base alignment of the reads is avoided**, which is the time-consuming step of older splice-aware alignment tools such as STAR and HISAT2. These lightweight alignment tools **provide quantification estimates much faster than older tools** (typically more than 20 times faster) with **improvements in accuracy**. These transcript expression estimates, often referred to as 'pseudocounts' or 'abundance estimates', can be aggregated to the gene level for use with differential gene expression tools like [DESeq2](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) or the estimates can be used directly for isoform-level differential expression using a tool like [Sleuth](http://www.biorxiv.org/content/biorxiv/early/2016/06/10/058164.full.pdf). 
+Common to all of these tools is that **base-to-base alignment of the reads is avoided**, which is the time-consuming step of older splice-aware alignment tools such as STAR and HISAT2. These lightweight alignment tools **provide quantification estimates much faster than older tools** (typically more than 20 times faster) with **improvements in accuracy** [[1](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0734-x)]. These transcript expression estimates, often referred to as 'pseudocounts' or 'abundance estimates', can be aggregated to the gene level for use with differential gene expression tools like [DESeq2](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) or the estimates can be used directly for isoform-level differential expression using a tool like [Sleuth](http://www.biorxiv.org/content/biorxiv/early/2016/06/10/058164.full.pdf). 
 
 ## Salmon
 
@@ -35,9 +35,11 @@ The "quasi-mapping" approach utilized by Salmon **requires a reference index** t
 <img src="../img/salmon_workflow_subset.png" width="300">
 </p>
 
+*Image credit: [RNA-Seq Blog](https://www.rna-seqblog.com/salmon-fast-and-bias-aware-quantification-of-transcript-expression/)
+
 ### **Creating the transcriptome index** 
 
-This step involves creating an index to evaluate the sequences for all possible unique sequences of length k (kmer) in the **transcriptome**, which includes all known transcripts/ splice isoforms for all known and predicted genes and pseudogenes.
+This step involves creating an index to evaluate the sequences for all possible unique sequences of length k (k-mer) in the **transcriptome**, which includes all known transcripts/ splice isoforms for all known and predicted genes and pseudogenes.
 
 **The index helps creates a signature for each transcript in our reference transcriptome.** The Salmon index has two components:
 
@@ -54,9 +56,7 @@ $ mkdir ~/rnaseq/results/salmon
 $ cd ~/rnaseq/results/salmon
 ```   
 
-> Salmon is not available as a module on O2, but it is installed as part of the bcbio pipeline. Since we already have the appropriate path (`/n/app/bcbio/tools/bin/`) in our `$PATH` variable we can use it by simply typing in `salmon`. 
-> 
-> The latest version of Salmon is 0.11.3, but the version currently available to us on O2 is 0.10.2 and so you may encounter small differences in the parameter usage in the manual versus what we use.    
+> Salmon is not available as a module on O2, but it is installed as part of the bcbio pipeline. Since we already have the appropriate path (`/n/app/bcbio/tools/bin/`) in our `$PATH` variable we can use it by simply typing in `salmon`.     
 
 Now, we could create the index using the `salmon index` command as detailed below; however, we are not going to run this in class as it can take a few minutes to run. 
 The parameters for the indexing step are as follows:
