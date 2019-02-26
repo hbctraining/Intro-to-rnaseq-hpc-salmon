@@ -1,7 +1,7 @@
 ---
 title: "Quantification of transcript abundance using Salmon"
 author: "Mary Piper and Meeta Mistry"
-date: "Wednesday, September 20, 2017"
+date: "Wednesday, February 27, 2019"
 ---
 
 Contributors: Mary Piper and Meeta Mistry
@@ -97,18 +97,18 @@ The quasi-mapping approach estimates where the reads best map to on the transcri
 	>
 	> **NOTE:** If there are k-mers in the reads that are not in the index, they are not counted. As such, trimming is not required when using this method. Accordingly, if there are reads from transcripts not present in the reference transcriptome, they will not be quantified. Quantification of the reads is only as good as the quality of the reference transcriptome.
 	
-		***
+	***
 
-		**Exercise:**
+	**Exercise:**
 	
-		In your RNA-seq experiment, you expressed a GFP transgene in your mice, and you would like to quantify the expression of GFP. We know that the sequence is not present in the human transcriptome. What would you do?
+	In your RNA-seq experiment, you expressed a GFP transgene in your mice, and you would like to quantify the expression of GFP. We know that the sequence is not present in the human transcriptome. What would you do?
 
-		- **a.** Try laboratory techniques like quantitative PCR to act as a proxy for expression level
-		- **b.** Add the sequence of the GFP transcript to the FASTA reference file
-		- **c.** Manually search for and count the number of times the GFP transcript is present in the read files for each sample
-		- **d.** Feel defeated and accept that there is no valid way to do this
+	- **a.** Try laboratory techniques like quantitative PCR to act as a proxy for expression level
+	- **b.** Add the sequence of the GFP transcript to the FASTA reference file
+	- **c.** Manually search for and count the number of times the GFP transcript is present in the read files for each sample
+	- **d.** Feel defeated and accept that there is no valid way to do this
 
-		***
+	***
 	
 	
 - **Step 2: Abundance quantification**
