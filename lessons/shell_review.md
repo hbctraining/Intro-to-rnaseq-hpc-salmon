@@ -27,9 +27,11 @@ Once logged in, you should see the O2 icon, some news, and the command prompt:
 [rc_training10@login01 ~]$ 
 ```
 
+> `ssh` stands for secure shell. All of the information (like your password) going between your computer and the O2 login computer is encrypted when using `ssh`.
+>
 > A "node" on a cluster is essentially a computer in the cluster of computers.
 >
-> A login node is only to enable users to log in, it is not meant to be used for any actual work/computing.
+> A login node's only function is to enable users to log in to a cluster, it is not meant to be used for any actual work/computing.
 
 ### Connecting to a *compute* node on O2
 
@@ -52,6 +54,10 @@ In the above command the parameters we are using are requesting specific resourc
 * `--mem 1G` - memory needed - 1 gigabyte
 * `--reservation=HBC` - *this is only for this workshop, make sure you don't use it in the future with your own accounts*
 * `/bin/bash` - You want to interact with the compute node using the *bash* shell
+
+> These resources are listed slightly differently in the specialized script that is submitted directly using `sbatch`.
+>
+> We will be reviewing the arguments above and what that specialized script looks like at the end of this lesson.
 
 Make sure that your command prompt is now preceded by a character string that contains the word "compute":
 
@@ -153,6 +159,10 @@ We need to use one tool that is unavailable as a module on O2, but it is availab
 * Use `vim` to open `~/.bashrc`
 * Add the following line at the end of the file `export PATH=/n/app/bcbio/tools/bin:$PATH`
 * Save and quit out of `vim`
+
+### Resources on O2 and asking Slurm for them
+
+Finally, let's review some of the information for O2 and slurm in [these slides](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lectures/HPC_intro_O2_review.pdf)
 
 ****
 
