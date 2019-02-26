@@ -127,7 +127,9 @@ We are going to start this review with more exercises, this time hands on! Remem
 
 **Environment variables**
 
-19.
+19. Display the contents of the `$HOME` variable.
+20. Use the `which` command to check where the executable file for the `pwd` command lives in the directory structure.
+21. How does shell know to look 
 
 ****
 
