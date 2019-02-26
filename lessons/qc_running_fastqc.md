@@ -230,10 +230,6 @@ You can check on the status of your job with:
 
 ```bash
 $ O2sacct
-
-# Or
-
-$ sacct -u $USER
 ```
 
 > **NOTE:** Other helpful options for checking/managing jobs are available as a [cheatsheet](https://wiki.rc.hms.harvard.edu/display/O2/O2+Command+CheatSheet) from HMS-RC.
