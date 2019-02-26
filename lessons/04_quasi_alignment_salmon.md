@@ -27,11 +27,13 @@ Common to all of these tools is that **base-to-base alignment of the reads is av
 
 [Salmon](http://salmon.readthedocs.io/en/latest/salmon.html#using-salmon) uses the reference transcriptome (in FASTA format) and raw sequencing reads (in FASTQ format) as input to perform both mapping and quantification of the reads.
 
-The "quasi-mapping" approach utilized by Salmon requires a reference index to determine the position and orientation information for where the fragments best map prior to quantification [[2](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)]. 
+The "quasi-mapping" approach utilized by Salmon **requires a reference index** to determine the position and orientation information for where the fragments best map prior to quantification [[2](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)]. The reference index essentially provides the transcriptome in a format that is **easily and rapidly searchable**. Therefore, it will allow us to quickly find the positions in the transcriptome where each of the reads originated.
 
+<p align="center">
 <img src="../img/salmon_workflow_subset.png" width="300">
+</p>
 
-### **Creating transcriptome index** 
+### **Creating the transcriptome index** 
 
 This step involves creating an index to evaluate the sequences for all possible unique sequences of length k (kmer) in the **transcriptome** (genes/transcripts).
 
