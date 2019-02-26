@@ -46,7 +46,7 @@ Every computational analysis you do is going to spawn many files, and inevitabil
 We will start by creating a directory that we can use for the rest of the RNA-seq session. Log into O2 using `ssh` if you are not already in and start an interactive session on the cluster:
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 --mem 1G --reservation=HBC /bin/bash
+$ srun --pty -p short -t 0-12:00 --mem 1G --reservation=HBC /bin/bash
 ```
 
 Next, let's make sure that you are in your home directory.
@@ -99,7 +99,7 @@ Let's populate the `rnaseq/` project with our example RNA-seq FASTQ data.
 The FASTQ files are located inside `~/unix_lesson/raw_fastq/`, and we need to copy them to `raw_data/`. We can match them by file extension with `*.fq`.
 
 ```bash
-$ cp ~/unix_lesson/raw_fastq/*.fq raw_data/
+$ cp /n/groups/hbctraining/unix_lesson/raw_fastq/*.fq raw_data/
 ```
 
 Perfect, now the structure of `rnaseq/` should look like this:
