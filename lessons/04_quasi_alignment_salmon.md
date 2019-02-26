@@ -91,7 +91,7 @@ In your RNA-seq experiment, you expressed a GFP transgene in your mice, and you 
 
 ### **Quasi-mapping and quantification** 
 
-The quasi-mapping approach estimates where the reads best map to on the transcriptome. The quasi-mapping approach is described below, with details provided by the Rapmap tool [[3](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)], which provides the underlying algorithm for the quasi-mapping.
+The quasi-mapping approach estimates where the reads best map to on the transcriptome through identifying where informative sequences within the read map to instead of performing base-by-base alignment. The quasi-mapping approach is described below, with details provided by the Rapmap tool [[3](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)], which provides the underlying algorithm for the quasi-mapping.
 
 - **Step 1: Quasi-mapping**
 
@@ -125,37 +125,37 @@ The quasi-mapping approach estimates where the reads best map to on the transcri
 
 	If not accounted for, these biases can lead to unacceptable false positive rates in differential expression studies [[1](http://salmon.readthedocs.io/en/latest/salmon.html#quasi-mapping-based-mode-including-lightweight-alignment)]. The **Salmon algorithm can learn these sample-specific biases and account for them in the transcript abundance estimates**. Generally, this step results in more accurate transcript abundance estimation.
 
-To perform the quasi-mapping and transcript abundance quantification, we can run the `salmon quant` command. The parameters for the command are described below (more information on parameters can be found [here](http://salmon.readthedocs.io/en/latest/salmon.html#id5)):
+	To perform the quasi-mapping and transcript abundance quantification, we can run the `salmon quant` command. The parameters for the command are described below (more information on parameters can be found [here](http://salmon.readthedocs.io/en/latest/salmon.html#id5)):
 
-* `-i`: specify the location of the index directory; for us it is `/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx`
-* `-l A`: Format string describing the library. `A` will automatically infer the most likely library type (more info available [here](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype))
-* `-r`: sample file
-* `--useVBOpt`: use variational Bayesian EM algorithm rather than the ‘standard EM’ to optimize abundance estimates (more accurate) 
-* `-o`: output quantification file name
-* `--seqBias` will enable it to learn and correct for sequence-specific biases in the input data.
+	* `-i`: specify the location of the index directory; for us it is `/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx`
+	* `-l A`: Format string describing the library. `A` will automatically infer the most likely library type (more info available [here](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype))
+	* `-r`: sample file
+	* `--useVBOpt`: use variational Bayesian EM algorithm rather than the ‘standard EM’ to optimize abundance estimates (more accurate) 
+	* `-o`: output quantification file name
+	* `--seqBias` will enable it to learn and correct for sequence-specific biases in the input data.
 
 
-To run the quantification step on a single sample we have the command provided below. Let's try running it on our subset sample for `Mov10_oe_1.subset.fq`:
+	To run the quantification step on a single sample we have the command provided below. Let's try running it on our subset sample for `Mov10_oe_1.subset.fq`:
 
-```bash
-$ salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx \
- -l A \
- -r ~/rnaseq/raw_data/Mov10_oe_1.subset.fq \
- -o Mov10_oe_1.subset.salmon \
- --seqBias \
- --useVBOpt 
-```
+	```bash
+	$ salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx \
+	 -l A \
+ 	-r ~/rnaseq/raw_data/Mov10_oe_1.subset.fq \
+ 	-o Mov10_oe_1.subset.salmon \
+ 	--seqBias \
+ 	--useVBOpt 
+	```
 
->**NOTE:** Paired-end reads require both sets of reads to be given in addition to a [paired-end specific library type](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype):
+	>**NOTE:** Paired-end reads require both sets of reads to be given in addition to a [paired-end specific library type](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype):
 `salmon quant -i transcripts_index -l <LIBTYPE> -1 reads1.fq -2 reads2.fq -o transcripts_quant`
-> 
-> To have Salmon correct for RNA-Seq biases you will need to specify the appropriate parameters when you run it. As noted, when describing the FASTQC results, with RNA-seq data you will always observe sequence-specific biases due to the random hexamer priming and so we would always want to have that correction turned on. Before using the remaining parameters it is advisable to assess your data using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/) to look specifically for the presence of these biases in your data and decide on which parameters would be appropriate. 
-> 
-> To correct for the various sample-specific biases you could add the following parameters to the Salmon command:
->
-> * `--gcBias` to learn and correct for fragment-level GC biases in the input data
-> * `--posBias` will enable modeling of a position-specific fragment start distribution
->
+	> 
+	> To have Salmon correct for RNA-Seq biases you will need to specify the appropriate parameters when you run it. As noted, when describing the FASTQC results, with RNA-seq data you will always observe sequence-specific biases due to the random hexamer priming and so we would always want to have that correction turned on. Before using the remaining parameters it is advisable to assess your data using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/) to look specifically for the presence of these biases in your data and decide on which parameters would be appropriate. 
+	> 
+	> To correct for the various sample-specific biases you could add the following parameters to the Salmon command:
+	>
+	> * `--gcBias` to learn and correct for fragment-level GC biases in the input data
+	> * `--posBias` will enable modeling of a position-specific fragment start distribution
+	>
 
 ## Salmon output
 
