@@ -10,7 +10,7 @@ Approximate time: 1.25 hours
 
 ## Learning Objectives
 
-* Explore using lightweight algorithms to quantify reads to pseudocounts
+* Explore using lightweight algorithms to quantify reads to abundance estimates
 * Understand how Salmon performs quasi-mapping and transcript abundance estimation
 
 ## Lightweight alignment and quantification of gene expression
