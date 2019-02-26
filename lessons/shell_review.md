@@ -83,8 +83,9 @@ We are going to start this review with more exercises, this time hands on! Remem
 
 ****
 
-**Exercise**
+**Exercises**
 
+**Shell basics**
 1. Change directory into the `unix_lesson/` directory using a relative path.
 2. Use the `tree` command to get a layout of `unix_lesson/`.
 3. Take a quick look at the `Mov10_oe_1.subset.fq` file using `less` from `unix_lesson/` without changing directories.
@@ -96,28 +97,33 @@ We are going to start this review with more exercises, this time hands on! Remem
 9. List (long listing format) the contents of `/n/groups/hbctraining/intro_rnaseq_hpc/full_dataset/` using tab completion.
 10. Modify the above command using the `*` wildcard to only list those files that have "oe" in their names.
 11. How many and which commands have you run today?
+
+**Searching and redirection**
 12. How many lines are in `~/unix_lesson/reference_data/chr1-hg19_genes.gtf`?
  * How many of those lines have the string "MOV10" in them?
  * How many of the lines with the string "MOV10" in them have the word "exon" in them?
 13. Create a new directory called `shell_review/` within the `unix_lesson/` directory.
 14. Grab the lines in `~/unix_lesson/reference_data/chr1-hg19_genes.gtf` with the string "MOV10" in them and save it in the `shell_review/` directory with a new name "Mov10_hg19.gtf".
 15. Use `vim` to open the newly created file `~/unix_lesson/shell_review/Mov10_hg19.gtf` and add a comment at the top specifying how this file was created and the source of the content. Save the modified file and come back to the command prompt.
+
+**Loops and shell scripts**
 16. Use the `for` loop to iterate over each FASTQ file in `~/unix_lesson/raw_fastq/` and do the following:
  * Generate a prefix to use for naming our output files
  * Print the name of the current file
  * Dump out the first 40 lines into a new file that will be saved in `~/unix_lesson/shell_review/`
 17. Place the above `for` loop into a shell script using `vim` and run it.
+
+**Permissions**
 18. List `/n/groups/hbctraining/intro_rnaseq_hpc/` directory in long listing format
  * How many owners have files in this folder?
  * How many groups?
  * Are there any executable *files* in this folder?
  * What kind of access do you have to the `full_dataset/` directory?
  * What could user `mm573` do to take away your ability to look inside the `full_dataset/` directory?
+
+**Environment variables**
 19.
 
 ****
-
-
----
 
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
