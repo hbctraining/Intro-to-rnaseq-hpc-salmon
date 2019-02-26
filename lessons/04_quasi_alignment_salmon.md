@@ -67,13 +67,16 @@ The parameters for the indexing step are as follows:
     
 ```bash
 ## DO NOT RUN THIS CODE
-$ salmon index -t /n/groups/hbctraining/rna-seq_2019_02/reference_data/Homo_sapiens.GRCh38.cdna.all.fa -i salmon_index -k 31
+$ salmon index \
+-t /n/groups/hbctraining/rna-seq_2019_02/reference_data/Homo_sapiens.GRCh38.cdna.all.fa \
+-i salmon_index \
+-k 31
 ```	
 
 >
 > **NOTE:** Default for salmon is -k 31, so we do not need to include these parameters in the index command. However, the kmer default of 31 is optimized for 75bp or longer reads, so if your reads are shorter, you may want a smaller kmer to use with shorter reads (kmer size needs to be an odd number).
 > 
-> We generated the index from transcript sequences for human obtained from the [Ensembl ftp site](https://useast.ensembl.org/info/data/ftp/index.html) with the following commands:
+> **Accessing transcriptome data:** We generated the index from transcript sequences for human obtained from the [Ensembl ftp site](https://useast.ensembl.org/info/data/ftp/index.html) with the following commands:
 >
 > ```bash
 > # Download from the FTP server
@@ -82,7 +85,6 @@ $ salmon index -t /n/groups/hbctraining/rna-seq_2019_02/reference_data/Homo_sapi
 > # Decompress the FASTA file
 > $ gzip -d Homo_sapiens.GRCh38.cdna.all.fa.gz
 > ```
-
 	
 ***
 
@@ -97,8 +99,6 @@ In your RNA-seq experiment, you expressed a GFP transgene in your mice, and you 
 
 ***
 	
-	
-
 ### **Quasi-mapping and quantification** 
 
 The quasi-mapping approach estimates where the reads best map to on the transcriptome through identifying where informative sequences within the read map to instead of performing base-by-base alignment. The quasi-mapping approach is described below, with details provided by the Rapmap tool [[3](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)], which provides the underlying algorithm for the quasi-mapping.
