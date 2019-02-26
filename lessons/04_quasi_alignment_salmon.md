@@ -67,14 +67,21 @@ The parameters for the indexing step are as follows:
     
 ```bash
 ## DO NOT RUN THIS CODE
-$ salmon index -t transcripts.fa -i transcripts_index -k 31
+$ salmon index -t /n/groups/hbctraining/rna-seq_2019_02/reference_data/Homo_sapiens.GRCh38.cdna.all.fa -i salmon_index -k 31
 ```	
 
 >
 > **NOTE:** Default for salmon is -k 31, so we do not need to include these parameters in the index command. However, the kmer default of 31 is optimized for 75bp or longer reads, so if your reads are shorter, you may want a smaller kmer to use with shorter reads (kmer size needs to be an odd number).
 > 
-
-We will be using an index we have generated from transcript sequences for human, which was obtained from the [Ensembl ftp site](https://useast.ensembl.org/info/data/ftp/index.html). 
+> We generated the index from transcript sequences for human obtained from the [Ensembl ftp site](https://useast.ensembl.org/info/data/ftp/index.html) with the following commands:
+>
+> ```bash
+> # Download from the FTP server
+> $ wget ftp://ftp.ensembl.org/pub/release-95/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz
+> 
+> # Decompress the FASTA file
+> $ gzip -d Homo_sapiens.GRCh38.cdna.all.fa.gz
+> ```
 
 	
 ***
