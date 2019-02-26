@@ -99,7 +99,7 @@ Let's populate the `rnaseq/` project with our example RNA-seq FASTQ data.
 The FASTQ files are located inside `~/unix_lesson/raw_fastq/`, and we need to copy them to `raw_data/`. We can match them by file extension with `*.fq`.
 
 ```bash
-$ cp /n/groups/hbctraining/unix_lesson/raw_fastq/*.fq raw_data/
+$ cp ~/unix_lesson/raw_fastq/*.fq raw_data/
 ```
 
 Perfect, now the structure of `rnaseq/` should look like this:
