@@ -131,8 +131,8 @@ Sequencing primers are hybridised to adapter sequence, **starting the sequencing
 * The color is recorded, then the terminator on dye is cleaved and washed. Process repeats for specifioed number of cycles.
 
 	
-> **Number of clusters ~= Number of reads**
-> **Number of sequencing cycles = Length of reads**
+> * **Number of clusters ~= Number of reads**
+> * **Number of sequencing cycles = Length of reads**
 
 The number of cycles (length of the reads) will depend on sequencing platform used as well as your preferences.
 
