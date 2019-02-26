@@ -75,7 +75,7 @@ $ salmon index \
 
 >
 > **NOTE:** Default for salmon is -k 31, so we do not need to include these parameters in the index command. However, the kmer default of 31 is optimized for 75bp or longer reads, so if your reads are shorter, you may want a smaller kmer to use with shorter reads (kmer size needs to be an odd number).
-> 
+
 > **Accessing transcriptome data:** We generated the index from transcript sequences for human obtained from the [Ensembl ftp site](https://useast.ensembl.org/info/data/ftp/index.html) with the following commands:
 >
 > ```bash
