@@ -7,7 +7,7 @@
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
 |9:00 - 9:30 | [Introduction to Workshop]() | Radhika |
-|9:30 - 10:15 | [Introduction to RNA-seq]() | Meeta |
+|9:30 - 10:15 | [Introduction to RNA-seq](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/Intro-to-RNAseq.html) | Meeta |
 |10:15 - 10:30 | Break | |
 |10:30 - 11:20 | [Experimental design considerations](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/experimental_planning_considerations.html) | Mary |
 |11:20 - 12:30 | [Unix review and Working in an HPC environment]() | Radhika |
