@@ -58,7 +58,7 @@ The workflow for library preparation is detailed in the step-by-step images belo
 
 > *The size of the target fragments in the final library is a key parameter for library construction. DNA fragmentation is typically done by physical methods (i.e., acoustic shearing and sonication) or enzymatic methods (i.e., non-specific endonuclease cocktails and transposase tagmentation reactions.*
  
- <img src="../img/libraryprep_step3.png" width="400">
+ <img src="../img/libraryprep_step3.png" width="450">
 
 **The RNA is then reverse transcribed into double-stranded cDNA and sequence adapters are then added to the ends of the fragments.**
 
@@ -70,11 +70,11 @@ The workflow for library preparation is detailed in the step-by-step images belo
 > * Reverse (firststrand) – reads resemble the complement of the gene sequence or firststrand cDNA sequence (TruSeq)
 > * Unstranded
 
- <img src="../img/libraryprep_step4-5.png" width="400">
+ <img src="../img/libraryprep_step4-5.png" width="450">
  
 **Finally, the fragments are PCR amplified if needed, and the fragments are size selected (usually ~300-500bp) to finish the library.**
 
- <img src="../img/libraryprep_step6.png" width="400">
+ <img src="../img/libraryprep_step6.png" width="450">
  
  *Image credit: [Martin J.A. and Wang Z., Nat. Rev. Genet. (2011) 12:671–682](https://www.nature.com/articles/nrg3068)*
 
