@@ -22,15 +22,15 @@
 
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
-|9:00 - 9:30 | [Sequence Alignment Theory]() | Meeta |
+|9:00 - 9:30 | Sequence Alignment Theory | Meeta |
 |9:30 - 10:30 | [Quantifying expression using alignment-free methods (Salmon)](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/04_quasi_alignment_salmon.html) | Mary |
 |10:30 - 10:45 | Break | |
-| | [STAR and Qualimap]() | Meeta |
-|| [Automating the RNA-seq workflow]() | Radhika |
+| | STAR and Qualimap | Meeta |
+|| Automating the RNA-seq workflow | Radhika |
 | | Lunch | |
-|| [Documenting Steps in the Workflow with MultiQC]() | Meeta |
+|| Documenting Steps in the Workflow with MultiQC | Meeta |
 | 45 min | [Troubleshooting RNA-seq Data Analysis](https://github.com/hbctraining/Intro-to-rnaseq-hpc-salmon/raw/master/lectures/RNA-seq_troubleshooting.pdf) | Mary |
-| | [Wrap-up]() | Radhika |
+| | Wrap-up| Radhika |
 
 
 
