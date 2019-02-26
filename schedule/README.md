@@ -13,9 +13,9 @@
 |11:15 - 12:30 | [Unix review and Working in an HPC environment]() | Radhika |
 |12:30 - 1:30 | Lunch | |
 |1:30 - 2:10| [Project Organization and Best Practices in Data Management](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/01_data_organization.html) | Meeta |
-|2:10 - 3:00 | [Quality Control of Sequence Data: Running FASTQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/qc_running_fastqc.html) | Mary | 
-|3:00 - 3:15| Break | 
-|3:15 - 4:15| [Quality Control of Sequence Data: Evaluating FASTQC reports]() | Radhika | 
+|2:10 - 3:30 | [Quality Control of Sequence Data: Running FASTQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/qc_running_fastqc.html) | Mary | 
+|3:30 - 3:45| Break | 
+|3:45 - 5:00| [Quality Control of Sequence Data: Evaluating FASTQC reports]() | Radhika | 
 
 
 ## Day 2
