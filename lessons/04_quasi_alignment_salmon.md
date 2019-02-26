@@ -35,7 +35,7 @@ The "quasi-mapping" approach utilized by Salmon **requires a reference index** t
 <img src="../img/salmon_workflow_subset.png" width="300">
 </p>
 
-*Image credit: [RNA-Seq Blog](https://www.rna-seqblog.com/salmon-fast-and-bias-aware-quantification-of-transcript-expression/)
+*Image credit: [RNA-Seq Blog](https://www.rna-seqblog.com/salmon-fast-and-bias-aware-quantification-of-transcript-expression/)*
 
 ### **Creating the transcriptome index** 
 
