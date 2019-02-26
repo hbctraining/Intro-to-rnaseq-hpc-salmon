@@ -109,31 +109,33 @@ Differences in platform can alter the length of reads generated as well as the t
  
 ### Sequencing-by-synthesis 
 
-Illumina sequencing technology uses a sequencing-by-synthesis approach which is described in more detail below.
+Illumina sequencing technology uses a sequencing-by-synthesis approach which is described in more detail below. The library fragments are denatured and applied to the flow cell. The flow cell lanes are lined with short oligonucleotides whose sequence is complementary to our adapter sequences (anchored to the flow cell).
 
-* The library fragments are denatured and applied to the flow cell. The flow cell lanes are lined with short oligonucleotides whose sequence is complenatry to our adapter sequences (anchored to the flow cell).
-* Once the fragments have attached, a phase called **cluster generation begins**. 
+<img src="../img/illumina_sequencing_process.png" width="600">
+
+#### Cluster Generation
+Once the fragments have attached, a phase called **cluster generation begins**. 
 	* Synthesize the complement with polymerase
 	* dsDNA is denatured, and original DNA washed away leaving synthesized strand covalently bound to flow cell.
 	* Single strand hybridises with adjacent adapter to form a ‘bridge’
 	* dsDNA is extended by polymerase. Each strand covalently bound to different adapter. 
 	* Repeat many times to clonally amplify all unique fragments on flow cell to form clusters of identical sequence.
-* After cluster generation the reverse strands are cleaved and washed off. 3’ ends are blocked to prevent unwanted priming.
-* Sequencing primers are hybridised to adapter sequence, **starting the sequencing by synthesis process**. 
+
+#### Sequencing by synthesis
+After cluster generation the reverse strands are cleaved and washed off. 3’ ends are blocked to prevent unwanted priming.
+Sequencing primers are hybridised to adapter sequence, **starting the sequencing by synthesis process**. 
 	* Cycle four NTPs with fluorescent markers and terminator sequence and polymerases.
 	* Once NTP is incorporated, the cluster is excited by a light source and a characteristic fluroscent signal is emitted. 
 	* The color is recorded, then the terminator on dye is cleaved and washed. Process repeats for specifioed number of cycles.
-	
 
-<img src="../img/illumina_sequencing_process.png" width="400">
 	
-	- Number of clusters ~= Number of reads
-- Number of sequencing cycles = Length of reads
+> **Number of clusters ~= Number of reads**
+> **Number of sequencing cycles = Length of reads**
 
 The number of cycles (length of the reads) will depend on sequencing platform used as well as your preferences.
 
 
-Let's explore how Illumina sequencing is performed:
+> **NOTE**. If you want to explore more on how Illumina sequencing is performed, take a few minutes to watc the video linked below.
 
 [<img src="../img/illumina_sequencing.png" width="400">](https://www.dropbox.com/s/f4t94tcw06f9stg/Illumina%20Sequencing%20by%20Synthesis-14840.mp4?dl=0)
 
