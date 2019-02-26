@@ -152,7 +152,7 @@ We are going to start this review with more exercises, this time hands on! Remem
 
 ## Some setting up for the rest of the workshop
 
-### Add a path to $PATH
+### Add a path to `$PATH`
 
 We need to use one tool that is unavailable as a module on O2, but it is available in a folder on O2, so we are going to add it to our $PATH. If we just add it using the `export` command, it will only be available to us in this specific interactive session. However, if we place that export command in a script that is run everytime a new interactive session is started, it is more efficient.
 
