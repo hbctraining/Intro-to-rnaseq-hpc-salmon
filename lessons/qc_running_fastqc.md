@@ -101,7 +101,7 @@ If we check which modules we currently have loaded, we should not see FastQC.
 $ module list
 ```
 
-This is because the FastQC program is not in our $PATH (i.e. its not in a directory that unix will automatically check to run commands/programs).
+This is because the FastQC program is not in our $PATH (i.e. its not in a directory that shell will automatically check to run commands/programs).
 
 ```bash
 $ echo $PATH
@@ -119,7 +119,7 @@ Then we can load the FastQC module:
 $ module load fastqc/0.11.3
 ```
 
-Once a module for a tool is loaded, you have essentially made it directly available to you like any other basic UNIX command.
+Once a module for a tool is loaded, you have essentially made it directly available to you like any other basic shell command.
 
 ```bash
 $ module list
