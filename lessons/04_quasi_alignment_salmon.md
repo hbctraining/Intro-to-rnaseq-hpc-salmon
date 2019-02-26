@@ -59,9 +59,9 @@ $ cd ~/rnaseq/results/salmon
 Now, we could create the index using the `salmon index` command as detailed below; however, we are not going to run this in class as it can take a few minutes to run. 
 The parameters for the indexing step are as follows:
 
-- **`-t:** the path to the transcriptome (in FASTA format)
-- **`-i:** the path to the folder to store the indices generated
-- **`-k:** the length of kmer to use to create the indices (will output all sequences in transcriptome of length k)
+- **`-t`:** the path to the transcriptome (in FASTA format)
+- **`-i`:** the path to the folder to store the indices generated
+- **`-k`:** the length of kmer to use to create the indices (will output all sequences in transcriptome of length k)
     
 ```bash
 ## DO NOT RUN THIS CODE
