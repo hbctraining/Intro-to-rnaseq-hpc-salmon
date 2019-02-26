@@ -6,8 +6,8 @@
 
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
-|9:00 - 9:20 | [Introduction to Workshop]() | Radhika |
-|9:20 - 10:10 | [Introduction to RNA-seq](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/Intro-to-RNAseq.html) | Meeta |
+|9:00 - 9:20 | [Introduction to Workshop](../lectures/Intro_to_workshop.pdf) | Radhika |
+|9:20 - 10:10 | [Introduction to RNA-seq](../lessons/Intro-to-RNAseq.md) | Meeta |
 |10:10 - 10:25 | Break | |
 |10:25 - 11:15 | [Experimental design considerations](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/experimental_planning_considerations.html) | Mary |
 |11:15 - 12:30 | [Unix review and Working in an HPC environment]() | Radhika |
@@ -15,7 +15,7 @@
 |1:30 - 2:10| [Project Organization and Best Practices in Data Management](https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/01_data_organization.html) | Meeta |
 |2:10 - 3:30 | [Quality Control of Sequence Data: Running FASTQC](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/qc_running_fastqc.html) | Mary | 
 |3:30 - 3:45| Break | 
-|3:45 - 5:00| [Quality Control of Sequence Data: Evaluating FASTQC reports]() | Radhika | 
+|3:45 - 5:00| [Quality Control of Sequence Data: Evaluating FASTQC reports](../lessons/qc_fastqc_assessment.md) | Radhika | 
 
 
 ## Day 2
