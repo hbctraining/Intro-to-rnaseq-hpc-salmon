@@ -35,39 +35,87 @@ The "quasi-mapping" approach utilized by Salmon **requires a reference index** t
 
 ### **Creating the transcriptome index** 
 
-This step involves creating an index to evaluate the sequences for all possible unique sequences of length k (kmer) in the **transcriptome** (genes/transcripts).
+This step involves creating an index to evaluate the sequences for all possible unique sequences of length k (kmer) in the **transcriptome**, which includes all known transcripts/ splice isoforms for all known and predicted genes and pseudogenes.
 
 **The index helps creates a signature for each transcript in our reference transcriptome.** The Salmon index has two components:
 
 - a suffix array (SA) of the reference transcriptome
 - a hash table to map each transcript in the reference transcriptome to it's location in the SA (is not required, but improves the speed of mapping drastically)
 
+To create the transcriptome index with Salmon, let's start an interactive session and create a new directory in our `results` folder for the Salmon output:
+
+```bash
+$ srun --pty -p short -t 0-12:00 --mem 8G --reservation=HBC /bin/bash
+
+$ mkdir ~/rnaseq/results/salmon
+
+$ cd ~/rnaseq/results/salmon
+```   
+
+> Salmon is not available as a module on O2, but it is installed as part of the bcbio pipeline. Since we already have the appropriate path (`/n/app/bcbio/tools/bin/`) in our `$PATH` variable we can use it by simply typing in `salmon`. 
+> 
+> **NOTE:** The latest version of Salmon is 0.11.3, but the version currently available to us on O2 is 0.10.2 and so you may encounter small differences in the parameter usage in the manual versus what we use.    
+
+Now, we could create the index using the `salmon index` command as detailed below; however, we are not going to run this in class as it can take a few minutes to run. 
+The parameters for the indexing step are as follows:
+
+- **`-t:** the path to the transcriptome (in FASTA format)
+- **`-i:** the path to the folder to store the indices generated
+- **`-k:** the length of kmer to use to create the indices (will output all sequences in transcriptome of length k)
+    
+```bash
+## DO NOT RUN THIS CODE
+$ salmon index -t transcripts.fa -i transcripts_index -k 31
+```
+
+> **NOTE:** Default for salmon is -k 31, so we do not need to include these parameters in the index command. However, the kmer default of 31 is optimized for 75bp or longer reads, so if your reads are shorter, you may want a smaller kmer to use with shorter reads (kmer size needs to be an odd number).
+> 
+
+We will be using an index we have generated from transcript sequences for human, which was obtained from the [Ensembl ftp site](ftp://ftp.ensembl.org/pub/current_fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz). 
+
+
+
 ### **Quasi-mapping and quantification** 
 
-The quasi-mapping approach estimates the numbers of reads mapping to each transcript, then generates final transcript abundance estimates after modeling sample-specific parameters and biases. The quasi-mapping approach is described below, with details provided by the Rapmap tool [[3](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)], which provides the underlying algorithm for the quasi-mapping.
+The quasi-mapping approach estimates where the reads best map to on the transcriptome. The quasi-mapping approach is described below, with details provided by the Rapmap tool [[3](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)], which provides the underlying algorithm for the quasi-mapping.
 
-- **Step 1: Quasi mapping and abundance estimation**
+- **Step 1: Quasi-mapping**
 
 	<img src="../img/salmon_quasialignment.png" width="750">
 	
 	>RapMap: a rapid, sensitive and accurate tool for mapping RNA-seq reads to transcriptomes. A. Srivastava, H. Sarkar, N. Gupta, R. Patro. Bioinformatics (2016) 32 (12): i192-i200.
 	
-	To determine the best mapping for each read/fragment and estimate the number of reads/fragments mapping to each transcript, the quasi-mapping procedure performs the following steps [[2](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)]:
+	To determine the best mapping for each read/fragment, the quasi-mapping procedure performs the following steps [[2](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)]:
 
 	1. The read is scanned from left to right until a k-mer that appears in the hash table is discovered.
 	2. The k-mer is looked up in the hash table and the SA intervals are retrieved, giving all suffixes containing that k-mer
 	3. Similar to STAR, the maximal matching prefix (MMP) is identified by finding the longest read sequence that exactly matches the reference suffixes.
-	4. We could search for the next MMP at the position following the MMP (like we do with STAR), but often natural variation or a sequencing error in the read is the cause of the mismatch from the reference, so the beginning the search at this position would likely return the same set of transcripts. Therefore, Salmon identifies the next informative position (NIP), by skipping ahead 1 k-mer. 
+	4. We could search for the next MMP at the position following the MMP, but often natural variation or a sequencing error in the read is the cause of the mismatch from the reference, so the beginning the search at this position would likely return the same set of transcripts. Therefore, Salmon identifies the next informative position (NIP), by **skipping ahead 1 k-mer**. 
 	5. This process is repeated until the end of the read.
 	6. The final mappings are generated by determining the set of transcripts appearing in all MMPs for the read. The transcripts, orientation and transcript location are output for each read.
 	
 	>
 	> **NOTE:** If there are k-mers in the reads that are not in the index, they are not counted. As such, trimming is not required when using this method. Accordingly, if there are reads from transcripts not present in the reference transcriptome, they will not be quantified. Quantification of the reads is only as good as the quality of the reference transcriptome.
 	
-	
-- **Step 2: Improving abundance estimates**
+	***
 
-	Using multiple complex modeling approaches, like Expectation Maximization (EM), Salmon can also correct the abundance estimates for any sample-specific biases/factors [[4](http://www.nature.com.ezp-prod1.hul.harvard.edu/nmeth/journal/v14/n4/full/nmeth.4197.html?WT.feed_name=subjects_software&foxtrotcallback=true)]. Sample-specific bias models are helpful when needing to account for known biases present in RNA-Seq data including:
+	**Exercise:**
+	
+	In your RNA-seq experiment, you expressed a GFP transgene in your mice, and you would like to quantify the expression of GFP. We know that the sequence is not present in the human transcriptome. What would you do?
+
+	**a.** Try laboratory techniques like quantitative PCR to act as a proxy for expression level
+	**b.** Add the sequence of the GFP transcript to the FASTA reference file
+	**c.** Manually search for and count the number of times the GFP transcript is present in the read files for each sample
+	**d.** Feel defeated and accept that there is no valid way to do this
+
+	***
+	
+	
+- **Step 2: Abundance quantification**
+
+	After determining the best mapping for each read/fragment using the quasi-mapping method, salmon will generate the final transcript abundance estimates after modeling sample-specific parameters and biases. Note that reads/fragments that map equally well to more than one transcript will have the count divided between all of the mappings; thereby not losing information for the various gene isoforms.
+	
+	Instead of only counting the number of reads/fragments mapping to each of the transcripts, Salmon uses multiple complex modeling approaches, like Expectation Maximization (EM) to estimate the transcript abundances while correcting the abundance estimates for any sample-specific biases/factors [[4](http://www.nature.com.ezp-prod1.hul.harvard.edu/nmeth/journal/v14/n4/full/nmeth.4197.html?WT.feed_name=subjects_software&foxtrotcallback=true)]. Sample-specific bias models are helpful when needing to account for known biases present in RNA-Seq data including:
 
 	- GC bias
 	- positional coverage biases
@@ -77,39 +125,7 @@ The quasi-mapping approach estimates the numbers of reads mapping to each transc
 
 	If not accounted for, these biases can lead to unacceptable false positive rates in differential expression studies [[1](http://salmon.readthedocs.io/en/latest/salmon.html#quasi-mapping-based-mode-including-lightweight-alignment)]. The **Salmon algorithm can learn these sample-specific biases and account for them in the transcript abundance estimates**. Generally, this step results in more accurate transcript abundance estimation.
 
-## Running Salmon on O2
-
-First start an interactive session and create a new directory for our Salmon analysis:
-
-```bash
-$ srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=HBC /bin/bash
-
-$ mkdir ~/rnaseq/results/salmon
-
-$ cd ~/rnaseq/results/salmon
-```   
-
-> Salmon is not available as a module on O2, but it is installed as part of the bcbio pipeline. Since we already have the appropriate path (`/n/app/bcbio/tools/bin/`) in our `$PATH` variable we can use it by simply typing in `salmon`. 
-> 
-> **NOTE:** The latest version of Salmon is 0.11.3, but the version curretly available to us on O2 is 0.10.2 and so you may encounter small differences in the parameter usage in the manual versus what we use.    
-
-As you can imagine from the description above, when running Salmon there are also two steps.
-
-**Step 1: Indexing**
- "Index" the transcriptome using the `index` command:
-    
-```bash
-## DO NOT RUN THIS CODE
-$ salmon index -t transcripts.fa -i transcripts_index --type quasi -k 31
-```
-> **NOTE:** Default for salmon is --type quasi and -k 31, so we do not need to include these parameters in the index command. The kmer default of 31 is optimized for 75bp or longer reads, so if your reads are shorter, you may want a smaller kmer to use with shorter reads (kmer size needs to be an odd number).
-
-> 
-**We are not going to run this in class, but it only takes a few minutes.** We will be using an index we have generated from transcript sequences (all known transcripts/ splice isoforms with multiples for some genes) for human. The transcriptome data (FASTA) was obtained from the [Ensembl ftp site](ftp://ftp.ensembl.org/pub/current_fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz).
-
-
-**Step 2: Quantification:**
-Get the transcript abundance estimates using the `quant` command and the parameters described below (more information on parameters can be found [here](http://salmon.readthedocs.io/en/latest/salmon.html#id5)):
+To perform the quasi-mapping and transcript abundance quantification, we can run the `salmon quant` command. The parameters for the command are described below (more information on parameters can be found [here](http://salmon.readthedocs.io/en/latest/salmon.html#id5)):
 
 * `-i`: specify the location of the index directory; for us it is `/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx`
 * `-l A`: Format string describing the library. `A` will automatically infer the most likely library type (more info available [here](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype))
@@ -133,7 +149,7 @@ $ salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salm
 >**NOTE:** Paired-end reads require both sets of reads to be given in addition to a [paired-end specific library type](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype):
 `salmon quant -i transcripts_index -l <LIBTYPE> -1 reads1.fq -2 reads2.fq -o transcripts_quant`
 > 
-> To have Salmon correct for RNA-Seq biases you will need to specify the appropriate parameters when you run it. As noted, when describing the FASTQC results, with RNA-seq data you will always observe sequence-specific biases due to teh random hexamer priming and so we would always want to have that correction turned on. Before using the remaining parameters it is advisable to assess your data using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/) to look specifically for the presence of these biases in your data and decide on which parameters would be appropriate. 
+> To have Salmon correct for RNA-Seq biases you will need to specify the appropriate parameters when you run it. As noted, when describing the FASTQC results, with RNA-seq data you will always observe sequence-specific biases due to the random hexamer priming and so we would always want to have that correction turned on. Before using the remaining parameters it is advisable to assess your data using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/) to look specifically for the presence of these biases in your data and decide on which parameters would be appropriate. 
 > 
 > To correct for the various sample-specific biases you could add the following parameters to the Salmon command:
 >
@@ -166,20 +182,20 @@ ENST00000439842.1       11      2.95387 0       0
 ```
 
 *  The first two columns are self-explanatory, the **name** of the transcript and the **length of the transcript** in base pairs (bp). 
-*  The **effective length** represents the the various factors that effect the length of transcript (i.e degraation, technical limitations of the sequencing platform)
-* Salmon outputs ‘pseudocounts’ which predict the relative abundance of different isoforms in the form of three possible metrics (KPKM, RPKM, and TPM). **TPM (transcripts per million)** is a commonly used normalization method as described in [[1]](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2820677/) and is computed based on the effective length of the transcript.
-* Estimated **number of reads** (an estimate of the number of reads drawn from this transcript given the transcript’s relative abundance and length)
+*  The **effective length** represents the various factors that effect the length of transcript (i.e degradation, technical limitations of the sequencing platform)
+* Salmon outputs 'pseudocounts' or 'abundance estimates' which predict the relative abundance of different isoforms in the form of three possible metrics (FPKM, RPKM, and TPM). **TPM (transcripts per million)** is a commonly used normalization method as described in [[1]](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2820677/) and is computed based on the effective length of the transcript. **We do NOT recommend FPKM or RPKM**.
+* Estimated **number of reads**, which is the estimate of the number of reads drawn from this transcript given the transcript’s relative abundance and length)
 
  
 ## Running Salmon on multiple samples 
 
-We just ran Salmon on a single sample (and keep in mind only on a subset of chr1 from the original data). To obtain meaningful results we need to run this on **all samples**. To do so, we will need to create a job submission script.
+We just ran Salmon on a single sample, but we would like to run this on **all samples**. To do so, we will need to create a job submission script.
 
 > *NOTE:* We are iterating over FASTQ files in the **`raw_data` directory**.
 
 ### Create a job submission script to run Salmon in serial
 
-Since Salmon is only able to take a single file as input, one way in which we can do this is to use a for loop to run Salmon on all samples in serial. What this means is that Salmon will process the dataset one sample at a time.
+Since Salmon is only able to take a single file as input, one way in which we can do this is to use a 'for loop' to run Salmon on all samples in serial. What this means is that Salmon will process the dataset one sample at a time.
 
 Let's start by opening up a script in `vim`:
 
@@ -188,7 +204,7 @@ Let's start by opening up a script in `vim`:
 
 Let's start our script with a **shebang line followed by SBATCH directives which describe the resources we are requesting from O2**. We will ask for 6 cores and take advantage of Salmon's multi-threading capabilities. 
 
-Next we can **create a for loop to iterate over all FASTQ samples**. Inside the loop we will create a variable that stores the prefix we will use for naming output files, then we run Salmon. Note, that we are **adding a couple of new parameters**. First, since we are **multithreading** with 6 cores we will use `-p 6`. Another new parameter we have added is called `--numBootstraps`. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for estimation of technical variance**. Bootstrapping essentially takes a different sub-sample of reads for each bootstapping run for estimating the transcript abundances. The technical variance is the variation in transcript abundance estimates calculated for each of the different sub-samplings (or bootstraps). We will discuss this in more detail when we talk about transcript-level differential exporession analysis.
+Next we can **create a for loop to iterate over all FASTQ samples**. Inside the loop we will create a variable that stores the prefix we will use for naming output files, then we run Salmon. Note, that we are **adding a couple of new parameters**. First, since we are **multithreading** with 6 cores we will use `-p 6`. Another new parameter we have added is called `--numBootstraps`. Salmon has the ability to optionally compute bootstrapped abundance estimates. **Bootstraps are required for isoform level differential expression analysis for estimation of technical variance**. Bootstrapping essentially takes a different sub-sample of reads for each bootstapping run for estimating the transcript abundances. The technical variance is the variation in transcript abundance estimates calculated for each of the different sub-samplings (or bootstraps). We will discuss this in more detail when we talk about transcript-level differential exporession analysis.
 
 The final script is shown below:
 
