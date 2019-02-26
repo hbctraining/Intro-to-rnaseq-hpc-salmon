@@ -125,7 +125,7 @@ Illumina sequencing technology uses a sequencing-by-synthesis approach which is 
 	* The color is recorded, then the terminator on dye is cleaved and washed. Process repeats for specifioed number of cycles.
 	
 
-<img src="../img/illumina_sequencing.png" width="400">
+<img src="../img/illumina_sequencing_process.png" width="400">
 	
 	- Number of clusters ~= Number of reads
 - Number of sequencing cycles = Length of reads
