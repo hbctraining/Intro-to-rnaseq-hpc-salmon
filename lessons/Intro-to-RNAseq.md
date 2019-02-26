@@ -117,7 +117,7 @@ In the step, the DNA fragments in the cDNA library are denatured and applied to 
 
 #### Cluster Generation
 
-Once the fragments have attached, a phase called **cluster generation begins**. During this step, single fragments are clonally amplified to create a cluster of identical fragments close together. This is necessary so that the fluorescence can be readily captured during nucleotide incorporation in the next step.
+Once the fragments have attached, a phase called **cluster generation begins**. During this step, single fragments are clonally amplified to create a cluster (fragments in close proximity) of identical fragments. This is necessary so that the fluorescence can be readily captured from each cluster, instead of a single fragment, during nucleotide incorporation in the next step.
 
 > * Synthesize the complement with polymerase
 > * dsDNA is denatured, and original DNA washed away leaving synthesized strand covalently bound to flow cell.
@@ -127,7 +127,7 @@ Once the fragments have attached, a phase called **cluster generation begins**. 
 
 #### Sequencing by synthesis (& image acquisition)
 
-After cluster generation, fluorecently-tagged nucleotides are incorporated one at a time (cyclically) and fluorescence images are captured to identify which nucleotide gets incorporated into each cluster in each cycle.  
+After cluster generation, fluorescently-tagged nucleotides are incorporated one at a time (cyclically) and fluorescence images are captured to identify which nucleotide gets incorporated into each cluster in each cycle.  
 
 > * Denature clusters and the block 3’ ends to prevent unwanted priming.
 > * Hybridize sequencing primers to adapter sequence at the loose ends. 
@@ -137,9 +137,9 @@ After cluster generation, fluorecently-tagged nucleotides are incorporated one a
 
 #### Base Calling
 
-Illumina has proprietary software that goes through all the images captured in the previous stage and generates text files with sequence information about each cluster based on the fluorescence. In addition to calling the bases, this software assigns a probablity score to indicate how certain it was about the call. 
+Illumina has proprietary software that goes through all the images captured in the previous stage and generates text files with sequence information about each cluster based on the fluorescence. In addition to calling the bases, this software assigns a probablity score to indicate how certain it was about the calling something an "A", a "T", a "G" or a "C". 
 
-> If there are any ambiguities, i.e. a cluster does not have a distinct color (based in the fluors used), the base calling software will have low probability associated with it, and might assign an "N" instead of "A", "T", "G" or "C".
+> If there are any ambiguities, e.g. at a certain cycle the image for a cluster does not have a distinct color that can be associated with a specific nucleotide, the base calling software will have a low probability associated with it and would assign an "N" instead of "A", "T", "G" or "C".
 
 In closing,
 * **Number of clusters ~= Number of reads**
@@ -154,7 +154,7 @@ The number of cycles (length of the reads) will depend on sequencing platform us
 
 Depending on the Illumina platform (MiSeq, HiSeq, NextSeq), the number of lanes per flow cell, and the number of reads that can be obtained per lane varies widely. You will need to decide on how many reads you would like per sample (i.e. the sequencning depth) and then based on the platform you choose calculate how many total lanes you will require for your set of samples. 
 
-Typically, charges for sequencing are per lane of the flow cell and you will be able to run multiple samples per lane. Illumina has therefore devised a nice multiplexing method which allows libraries from several samples to be pooled and sequenced simultaneously in the same lane of a flow cell. This methos requires **the addition of indices** (within the Illumina adapter) or special barcodes (outside the Illumina adapter) as described in the schematic below.
+Typically, charges for sequencing are per lane of the flow cell and you will be able to run multiple samples per lane. Illumina has therefore devised a nice multiplexing method which allows libraries from several samples to be pooled and sequenced simultaneously in the same lane of a flow cell. This method requires **the addition of indices** (within the Illumina adapter) or special barcodes (outside the Illumina adapter) as described in the schematic below.
 
 <img src="../img/demultiplexing.png" width="800">
 
