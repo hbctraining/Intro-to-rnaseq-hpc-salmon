@@ -32,8 +32,7 @@ To be translated into proteins, the RNA must undergo processing to generate the 
 
 **While mRNA transcripts have a polyA tail, many of the non-coding RNA transcripts do not as the post-transcriptional processing is different for these transcripts.**
 
-###
-Transcriptomics
+### Transcriptomics
 
 The transcriptome is defined as a collection of all the transcript readouts present in a cell. RNA-seq data can be used to explore and/or quantify the transcriptome of an organism, which can be utilized for the following types of experiments:
 
@@ -51,36 +50,34 @@ Therefore, if we want to study the protein-coding genes, we need to enrich for m
 
 The workflow for library preparation is detailed in the step-by-step images below.
 
-Briefly, the RNA is isolated from the sample and contaminating DNA is removed.
+**Briefly, the RNA is isolated from the sample and contaminating DNA is removed with DNase.**
 
  <img src="../img/libraryprep_step1-2.png" width="400">
  
-Followed by either selection of the mRNA or depletion of the rRNA.
+**The RNA sample then undergoes either selection of the mRNA (polyA selection) or depletion of the rRNA. The resulting RNA is fragmented.** 
+
+> *The size of the target fragments in the final library is a key parameter for library construction. DNA fragmentation is typically done by physical methods (i.e., acoustic shearing and sonication) or enzymatic methods (i.e., non-specific endonuclease cocktails and transposase tagmentation reactions.*
  
  <img src="../img/libraryprep_step3.png" width="400">
 
- The resulting RNA is fragmented, Sequence adapters are added to the ends of the fragments
+**The RNA is then reverse transcribed into double-stranded cDNA and sequence adapters are then added to the ends of the fragments.**
 
- <img src="../img/libraryprep_step4.png" width="400">
+> The cDNA libraries can be generated in a way to retain information about which strand of DNA the RNA was transcribed from. Libraries that retain this information are called stranded libraries, which are now standard with Illumina’s TruSeq stranded RNA-Seq kits. Stranded libraries should not be any more expensive than unstranded, so there is not really any reason not to acquire this additional information. 
+> 
+> There are 3 types of cDNA libraries available:
+> 
+> * Forward (secondstrand) – reads resemble the gene sequence or the secondstrand cDNA sequence
+> * Reverse (firststrand) – reads resemble the complement of the gene sequence or firststrand cDNA sequence (TruSeq)
+> * Unstranded
+
+ <img src="../img/libraryprep_step4-5.png" width="400">
  
-  then reverse transcribed into cDNA.
+**Finally, the fragments are PCR amplified if needed, and the fragments are size selected (usually ~300-500bp) to finish the library.**
 
- <img src="../img/libraryprep_step5.png" width="400">
-
-
-
+ <img src="../img/libraryprep_step6.png" width="400">
  
  *Image credit: [Martin J.A. and Wang Z., Nat. Rev. Genet. (2011) 12:671–682](https://www.nature.com/articles/nrg3068)*
 
-  and the fragments are PCR amplified if needed. Finally, the fragments are size selected (usually ~300-500bp) to finish the library.
-
-The cDNA libraries can be generated in a way to retain information about which strand of DNA the RNA was transcribed from. Libraries that retain this information are called stranded libraries, which are now standard with Illumina’s TruSeq stranded RNA-Seq kits. Stranded libraries should not be any more expensive than unstranded, so there is not really any reason not to acquire this additional information. 
-
-There are 3 types of cDNA libraries available:
-
-- Forward (secondstrand) – reads resemble the gene sequence or the secondstrand cDNA sequence
-- Reverse (firststrand) – reads resemble the complement of the gene sequence or firststrand cDNA sequence (TruSeq)
-- Unstranded 
 
 > **NOTE:** This workflow is specific to Illumina sequencing, which is currently the most utilized sequencing method. But there are other long-read methods worth noting, such as:
 >
