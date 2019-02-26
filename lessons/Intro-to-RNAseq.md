@@ -11,7 +11,7 @@ Approximate time: 90 minutes
 * Describe the process of RNA-seq library preparation
 * Describe the Illumina sequencing method
 
-# Introduction to RNA-seq
+## Introduction to RNA-seq
 
 RNA-seq is an exciting experimental technique that is utilized to explore and/or quantify gene expression within or between conditions. 
 
@@ -32,7 +32,8 @@ To be translated into proteins, the RNA must undergo processing to generate the 
 
 **While mRNA transcripts have a polyA tail, many of the non-coding RNA transcripts do not as the post-transcriptional processing is different for these transcripts.**
 
-## Transcriptomics
+###
+Transcriptomics
 
 The transcriptome is defined as a collection of all the transcript readouts present in a cell. RNA-seq data can be used to explore and/or quantify the transcriptome of an organism, which can be utilized for the following types of experiments:
 
@@ -46,17 +47,32 @@ The transcriptome is defined as a collection of all the transcript readouts pres
 
 When starting an RNA-seq experiment, for every sample the RNA needs to be isolated and turned into a cDNA library for sequencing. Generally, ribosomal RNA represents the majority of the RNAs present in a cell, while messenger RNAs represent a small percentage of total RNA, ~2% in humans.
 
- <img src="../img/rrna.png" width="400">
-
 Therefore, if we want to study the protein-coding genes, we need to enrich for mRNA or deplete the rRNA. **For differential gene expression analysis, it is best to enrich for Poly(A)+, unless you are aiming to obtain information about long non-coding RNAs, then do a ribosomal RNA depletion.**
 
-The workflow for library preparation is detailed in the image below:
+The workflow for library preparation is detailed in the step-by-step images below.
 
- <img src="../img/RNA-seq_library_prep.png" width="800">
+Briefly, the RNA is isolated from the sample and contaminating DNA is removed.
+
+ <img src="../img/libraryprep_step1-2.png" width="400">
+ 
+Followed by either selection of the mRNA or depletion of the rRNA.
+ 
+ <img src="../img/libraryprep_step3.png" width="400">
+
+ The resulting RNA is fragmented, Sequence adapters are added to the ends of the fragments
+
+ <img src="../img/libraryprep_step4.png" width="400">
+ 
+  then reverse transcribed into cDNA.
+
+ <img src="../img/libraryprep_step5.png" width="400">
+
+
+
  
  *Image credit: [Martin J.A. and Wang Z., Nat. Rev. Genet. (2011) 12:671–682](https://www.nature.com/articles/nrg3068)*
 
-Briefly, the RNA is isolated from the sample and contaminating DNA is removed, followed by either selection of the mRNA or depletion of the rRNA. The resulting RNA is fragmented then reverse transcribed into cDNA. Sequence adapters are added to the ends of the fragments and the fragments are PCR amplified if needed. Finally, the fragments are size selected (usually ~300-500bp) to finish the library.
+  and the fragments are PCR amplified if needed. Finally, the fragments are size selected (usually ~300-500bp) to finish the library.
 
 The cDNA libraries can be generated in a way to retain information about which strand of DNA the RNA was transcribed from. Libraries that retain this information are called stranded libraries, which are now standard with Illumina’s TruSeq stranded RNA-Seq kits. Stranded libraries should not be any more expensive than unstranded, so there is not really any reason not to acquire this additional information. 
 
