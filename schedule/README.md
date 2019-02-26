@@ -22,7 +22,7 @@
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
 |9:00 - 9:30 | [Sequence Alignment Theory]() | Meeta |
-| | [Quantifying expression using alignment-free methods (Salmon)](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/04_quasi_alignment_salmon.html) | Mary |
+|9:30 - 10:30 | [Quantifying expression using alignment-free methods (Salmon)](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/04_quasi_alignment_salmon.html) | Mary |
 | | Break | |
 | | [STAR and Qualimap]() | Meeta |
 || [Automating the RNA-seq workflow]() | Radhika |
