@@ -13,7 +13,7 @@ Approximate time: 50 minutes
 * Running Qualimap to compute metrics on alignment files
 
 
-## Alignment of Raw Counts
+## Quality Control for Aligment Data
 
 <img src="../img/workflow_align_qualimap.png">
 
