@@ -79,17 +79,10 @@ The workflow for library preparation is detailed in the step-by-step images belo
  *Image credit: [Martin J.A. and Wang Z., Nat. Rev. Genet. (2011) 12:671–682](https://www.nature.com/articles/nrg3068)*
 
 
-> **NOTE:** This workflow is specific to Illumina sequencing, which is currently the most utilized sequencing method. But there are other long-read methods worth noting, such as:
->
-> - Pacific Biosciences: http://www.pacb.com/ 
-> - Oxford Nanopore (MinION): https://nanoporetech.com/ 
-> - 10X Genomics: https://www.10xgenomics.com/ 
-> 
-> Advantages and disadvantages of these technologies can be explored in the table below:
->
-> <img src="../img/long_read_tech.png" width="700">
-
 ## Illumina Sequencing
+
+
+### Single-end versus Paired-end
 
 After preparation of the libraries, sequencing can be performed to generate the nucleotide sequences of the ends of the fragments, which are called **reads**. You will have the choice of sequencing a single end of the cDNA fragments (single-end reads) or both ends of the fragments (paired-end reads).
 
@@ -101,19 +94,21 @@ After preparation of the libraries, sequencing can be performed to generate the 
 
 Generally single-end sequencing is sufficient unless it is expected that the reads will match multiple locations on the genome (e.g. organisms with many paralogous genes), assemblies are being performed, or for splice isoform differentiation. Be aware that paired-end reads are generally 2x more expensive.
 
+### Different sequencing platforms
+
 There are a variety of Illumina platforms to choose from to sequence the cDNA libraries.
 
-<img src="../img/illumina_platforms.png" width="800">
+<img src="../img/illumina_platforms.png" width="600">
 
  *Image credit: Adapted from [Illumina](www.illumina.com)*
 
-Differences in platform can alter the length of reads generated as well as the total number of reads sequenced per run and the amount of time required to sequence the libraries. The different platforms each use a different flow cell, which is a glass surface coated with an arrangement of paired oligos that are complementary to the adapters added to your template molecules. The flow cell is where the sequencing reactions take place.
+Differences in platform can alter the length of reads generated as well as the total number of reads sequenced per run and the amount of time required to sequence the libraries. The different platforms each use a different flow cell, which is a glass surface coated with an arrangement of paired oligos that are complementary to the adapters added to your template molecules. **The flow cell is where the sequencing reactions take place**.
 
 <img src="../img/flow_cells.png" width="400">
 
  *Image credit: Adapted from [Illumina](www.illumina.com)*
  
-
+### Sequencing-by-synthesis 
 Let's explore how Illumina sequencing is performed:
 
 [<img src="../img/illumina_sequencing.png" width="400">](https://www.dropbox.com/s/f4t94tcw06f9stg/Illumina%20Sequencing%20by%20Synthesis-14840.mp4?dl=0)
@@ -123,6 +118,20 @@ Let's explore how Illumina sequencing is performed:
 
 The number of cycles (length of the reads) will depend on sequencing platform used as well as your preferences.
 
+
+### Multiplexing
 Charges for sequencing are usually per lane of the flow cell, and usually you don’t need one lane per sample. Multiplexing allows you to sequence multiple samples per lane with addition of indices (within the Illumina adapter) or special barcodes (outside the Illumina adapter).
 
 <img src="../img/demultiplexing.png" width="800">
+
+
+
+> **NOTE:** This workflow is specific to Illumina sequencing, which is currently the most utilized sequencing method. But there are other long-read methods worth noting, such as:
+>
+> - Pacific Biosciences: http://www.pacb.com/ 
+> - Oxford Nanopore (MinION): https://nanoporetech.com/ 
+> - 10X Genomics: https://www.10xgenomics.com/ 
+> 
+> Advantages and disadvantages of these technologies can be explored in the table below:
+>
+> <img src="../img/long_read_tech.png" width="700">
