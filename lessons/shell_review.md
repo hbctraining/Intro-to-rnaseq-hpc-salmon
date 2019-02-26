@@ -107,12 +107,10 @@ We are going to start this review with more exercises, this time hands on! Remem
 
 **Searching and redirection**
 
-12. How many lines are in `~/unix_lesson/reference_data/chr1-hg19_genes.gtf`?
-      * How many of those lines have the string "MOV10" in them?
-      * How many of the lines with the string "MOV10" in them have the word "exon" in them?
-13. Create a new directory called `shell_review/` within the `unix_lesson/` directory.
-14. Grab the lines in `~/unix_lesson/reference_data/chr1-hg19_genes.gtf` with the string "MOV10" in them and save it in the `shell_review/` directory with a new name "Mov10_hg19.gtf".
-15. Use `vim` to open the newly created file `~/unix_lesson/shell_review/Mov10_hg19.gtf` and add a comment at the top specifying how this file was created and the source of the content. Save the modified file and come back to the command prompt.
+12. Create a new directory called `shell_review/` within the `unix_lesson/` directory.
+13. Grab the lines in `~/unix_lesson/reference_data/chr1-hg19_genes.gtf` with the string "MOV10" in them and save the output in the `shell_review/` directory with a new name - "Mov10_hg19.gtf".
+14. Use `vim` to open the newly created file `~/unix_lesson/shell_review/Mov10_hg19.gtf` and add a comment at the top specifying how this file was created and the source of the content. Save the modified file and quit `vim`.
+15. How many lines in the new file have the word "exon" in them?
 
 **Loops and shell scripts**
 
@@ -142,11 +140,9 @@ We are going to start this review with more exercises, this time hands on! Remem
 **LMOD system**
 
 24. Load the `gcc/6.2.0` module.
-25. Has the `$PATH` changed? 
+25. Has `$PATH` changed? 
 26. Load the `bowtie2/2.3.4.3` module.
 27. List the modules that are loaded.
-28. Can you now run the `bowtie2` command? What folder contains that command?
-29. Load the `R/3.5.1` module. How many dependencies does this module have?
 
 ****
 
