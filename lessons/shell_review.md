@@ -97,7 +97,7 @@ We are going to start this review with more exercises, this time hands on! Remem
 8. What is the full path to your home directory?
 9. List (long listing format) the contents of `/n/groups/hbctraining/intro_rnaseq_hpc/full_dataset/` using tab completion.
 10. Modify the above command using the `*` wildcard to only list those files that have "oe" in their names.
-11. How many and which commands have you run today?
+11. How many and which commands have you run so far today?
 
 **Searching and redirection**
 
@@ -129,7 +129,30 @@ We are going to start this review with more exercises, this time hands on! Remem
 
 19. Display the contents of the `$HOME` variable.
 20. Use the `which` command to check where the executable file for the `pwd` command lives in the directory structure.
-21. How does shell know to look 
+21. How does shell know where to find the executable file for the `pwd` command?
+22. Display the contents of the variable that stores the various paths to folders containing executable command files.
+23. Can you run the `bowtie2` command? What do you think you might need to do to run this command?
+
+**LMOD system**
+
+24. Load the `gcc/6.2.0` module.
+25. Has the `$PATH` changed? 
+26. Load the `bowtie2/2.3.4.3` module.
+27. List the modules that are loaded.
+28. Can you now run the `bowtie2` command? What folder contains that command?
+29. Load the `R/3.5.1` module. How many dependencies does this module have?
+
+****
+
+## Some setting up for the rest of the workshop
+
+### Add a path to $PATH
+
+We need to use one tool that is unavailable as a module on O2, but it is available in a folder on O2, so we are going to add it to our $PATH. If we just add it using the `export` command, it will only be available to us in this specific interactive session. However, if we place that export command in a script that is run everytime a new interactive session is started, it is more efficient.
+
+* Use `vim` to open `~/.bashrc`
+* Add the following line at the end of the file `export PATH=/n/app/bcbio/tools/bin:$PATH`
+* Save and quit out of `vim`
 
 ****
 
