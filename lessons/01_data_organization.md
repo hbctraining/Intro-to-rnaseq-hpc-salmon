@@ -190,7 +190,7 @@ In addition to the raw sequence data we also need to collect **information about
 
 We will be using the dataset described above to perform and end-to-end differential expression analysis. We will begin with the raw sequence reads and go step-by-step through the workflow depicted below, describing in detail some theory, the tools/algorithms and how they work, and the different file formats encountered along the way.
 
-<img src="../img/workflow_2019.png">
+<img src="../img/full_workflow_2019.png">
 
 
 
