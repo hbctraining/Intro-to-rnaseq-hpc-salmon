@@ -29,8 +29,9 @@ We will cover some parts of this lifecycle by talking about best practices for t
 
 **Resources**
 
-* The [HMS Data Management Working Group's website](https://datamanagement.hms.harvard.edu/)
+* The [HMS Data Management Working Group (DMWG)'s website](https://datamanagement.hms.harvard.edu/)
 * A guide from the [Harvard library](http://guides.library.harvard.edu/dmp).
+* [Sign-up for quarterly newsletter from DMWG](https://harvard.us13.list-manage.com/subscribe?u=d3fee19ad91470512cdd564dd&id=13642f2d02)
 
 ### Planning
 
