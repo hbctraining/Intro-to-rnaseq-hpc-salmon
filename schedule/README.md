@@ -28,7 +28,7 @@
 |10:55 - 11:40 | STAR and Qualimap | Meeta |
 |11:40 - 12:30| Automating the RNA-seq workflow | Radhika |
 |12:30 - 1:30 | Lunch | |
-|1:30 - 2:15| Automating the RNA-seq workflow | Radhika |
+|1:30 - 2:15| Automating the RNA-seq workflow (contd.) | Radhika |
 |2:15 - 3:00| Documenting Steps in the Workflow with MultiQC | Meeta |
 |3:00 - 3:15 | Break | |
 |3:15 - 4:15 | [Troubleshooting RNA-seq Data Analysis](https://github.com/hbctraining/Intro-to-rnaseq-hpc-salmon/raw/master/lectures/RNA-seq_troubleshooting.pdf) | Mary |
