@@ -243,7 +243,7 @@ do
 base=`basename $fq .fastq`
 
 # run salmon
-salmon quant -i /n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx \
+salmon quant -i /n/groups/hbctraining/rna-seq_2019_02/reference_data/salmon.ensembl38.idx \
  -l A \
  -r $fq \
  -p 6 \
