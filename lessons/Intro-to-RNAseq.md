@@ -115,18 +115,20 @@ Illumina sequencing technology uses a sequencing-by-synthesis approach which is 
 
 #### Cluster Generation
 Once the fragments have attached, a phase called **cluster generation begins**. 
-	* Synthesize the complement with polymerase
-	* dsDNA is denatured, and original DNA washed away leaving synthesized strand covalently bound to flow cell.
-	* Single strand hybridises with adjacent adapter to form a ‘bridge’
-	* dsDNA is extended by polymerase. Each strand covalently bound to different adapter. 
-	* Repeat many times to clonally amplify all unique fragments on flow cell to form clusters of identical sequence.
+
+* Synthesize the complement with polymerase
+* dsDNA is denatured, and original DNA washed away leaving synthesized strand covalently bound to flow cell.
+* Single strand hybridises with adjacent adapter to form a ‘bridge’
+* dsDNA is extended by polymerase. Each strand covalently bound to different adapter. 
+* Repeat many times to clonally amplify all unique fragments on flow cell to form clusters of identical sequence.
 
 #### Sequencing by synthesis
 After cluster generation the reverse strands are cleaved and washed off. 3’ ends are blocked to prevent unwanted priming.
 Sequencing primers are hybridised to adapter sequence, **starting the sequencing by synthesis process**. 
-	* Cycle four NTPs with fluorescent markers and terminator sequence and polymerases.
-	* Once NTP is incorporated, the cluster is excited by a light source and a characteristic fluroscent signal is emitted. 
-	* The color is recorded, then the terminator on dye is cleaved and washed. Process repeats for specifioed number of cycles.
+
+* Cycle four NTPs with fluorescent markers and terminator sequence and polymerases.
+* Once NTP is incorporated, the cluster is excited by a light source and a characteristic fluroscent signal is emitted. 
+* The color is recorded, then the terminator on dye is cleaved and washed. Process repeats for specifioed number of cycles.
 
 	
 > **Number of clusters ~= Number of reads**
@@ -135,20 +137,17 @@ Sequencing primers are hybridised to adapter sequence, **starting the sequencing
 The number of cycles (length of the reads) will depend on sequencing platform used as well as your preferences.
 
 
-> **NOTE**. If you want to explore more on how Illumina sequencing is performed, take a few minutes to watc the video linked below.
-
-[<img src="../img/illumina_sequencing.png" width="400">](https://www.dropbox.com/s/f4t94tcw06f9stg/Illumina%20Sequencing%20by%20Synthesis-14840.mp4?dl=0)
-
+> **NOTE**. If you want to explore more on how Illumina sequencing is performed, take a few minutes to watc the video linked below.[Video from Illumina](https://www.dropbox.com/s/f4t94tcw06f9stg/Illumina%20Sequencing%20by%20Synthesis-14840.mp4?dl=0)
 
 
 ### Multiplexing
-Charges for sequencing are usually per lane of the flow cell, and usually you don’t need one lane per sample. Multiplexing allows you to sequence multiple samples per lane with addition of indices (within the Illumina adapter) or special barcodes (outside the Illumina adapter).
+
+Depending on the platform, the number of lanes per flow cell and the number of reads that can be obtained per lane will vary. You will need to decide on how many reads you would like per sample (i.e. the sequencning depth) and then based on the platform you choose you can calculate how many total lanes you will require for your set of samples. Typically, charges for sequencing are usually per lane of the flow cell and you will be able to run multiple samples per lane. In those situations you can take advnatage of multiplexing which allows large numbers of libraries to be pooled and sequenced simultaneously during a single run. This will require **the addition of indices** (within the Illumina adapter) or special barcodes (outside the Illumina adapter) as described in the schematic below.
 
 <img src="../img/demultiplexing.png" width="800">
 
 
-
-> **NOTE:** This workflow is specific to Illumina sequencing, which is currently the most utilized sequencing method. But there are other long-read methods worth noting, such as:
+> **NOTE:** The workflow presented in this lesson is specific to Illumina sequencing, which is currently the most utilized sequencing method. But there are other long-read methods worth noting, such as:
 >
 > - Pacific Biosciences: http://www.pacb.com/ 
 > - Oxford Nanopore (MinION): https://nanoporetech.com/ 
