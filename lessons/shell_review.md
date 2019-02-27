@@ -23,25 +23,25 @@ A warning might pop up the first time you try to connect to a remote machine, ty
 
 Once logged in, you should see the O2 icon, some news, and the command prompt: 
 
-```bash
+```
 [rc_training10@login01 ~]$ 
 ```
 
 > `ssh` stands for secure shell. All of the information (like your password) going between your computer and the O2 login computer is encrypted when using `ssh`.
 >
 > A "node" on a cluster is essentially a computer in the cluster of computers.
->
-> A login node's only function is to enable users to log in to a cluster, it is not meant to be used for any actual work/computing.
+
+**A login node's only function is to enable users to log in to a cluster, it is not meant to be used for any actual work/computing.**
 
 ### Connecting to a *compute* node on O2
 
-There are multiple ways to connect with, and do work on, a compute node; a compute node is where all work should be performed. To connect to a compute node, users have to interact with a job scheduler like *slurm* using commands like `srun` or `sbatch` and by specifying what resources they require.
+There are multiple ways to connect with, and do work on, a compute node; a compute node is where all work should be performed. To connect to a compute node, users have to interact with a job scheduler like *slurm* using commands like `srun` or `sbatch`, and by specifying what resources they require.
 
 1. The `srun` command with a few mandatory parameters will create an "interactive session" on O2. This is essentially a way for us to do work on the compute node directly from the terminal. If the connectivity to the cluster is lost in the middle of a command being run that work will be lost in an interactive session.
 
-2. The `sbatch` command with a few mandatory parameters along with a specialized shell script will result in the script being run on a compute node. This "job" will not be accessible directly from the Terminal and will run in the background. Users do not need to remain connected to the cluster when such a job "batch job" is running.
+2. The `sbatch` command with a few mandatory parameters + a specialized shell script will result in the script being run on a compute node. This "job" will not be accessible directly from the Terminal and will run in the background. Users do not need to remain connected to the cluster when such a "batch job" is running.
 
-You will get practice to run and check on batch jobs, for now we are going to start an interactive session on O2 using `srun`. 
+You will get practice with running batch jobs, for now we are going to start an interactive session on O2 using `srun`. 
 
 ```bash
 $ srun --pty -p interactive -t 0-8:00 --mem 1G --reservation=HBC /bin/bash
@@ -55,19 +55,17 @@ In the above command the parameters we are using are requesting specific resourc
 * `--reservation=HBC` - *this is only for this workshop, make sure you don't use it in the future with your own accounts*
 * `/bin/bash` - You want to interact with the compute node using the *bash* shell
 
-> These resources are listed slightly differently in the specialized script that is submitted directly using `sbatch`.
->
-> We will be reviewing the arguments above and what that specialized script looks like at the end of this lesson.
+> These resources are listed slightly differently in the specialized script that is submitted directly using `sbatch`. We will be reviewing the arguments above and what that specialized script looks like at the end of this lesson.
 
 Make sure that your command prompt is now preceded by a character string that contains the word "compute":
 
-```bash
+```
 [rc_training10@compute-a-16-163 ~]$
 ```
 
 ### Copying example data folder
 
-Your accounts were erased after last time, so we are starting fresh this time, let's copy over the data folder we worked with in the shell workshop to our new home directories:
+Your accounts were erased after the command-line workshop, so we are starting fresh this time, let's copy over the same data folder we worked with in the shell workshop to our home directories:
 
 ```bash
 $ cp -r /n/groups/hbctraining/unix_lesson/ .
@@ -85,7 +83,7 @@ $ cp -r /n/groups/hbctraining/unix_lesson/ .
 
 ## Reviewing shell commands
 
-We are going to start this review with more exercises, this time hands on! Remember, there are likely multiple ways to do the same thing and we will try to go over some of them.
+We are going to start this review with more exercises, this time hands on! Remember, there are likely multiple ways to do the same thing and we will try to cover at least a few.
 
 ****
 
@@ -93,15 +91,15 @@ We are going to start this review with more exercises, this time hands on! Remem
 
 **Shell basics**
 
-1. Change directory into the `unix_lesson/` directory using a relative path.
-2. Use the `tree` command to get a layout of `unix_lesson/`.
-3. Take a quick look at the `Mov10_oe_1.subset.fq` file using `less` from `unix_lesson/` without changing directories.
+1. Change directory into the `unix_lesson/` directory.
+2. Use the `tree` command to get a directory structure of `unix_lesson/`.
+3. Take a quick look at the `Mov10_oe_1.subset.fq` file using `less` from `unix_lesson/`, without changing directories.
 4. Move up to your home directory (parent of `unix_lesson/`).
 5. With a single command change directories to the `raw_fastq/` folder.
 6. With a shortest possible command change directories back to the home directory.
 7. What does the `~` in the command prompt mean?
 8. What is the full path to your home directory?
-9. List (long listing format) the contents of `/n/groups/hbctraining/intro_rnaseq_hpc/full_dataset/` using tab completion.
+9. List, in long listing format, the contents of `/n/groups/hbctraining/intro_rnaseq_hpc/full_dataset/` **using tab completion**.
 10. Modify the above command using the `*` wildcard to only list those files that have "oe" in their names.
 11. How many and which commands have you run so far today?
 
