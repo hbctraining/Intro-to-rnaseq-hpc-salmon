@@ -13,59 +13,32 @@ Approximate time: 50 minutes
 * Running Qualimap to compute metrics on alignment files
 
 
-## Quality Control for Aligment Data
+## Quality Control for Alignment Data
 
-<img src="../img/workflow_align_qualimap.png">
+After running Salmon, we now have transcript-level abundance estimates for each of our samples. When Salmon performs the quasi-alignment, internally the algorithm knows the location(s) to which each read is assigned, however this information is not shared with the user. In order for us to make an assessment on the quality of the mapping we need genomic coordinate information for those assignments, and since it is not provided by Salmon we will need to perform the genome alignment and obtain a BAM file. The BAM file will be used as input to a tool called Qualimap which computes various quality metrics such as DNA or rRNA contamination, 5'-3' biases, and coverage biases. 
+ 
 
-Now that we have explored the quality of our raw reads, we can align the raw reads to the genome to explore other quality metrics, such as DNA or rRNA contamination, 5'-3' biases, and coverage biases. We perform read alignment or mapping to determine where in the genome the reads originated from. To explore these QC metrics, we need to use a traditional, splice-aware alignment tool that outputs an alignment file, BAM or SAM, with information on the genome coordinates for where the entire read mapped.
+<img src="../img/full_workflow_qualimap_2019.png">
 
-The alignment process consists of choosing an appropriate reference genome to map our reads against and performing the read alignment using one of several splice-aware alignment tools such as [STAR](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635) or [HISAT2](http://ccb.jhu.edu/software/hisat2/index.shtml). The choice of aligner is often a personal preference and also dependent on the computational resources that are available to you. 
+
+## Alignment file format: SAM/BAM
+
+BAM is a binary, compressed version of the SAM file, also known as **Sequence Alignment Map format**. The SAM file is a tab-delimited text file that contains all information from the FASTQ file, with additional alignment information for each read. Specifically, we can obtain the genomic coordinates of where each read maps to in the genome and the quality of that mapping. The paper by [Heng Li et al](http://bioinformatics.oxfordjournals.org/content/25/16/2078.full) provides a lot more detail on the specification.
+
+![SAM1](../img/sam_bam.png)
+
+## Creating a BAM file
+
+To generate a BAM file we need to map our reads to the genome. The alignment process consists of choosing an appropriate reference genome to map our reads against and performing the read alignment using one of several splice-aware alignment tools such as [STAR](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635) or [HISAT2](http://ccb.jhu.edu/software/hisat2/index.shtml). The choice of aligner is often a personal preference and also dependent on the computational resources that are available to you. 
 
 >**NOTE:** By default the latest human genome build, GRCh38, contains information about alternative alleles for various locations on the genome. If using this version of the GRCh38 genome then it is advisable to use the HISAT2 aligner as it is able to utilize this information during the alignment. There is a version of GRCh38 available that does not have these alleles represented, which is the appropriate version to use with STAR. This is because STAR does not have the functionality to appropriately deal with the presence of alternate alleles.
 
-## STAR Aligner
+### STAR Aligner
 
 To determine where on the human genome our reads originated from, we will align our reads to the reference genome using [STAR](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3530905/) (Spliced Transcripts Alignment to a Reference). STAR is an aligner designed to specifically address many of the challenges of RNA-seq data mapping using a strategy to account for spliced alignments. 
 
-### STAR Alignment Strategy
 
-STAR is shown to have high accuracy and outperforms other aligners by more than a factor of 50 in mapping speed, but it is memory intensive. The algorithm achieves this highly efficient mapping by performing a two-step process:
-
-1. Seed searching
-2. Clustering, stitching, and scoring
-
-#### Seed searching
-
-For every read that STAR aligns, STAR will search for the longest sequence that exactly matches one or more locations on the reference genome. These longest matching sequences are called the Maximal Mappable Prefixes (MMPs):
-
-![STAR_step1](../img/alignment_STAR_step1.png)
-	
-The different parts of the read that are mapped separately are called 'seeds'. So the first MMP that is mapped to the genome is called *seed1*.
-
-STAR will then search again for only the unmapped portion of the read to find the next longest sequence that exactly matches the reference genome, or the next MMP, which will be *seed2*. 
-
-![STAR_step2](../img/alignment_STAR_step2.png)
-
-This sequential searching of only the unmapped portions of reads underlies the efficiency of the STAR algorithm. STAR uses an uncompressed suffix array (SA) to efficiently search for the MMPs, this allows for quick searching against even the largest reference genomes. Other slower aligners use algorithms that often search for the entire read sequence before splitting reads and performing iterative rounds of mapping.
-
-**If STAR does not find an exact matching sequence** for each part of the read due to mismatches or indels, the previous MMPs will be extended.
-
-![STAR_step3](../img/alignment_STAR_step3.png)
-
-**If extension does not give a good alignment**, then the poor quality or adapter sequence (or other contaminating sequence) will be soft clipped.
-
-![STAR_step4](../img/alignment_STAR_step4.png)
-
-
-#### Clustering, stitching, and scoring
-
-The separate seeds are stitched together to create a complete read by first clustering the seeds together based on proximity to a set of 'anchor' seeds, or seeds that are not multi-mapping.
-
-Then the seeds are stitched together based on the best alignment for the read (scoring based on mismatches, indels, gaps, etc.). 
-
-![STAR_step5](../img/alignment_STAR_step5.png)
-
-## Running STAR
+### Running STAR
 
 ### Set-up
 
@@ -186,11 +159,6 @@ What you should see, is that for each FASTQ file you have **5 output files** and
 * `Log.progress.out` -  job progress with the number of processed reads, % of mapped reads etc., updated every ~1 minute
 * `SJ.out.tab` - high confidence collapsed splice junctions in tab-delimited format. Only junctions supported by uniquely mapping reads are reported
 
-### Alignment file format: SAM/BAM
-
-The output we requested from the STAR aligner (using the appropriate parameters) is a BAM file. By default STAR will return a file in SAM format. BAM is a binary, compressed version of the SAM file, also known as **Sequence Alignment Map format**. The SAM file is a tab-delimited text file that contains all information from the FASTQ file, with additional alignment information for each read. We will explore these files in more detail in later sessions, but the paper by [Heng Li et al](http://bioinformatics.oxfordjournals.org/content/25/16/2078.full) provides a lot more detail on the specification.
-
-![SAM1](../img/sam_bam.png)
 
 ### Mapping statistics
 
