@@ -155,19 +155,21 @@ What you should see, is that for each FASTQ file you have **5 output files** and
 * `SJ.out.tab` - high confidence collapsed splice junctions in tab-delimited format. Only junctions supported by uniquely mapping reads are reported
 
 
-## Asessing Alignment Quality 
+## Assessing Alignment Quality 
 
 ### Mapping statistics
 
-To determine whether we have any contamination or biases in our data, we want to know is how well did our reads align to the reference. Rather than looking at each read alignment, it can be more useful to evaluate statistics that give a general overview for the sample. The `Log.final.out` file output from STAR contains mapping statistics. Let's use the `less` command to scroll through it: 
+Now, we want to know how well did our reads align to the reference? Rather than looking at each read alignment, it can be more useful to evaluate statistics that give a general overview for all reads within a sample. Different tools will output this information in different ways. For STAR, the `Log.final.out` file  contains mapping statistics. Let's use the `less` command to scroll through it: 
 
 	$ less Mov10_oe_1_Log.final.out
 	
-The log file provides information on reads that 1) mapped uniquely, 2) reads that mapped to mutliple locations and 3) reads that are unmapped. Additionally, we get details on splicing, insertion and deletion. From this file the most informative statistics include the **mapping rate and the number of multimappers**. This information will be compiled by MultiQC downstream in report form.
-
-In addition to the aligner-specific summary, we can also obtain quality metrics using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html#what-is-qualimap) or [RNASeQC](http://archive.broadinstitute.org/cancer/cga/rna-seqc). 
+The log file provides information on reads that 1) mapped uniquely, 2) reads that mapped to mutliple locations and 3) reads that are unmapped. Additionally, we get details on splicing, insertion and deletion. From this file the most informative statistics include the **mapping rate and the number of multimappers**. 
 
 ### Qualimap 
+
+To determine whether we have any contamination or biases in our data
+
+In addition to the aligner-specific summary, we can also obtain quality metrics using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html#what-is-qualimap) or [RNASeQC](http://archive.broadinstitute.org/cancer/cga/rna-seqc). 
 
 The Qualimap tool is written in Java and R and explores the features of mapped reads and their genomic properties. Qualimap **provides an overall view of the data that helps to detect biases in the sequencing and/or mapping of the data**. The input can be one or more BAM files and the output consists of HTML or PDF reports with useful figures and tab delimited files of metrics data.
 
