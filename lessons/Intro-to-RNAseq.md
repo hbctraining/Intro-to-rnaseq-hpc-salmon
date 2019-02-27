@@ -16,7 +16,7 @@ Approximate time: 90 minutes
 RNA-seq is an exciting experimental technique that is utilized to explore and/or quantify gene expression within or between conditions. 
 
 
-As we know, genes provide instructions to make proteins, which perform some function within the cell. Although all cells contain the same DNA sequence, muscle cells are different from nerve cells and other types of cells because of the different genes that are turned on in these cells and the different RNAs and proteins produced. 
+As we know, genes provide instructions to make proteins, which perform some function within the cell. Although **all cells contain the same DNA sequence**, muscle cells are different from nerve cells and other types of cells because of the **different genes that are turned on in these cells and the different RNAs and proteins produced**. 
 
  <img src="../img/gene_expression_cells.png" width="600">
 
@@ -44,17 +44,16 @@ The transcriptome is defined as a collection of all the transcript readouts pres
 
 ## Illumina library preparation
 
-When starting an RNA-seq experiment, for every sample the RNA needs to be isolated and turned into a cDNA library for sequencing. Generally, ribosomal RNA represents the majority of the RNAs present in a cell, while messenger RNAs represent a small percentage of total RNA, ~2% in humans.
-
-Therefore, if we want to study the protein-coding genes, we need to enrich for mRNA or deplete the rRNA. **For differential gene expression analysis, it is best to enrich for Poly(A)+, unless you are aiming to obtain information about long non-coding RNAs, then do a ribosomal RNA depletion.**
-
-The workflow for library preparation is detailed in the step-by-step images below.
+When starting an RNA-seq experiment, for every sample the RNA needs to be isolated and turned into a cDNA library for sequencing. The general workflow for library preparation is detailed in the step-by-step images below.
 
 **Briefly, the RNA is isolated from the sample and contaminating DNA is removed with DNase.**
 
  <img src="../img/libraryprep_step1-2.png" width="400">
  
 **The RNA sample then undergoes either selection of the mRNA (polyA selection) or depletion of the rRNA. The resulting RNA is fragmented.** 
+
+> Generally, ribosomal RNA represents the majority of the RNAs present in a cell, while messenger RNAs represent a small percentage of total RNA, ~2% in humans. Therefore, if we want to study the protein-coding genes, we need to enrich for mRNA or deplete the rRNA. **For differential gene expression analysis, it is best to enrich for Poly(A)+, unless you are aiming to obtain information about long non-coding RNAs, then do a ribosomal RNA depletion.**
+
 
 > *The size of the target fragments in the final library is a key parameter for library construction. DNA fragmentation is typically done by physical methods (i.e., acoustic shearing and sonication) or enzymatic methods (i.e., non-specific endonuclease cocktails and transposase tagmentation reactions.*
  
@@ -101,7 +100,7 @@ There are a variety of Illumina platforms to choose from to sequence the cDNA li
 
  *Image credit: Adapted from [Illumina](www.illumina.com)*
 
-Differences in platform can alter the length of reads generated as well as the total number of reads sequenced per run and the amount of time required to sequence the libraries. The different platforms each use a different flow cell, which is a glass surface coated with an arrangement of paired oligos that are complementary to the adapters added to your template molecules. **The flow cell is where the sequencing reactions take place**.
+Differences in platform can alter the length of reads generated, the quality of reads, as well as the total number of reads sequenced per run and the amount of time required to sequence the libraries. The different platforms each use a different flow cell, which is a glass surface coated with an arrangement of paired oligos that are complementary to the adapters added to your template molecules. **The flow cell is where the sequencing reactions take place**.
 
 <img src="../img/flow_cells.png" width="400">
 
@@ -152,7 +151,8 @@ The number of cycles (length of the reads) will depend on sequencing platform us
 
 ### Multiplexing
 
-Depending on the Illumina platform (MiSeq, HiSeq, NextSeq), the number of lanes per flow cell, and the number of reads that can be obtained per lane varies widely. You will need to decide on how many reads you would like per sample (i.e. the sequencning depth) and then based on the platform you choose calculate how many total lanes you will require for your set of samples. 
+Depending on the Illumina platform (MiSeq, HiSeq, NextSeq), the number of lanes per flow cell, and the number of reads that can be obtained per lane varies widely. **You will need to decide on how many reads you would like per sample** (i.e. the sequencning depth) and then based on the platform you choose calculate how many total lanes you will require for your set of samples. We will talk more about considerations when making this decision in the next lesson on [Experimental Considerations](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/experimental_planning_considerations.html)
+
 
 Typically, charges for sequencing are per lane of the flow cell and you will be able to run multiple samples per lane. Illumina has therefore devised a nice multiplexing method which allows libraries from several samples to be pooled and sequenced simultaneously in the same lane of a flow cell. This method requires **the addition of indices** (within the Illumina adapter) or special barcodes (outside the Illumina adapter) as described in the schematic below.
 
