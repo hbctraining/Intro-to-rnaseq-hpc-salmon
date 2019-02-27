@@ -15,40 +15,37 @@ Approximate time: 50 minutes
 
 ## Quality Control for Alignment Data
 
-After running Salmon, we now have transcript-level abundance estimates for each of our samples. When Salmon performs the quasi-alignment, internally the algorithm knows the location(s) to which each read is assigned, however this information is not shared with the user. In order for us to make an assessment on the quality of the mapping we need genomic coordinate information for those assignments, and since it is not provided by Salmon we will need to perform the genome alignment and obtain a BAM file. The BAM file will be used as input to a tool called Qualimap which computes various quality metrics such as DNA or rRNA contamination, 5'-3' biases, and coverage biases. 
- 
+After running Salmon, we now have transcript-level abundance estimates for each of our samples. When Salmon performs the quasi-alignment, internally the algorithm knows the location(s) to which each read is assigned, however this information is not shared with the user. **In order for us to make an assessment on the quality of the mapping we need genomic coordinate information for where each read maps**. Since this is not part of the Salmon output we will need to use a genome alignment tools to **generate a BAM file**. The BAM file will be used as input to a tool called [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html) which computes various quality metrics such as DNA or rRNA contamination, 5'-3' biases, and coverage biases. 
 
 <img src="../img/full_workflow_qualimap_2019.png">
 
 
 ## Alignment file format: SAM/BAM
 
-BAM is a binary, compressed version of the SAM file, also known as **Sequence Alignment Map format**. The SAM file is a tab-delimited text file that contains all information from the FASTQ file, with additional alignment information for each read. Specifically, we can obtain the genomic coordinates of where each read maps to in the genome and the quality of that mapping. The paper by [Heng Li et al](http://bioinformatics.oxfordjournals.org/content/25/16/2078.full) provides a lot more detail on the specification.
+BAM is a binary, compressed version of the SAM file, also known as **Sequence Alignment Map format**. The SAM file is **a tab-delimited text file that contains all information from the FASTQ file, with additional alignment information for each read**. Specifically, we can obtain the genomic coordinates of where each read maps to in the genome and the quality of that mapping. The paper by [Heng Li et al](http://bioinformatics.oxfordjournals.org/content/25/16/2078.full) provides a lot more detail on the specification.
 
 ![SAM1](../img/sam_bam.png)
 
 ## Creating a BAM file
 
-To generate a BAM file we need to map our reads to the genome. The alignment process consists of choosing an appropriate reference genome to map our reads against and performing the read alignment using one of several splice-aware alignment tools such as [STAR](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635) or [HISAT2](http://ccb.jhu.edu/software/hisat2/index.shtml). The choice of aligner is often a personal preference and also dependent on the computational resources that are available to you. 
+To generate a BAM file we need to **map our reads to the genome**. The alignment process consists of choosing an appropriate reference genome to map our reads against and performing the read alignment using one of several splice-aware alignment tools such as [STAR](http://bioinformatics.oxfordjournals.org/content/early/2012/10/25/bioinformatics.bts635) or [HISAT2](http://ccb.jhu.edu/software/hisat2/index.shtml). The choice of aligner is often a personal preference and also dependent on the computational resources that are available to you. 
 
 >**NOTE:** By default the latest human genome build, GRCh38, contains information about alternative alleles for various locations on the genome. If using this version of the GRCh38 genome then it is advisable to use the HISAT2 aligner as it is able to utilize this information during the alignment. There is a version of GRCh38 available that does not have these alleles represented, which is the appropriate version to use with STAR. This is because STAR does not have the functionality to appropriately deal with the presence of alternate alleles.
 
 ### STAR Aligner
 
-To determine where on the human genome our reads originated from, we will align our reads to the reference genome using [STAR](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3530905/) (Spliced Transcripts Alignment to a Reference). STAR is an aligner designed to specifically address many of the challenges of RNA-seq data mapping using a strategy to account for spliced alignments. 
+To determine where on the human genome our reads originated from, we will align our reads to the reference genome using [STAR](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3530905/) (Spliced Transcripts Alignment to a Reference). STAR is an aligner designed to specifically address many of the challenges of RNA-seq data mapping using a strategy to account for spliced alignments. We will not go into detail about how STAR works, but if you are interested in undertanding the alignment strategy we have [some materials linked here](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/STAR_alignment_strategy.html).
+
+> **NOTE**: Until recently, the standard approach for RNA-seq analysis has been to map our reads using a splice-aware aligner (i.e STAR) and then use the resulting BAM files as input to counting tools like [featureCounts](http://bioinf.wehi.edu.au/featureCounts/) and [htseq-count](https://htseq.readthedocs.io/en/release_0.11.1/count.html) to obtain our final expression matrix. The field has now moved towards using lightweight alignment tools like Salmon as standard practice, and so we only use STAR for generating a BAM file. If you are interested in knowing more about the standard approach we have some [materials linked here]().
 
 
-### Running STAR
-
-### Set-up
-
-To get started with this lesson, start an interactive session with 6 cores:
+To get started with this lesson, start an interactive session with 6 cores and 8G of memory:
 
 ```bash
 $ srun --pty -p interactive -t 0-12:00 -c 6 --mem 8G --reservation=HBC /bin/bash	
 ```
 
-You should have a directory tree setup similar to that shown below. It is best practice to have all files you intend on using for your workflow present within the same directory. In our case, we have our original FASTQ files generated in the previous section. 
+You should have a directory tree setup similar to that shown below. It is best practice to have all files you intend on using for your workflow present within the same directory. 
 
 ```bash
 rnaseq
@@ -68,10 +65,10 @@ rnaseq
 To use the STAR aligner, load the module: 
 
 ```bash
-$ module load gcc/6.2.0 star/2.5.4a
+$ module load gcc/6.2.0 star/2.7.0a
 ```
 
-Aligning reads using STAR is a two step process:   
+Similar to Salmon, aligning reads using STAR is **a two step process**:   
 
 1. Create a genome index 
 2. Map reads to the genome
@@ -111,8 +108,6 @@ $ cd ~/rnaseq/raw_data
 $ mkdir ../results/STAR
 ```
 
-### Running STAR interactively
-
 For now, we're going to work on just one sample to set up our workflow. To start we will use the first replicate in the Mov10 over-expression group, `Mov10_oe_1.subset.fq`. Details on STAR and its functionality can be found in the [user manual](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf); we encourage you to peruse through to get familiar with all available options.
 
 The basic options for aligning reads to the genome using STAR are:
@@ -143,7 +138,6 @@ $ STAR --genomeDir /n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl
 
 ```
 
-## Assessing alignment quality
 
 After running our single FASTQ file through the STAR aligner, you should have a number of output files in the `~/rnaseq/results/STAR` directory. Let's take a quick look at some of the files that were generated and explore their content. 
 
@@ -160,6 +154,8 @@ What you should see, is that for each FASTQ file you have **5 output files** and
 * `SJ.out.tab` - high confidence collapsed splice junctions in tab-delimited format. Only junctions supported by uniquely mapping reads are reported
 
 
+## Asessing Alignment Quality 
+
 ### Mapping statistics
 
 To determine whether we have any contamination or biases in our data, we want to know is how well did our reads align to the reference. Rather than looking at each read alignment, it can be more useful to evaluate statistics that give a general overview for the sample. The `Log.final.out` file output from STAR contains mapping statistics. Let's use the `less` command to scroll through it: 
@@ -170,7 +166,7 @@ The log file provides information on reads that 1) mapped uniquely, 2) reads tha
 
 In addition to the aligner-specific summary, we can also obtain quality metrics using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html#what-is-qualimap) or [RNASeQC](http://archive.broadinstitute.org/cancer/cga/rna-seqc). 
 
-### Qualimap
+### Qualimap 
 
 The Qualimap tool is written in Java and R and explores the features of mapped reads and their genomic properties. Qualimap **provides an overall view of the data that helps to detect biases in the sequencing and/or mapping of the data**. The input can be one or more BAM files and the output consists of HTML or PDF reports with useful figures and tab delimited files of metrics data.
 
