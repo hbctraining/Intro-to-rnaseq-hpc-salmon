@@ -34,10 +34,18 @@ Before we get started, let's how data are stored on O2. O2, like many sclusters 
 By design `/n/scratch2/` is to be used for intermediate files that are created during any analysis. An example is in the schematic below. 
 
 <p align="center">
-<img src="../img/scratch_best-practice.png" width="400">
+<img src="../img/scratch_best-practice.png" width="600">
 </p>
 
 Today, we are going to learn how to use `/n/scratch2/` as we work on automating our workflow. In this context, we will be maintaining our data in our (backed up) home directories, but all of the output files will be in scratch space. When we are done, we can copy over only those output files that are essential.
+
+To get started, let's create a folder for ourselves in `/n/scratch2/` and within that a folder for this RNA-seq analysis.
+
+```bash
+mkdir -p /n/scratch2/$USER/rnaseq_hbc-workshop/
+```
+
+When we create our script, we will make sure that all of the analysis output gets saved in the `/n/scratch2/$USER/rnaseq_hbc-workshop/` folder.
 
 ### More Flexibility with variables
 
