@@ -27,6 +27,18 @@ We need to have an interactive session with 6 cores, if you already have one you
 $ srun --pty -p interactive -t 0-12:00 -c 6 --mem 2G --reservation=HBC /bin/bash
 ```
 
+### Using "scratch space"
+
+Before we get started, let's how data are stored on O2. O2, like many sclusters has several different storage options, each of which has different amounts of space available, and differently backed up. One file system is the `/n/scratch2/` space. This directory has a lot of shared disk space available, but the files are not backed up and they will be deleted if left "untouched" for more than 30 days.
+
+By design `/n/scratch2/` is to be used for intermediate files that are created during any analysis. An example is in the schematic below. 
+
+<p align="center">
+<img src="../img/scratch_best-practice.png" width="400">
+</p>
+
+Today, we are going to learn how to use `/n/scratch2/` as we work on automating our workflow. In this context, we will be maintaining our data in our (backed up) home directories, but all of the output files will be in scratch space. When we are done, we can copy over only those output files that are essential.
+
 ### More Flexibility with variables
 
 We can write a shell script that will run on a specific file, but to make it more flexible and efficient we would prefer that it lets us give it an input fastq file when we run the script. To be able to provide an input to any shell script, we need to use **Positional Parameters**.
