@@ -24,7 +24,7 @@ $ sacct
 We need to have an interactive session with 6 cores, if you already have one you are set. If you have a session with fewer cores then `exit` out of your current interactive session and start a new one with `-c 6`.
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 -c 6 --mem 8G --reservation=HBC /bin/bash
+$ srun --pty -p interactive -t 0-12:00 -c 6 --mem 2G --reservation=HBC /bin/bash
 ```
 
 ### More Flexibility with variables
@@ -186,7 +186,6 @@ salmon quant -i $transcriptome \
 -l A \
 -r $fq \
 -o $salmon_out \
---writeMappings=$salmon_mappings \
 --seqBias \
 --useVBOpt
 ```
@@ -239,7 +238,7 @@ Below is what this second script (`rnaseq_analysis_on_allfiles.slurm`) would loo
 #SBATCH -p medium 		# partition name
 #SBATCH -t 0-6:00 		# hours:minutes runlimit after which job will be killed
 #SBATCH -c 6 		# number of cores requested -- this needs to be greater than or equal to the number of cores you plan to use to run your job
-#SBATCH --mem 8G
+#SBATCH --mem 2G
 #SBATCH --job-name STAR_mov10 		# Job name
 #SBATCH -o %j.out			# File to which standard out will be written
 #SBATCH -e %j.err 		# File to which standard err will be written
@@ -299,7 +298,7 @@ You can use `sacct` to check progress.
 
 Don't forget about the `scancel` command, should something go wrong and you need to cancel your jobs.
 
-> **NOTE:** All job schedulers are similar, but not the same. Once you understand how one works, you can transition to another one without too much trouble. They all have their pros and cons which are considered by the system administrators when picking one for a given HPC environment. 
+> **NOTE:** All job schedulers are similar, but not the same. Once you understand how one works, you can transition to another one without too much trouble. They all have their pros and cons which are considered by the system administrators when picking one for a given HPC environment. Some examples of other job schedulers are LSF, SGE, PBS/Torque.
 
 ---
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
