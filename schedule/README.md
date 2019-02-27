@@ -22,7 +22,7 @@
 
 | Time            |   Topic  | Instructor |
 |:------------------------:|:----------:|:--------:|
-|9:00 - 9:45 | Sequence Alignment Theory | Meeta |
+|9:00 - 9:45 | [Sequence Alignment Theory](https://github.com/hbctraining/Intro-to-rnaseq-hpc-salmon/raw/master/lectures/alignment_quantification.pdf) | Meeta |
 |9:45 - 10:15 | [Quantifying expression using alignment-free methods (Salmon)](../lessons/04_quasi_alignment_salmon.md) | Mary |
 |10:15 - 10:30 | Break | |
 |10:30 - 11:10 | [Quantifying expression using alignment-free methods (Salmon)](../lessons/04_quasi_alignment_salmon.md) | Mary |
