@@ -157,9 +157,11 @@ What you should see, is that for each FASTQ file you have **5 output files** and
 
 ## Assessing Alignment Quality 
 
+Alignment data files frequently contain biases that are introduced by sequencing technologies, during sample preparation,  and/or the selected mapping algorithm. Therefore, one of the fundamental requirement during analysis of these data is to perform quality control. In this way, we get an idea of **how well our reads align to the reference** and **how well data fit with the expected outcome**.
+
 ### Mapping statistics
 
-Now, we want to know how well did our reads align to the reference? Rather than looking at each read alignment, it can be more useful to evaluate statistics that give a general overview for all reads within a sample. Different tools will output this information in different ways. For STAR, the `Log.final.out` file  contains mapping statistics. Let's use the `less` command to scroll through it: 
+Different alignment tools will output a summary of the mapping in different ways. For STAR, the `Log.final.out` file  contains mapping statistics. Rather than looking at each read alignment, it can be more useful to evaluate statistics that give a general overview for all reads within a sample. Let's use the `less` command to scroll through it: 
 
 	$ less Mov10_oe_1_Log.final.out
 	
@@ -167,13 +169,12 @@ The log file provides information on reads that 1) mapped uniquely, 2) reads tha
 
 ### Qualimap 
 
-To determine whether we have any contamination or biases in our data
+In addition to the aligner-specific summary, we can also obtain quality metrics using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html#what-is-qualimap), a Java application that aims to facilitate the quality-control analysis of mapping data. 
 
-In addition to the aligner-specific summary, we can also obtain quality metrics using tools like [Qualimap](http://qualimap.bioinfo.cipf.es/doc_html/intro.html#what-is-qualimap) or [RNASeQC](http://archive.broadinstitute.org/cancer/cga/rna-seqc). 
+The Qualimap tool takes BAM files as input and explores the features of mapped reads and their genomic properties. It **provides an overall view of the data quality in an HTML report format**. The reports are comprehensive with mapping statistics summarized along with useful figures and tab delimited files of metrics data. We will run Qualimap on a single sample, and then take a detailed look at the report and metrics in comparison to what we would expect for good data.
 
-The Qualimap tool is written in Java and R and explores the features of mapped reads and their genomic properties. Qualimap **provides an overall view of the data that helps to detect biases in the sequencing and/or mapping of the data**. The input can be one or more BAM files and the output consists of HTML or PDF reports with useful figures and tab delimited files of metrics data.
 
-To run Qualimap, change directories to the `rnaseq` folder and make a `qualimap` folder inside the `results` directory:
+To **run Qualimap**, change directories to the `rnaseq` folder and make a `qualimap` folder inside the `results` directory:
 
 ```bash
 $ cd ~/rnaseq
@@ -218,7 +219,9 @@ $ qualimap rnaseq \
 --java-mem-size=8G
 ```
 
-The Qualimap report should be present in our `results/qualimap` directory. To view this report we would need to transfer it over to our local computers. However, this report was generated on a subset of data on chromosome 1; it would be better to visualize the report of the full dataset for `Mov_oe_1`, which is available [in this zipped folder](https://www.dropbox.com/s/ck2qdzasthjx7wl/Mov10_oe_1.fastq.qualimap.zip?dl=1).
+The Qualimap report should be present in our `results/qualimap` directory. To view this report we would need to transfer it over to our local computers. However, this report was generated on a subset of data on chromosome 1; it would be better to visualize the report of the full dataset for `Mov_oe_1`, which is available [in this zipped folder]().
+
+
 
 
 ---
