@@ -8,8 +8,8 @@ Approximate time: 50 minutes
 
 ## Learning Objectives:
 
-* Running an alignment tool to generate BAM files
 * Brief explanation about SAM file
+* Running an alignment tool to generate BAM files
 * Running Qualimap to compute metrics on alignment files
 
 
