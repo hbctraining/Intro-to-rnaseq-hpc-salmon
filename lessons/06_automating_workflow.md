@@ -85,6 +85,9 @@ $ vim rnaseq_analysis_on_input_file.sh
 ```bash
 #!/bin/bash/
 
+# change directories to /n/scratch2/ so that all the analysis is stored there.
+cd /n/scratch2/$USER/rnaseq_hbc-workshop/
+
 # initialize a variable with an intuitive name to store the name of the input fastq file
 
 fq=$1
@@ -186,8 +189,11 @@ echo "Processing file $fq"
 ### Running the tools
 
 ```
+echo "Starting QC for $base"
+
 # Run FastQC and move output to the appropriate folder
 fastqc $fq
+
 
 # Run STAR
 STAR --runThreadN $cores --genomeDir $genome --readFilesIn $fq --outFileNamePrefix $align_out --outSAMtype BAM SortedByCoordinate --outSAMunmapped Within --outSAMattributes Standard
@@ -202,6 +208,9 @@ qualimap rnaseq \
 --java-mem-size=8G
 
 # Run salmon
+
+echo "Starting Salmon run for $base"
+
 salmon quant -i $transcriptome \
 -l A \
 -r $fq \
