@@ -192,7 +192,7 @@ echo "Processing file $fq"
 echo "Starting QC for $base"
 
 # Run FastQC and move output to the appropriate folder
-fastqc $fq
+fastqc -o $fastqc_out $fq
 
 
 # Run STAR
