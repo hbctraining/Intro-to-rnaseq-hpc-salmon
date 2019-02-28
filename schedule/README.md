@@ -32,7 +32,4 @@
 |2:30 - 3:15| [Documenting Steps in the Workflow with MultiQC](../lessons/05_multiQC.md) | Meeta |
 |3:15 - 3:30 | Break | |
 |3:30 - 4:30 | [Troubleshooting RNA-seq Data Analysis](../lectures/RNA-seq_troubleshooting.pdf) | Mary |
-|4:30 - 5:00 | Wrap-up| Radhika |
-
-
-
+|4:30 - 5:00 | [Wrap-up](../lectures/workshop_wrapup.pdf)| Radhika |
