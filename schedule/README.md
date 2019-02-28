@@ -33,3 +33,5 @@
 |3:15 - 3:30 | Break | |
 |3:30 - 4:30 | [Troubleshooting RNA-seq Data Analysis](../lectures/RNA-seq_troubleshooting.pdf) | Mary |
 |4:30 - 5:00 | [Wrap-up](../lectures/workshop_wrapup.pdf)| Radhika |
+
+**Additional Materials:** [More useful commands in shell](https://hbctraining.github.io/In-depth-NGS-Data-Analysis-Course/sessionVI/lessons/more_bash.html)
