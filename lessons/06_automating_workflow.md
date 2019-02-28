@@ -167,7 +167,7 @@ All of our variables are now staged. Next, let's make sure all the modules are l
 
 module load fastqc/0.11.3
 module load gcc/6.2.0  
-module load star/2.5.4a
+module load star/2.7.0a
 module load samtools/1.3.1
 unset DISPLAY
 export PATH=/n/app/bcbio/dev/anaconda/bin:$PATH
