@@ -26,10 +26,10 @@
 |9:45 - 10:15 | [Quantifying expression using alignment-free methods (Salmon)](../lessons/04_quasi_alignment_salmon.md) | Mary |
 |10:15 - 10:30 | Break | |
 |10:30 - 11:10 | [Quantifying expression using alignment-free methods (Salmon)](../lessons/04_quasi_alignment_salmon.md) | Mary |
-|11:10 - 12:00 | STAR and Qualimap | Meeta |
+|11:10 - 12:00 | [QC with Alignment Data](../lessons/03_QC_STAR_and_Qualimap_run.md)  | Meeta |
 |12:00 - 1:00 | Lunch | |
 |1:00 - 2:30| [Automating the RNA-seq workflow](../lessons/06_automating_workflow.md) | Radhika |
-|2:30 - 3:15| Documenting Steps in the Workflow with MultiQC | Meeta |
+|2:30 - 3:15| [Documenting Steps in the Workflow with MultiQC](05_multiQC.md) | Meeta |
 |3:15 - 3:30 | Break | |
 |3:30 - 4:30 | [Troubleshooting RNA-seq Data Analysis](../lectures/RNA-seq_troubleshooting.pdf) | Mary |
 |4:30 - 5:00 | Wrap-up| Radhika |
