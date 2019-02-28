@@ -39,7 +39,7 @@ The "quasi-mapping" approach utilized by Salmon **requires a reference index** t
 
 ### **Creating the transcriptome index** 
 
-This step involves creating an index to evaluate the sequences for all possible unique sequences of length k (k-mer) in the **transcriptome**, which includes all known transcripts/ splice isoforms for all known and predicted genes and pseudogenes.
+This step involves creating an index to evaluate the sequences for all possible unique sequences of length k (k-mer) in the **transcriptome**, which includes all known transcripts/ splice isoforms for all genes.
 
 **The index helps creates a signature for each transcript in our reference transcriptome.** The Salmon index has two components:
 
