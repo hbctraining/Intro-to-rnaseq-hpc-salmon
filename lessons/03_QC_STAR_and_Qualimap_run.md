@@ -203,7 +203,7 @@ $ qualimap rnaseq --help
  We will be running Qualimap with the following specifications:
 
 - `-outdir`: output directory for html report
-- `-a`: Counting algorithm - uniquely-mapped-reads(default) or proportional
+- `-a`: Counting algorithm - uniquely-mapped-reads(default) or proportional (each multi-mapped read is weighted according to the number of mapped locations)
 - `-bam`: path/to/bam/file(s)
 - `-p`: Sequencing library protocol - strand-specific-forward, strand-specific-reverse or non-strand-specific (default)
 - `-gtf`: path/to/gtf/file - **needs to match the genome build and GTF used in alignment**
