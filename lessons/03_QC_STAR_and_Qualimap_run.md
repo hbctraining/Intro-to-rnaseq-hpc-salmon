@@ -219,8 +219,42 @@ $ qualimap rnaseq \
 --java-mem-size=8G
 ```
 
-The Qualimap report should be present in our `results/qualimap` directory. To view this report we would need to transfer it over to our local computers. However, this report was generated on a subset of data on chromosome 1; it would be better to visualize the report of the full dataset for `Mov_oe_1`, which is available [in this zipped folder](https://www.dropbox.com/s/ck2qdzasthjx7wl/Mov10_oe_1.fastq.qualimap.zip?dl=1).
+The Qualimap report should be present in our `results/qualimap` directory. To view this report we would need to transfer it over to our local computers. However, this report was generated on a subset of data on chromosome 1; to get a better idea of the metrics we can **take a look at the report of the full dataset for `Mov_oe_1`**, which is available [in this zipped folder](https://www.dropbox.com/s/ck2qdzasthjx7wl/Mov10_oe_1.fastq.qualimap.zip?dl=1).
 
+#### Read alignment summary
+The first few numbers listed here are similar to what we find in the mapping statistics log file from STAR. Qualimap also computes counts by assigning reads to genes and reports associated statistics. For example, the number of reads aligned to genes, number of ambiguous alignments (belong to several genes) and number of alignments without any feature (intronic and intergenic).
+
+<img src="../img/qualimap_read_alignment.png" width="500">
+
+> * The percentage of mapped reads is a global indicator of the overall sequencing accuracy. We expect between 70-90% of reads to be mapped for the human genome.  
+> * Expect a small fraction of reads to be mapping equally well to multiple regions in the genome(‘multi-mapping reads’). 
+> * The count related metrics are not as relevant to us since we have quantified with Salmon at the transcript level.
+
+#### Reads genomic origin
+This section reports how many alignments fall into exonic, intronic and intergenic regions along with a number of intronic/intergenic alignments overlapping exons. Exonic region includes 5’UTR,protein coding region and 3’UTR region. This information is summarized in table in addition to a pie chart as shown below.
+
+<img src="../img/qualimap_genomic_feature.png" width="500">
+
+> * Even if you have high genomic mapping rate for all samples, check to see where the reads are mapping. Expect a high proportion of reads mapping to exonic regions (> 60%) and lower intronic mapping rates (20 -30%).
+> * A higher intronic mapping rate is expected for rRNA removal compared to polyA selection. The intronic reads likely originate from immature transcripts which include either full-length pre-mRNA molecules or nascent transcripts where the RNA polymerase has not yet attached to the 3′ end of the gene. 
+> * A roughly equal distribution of reads mapping to intronic, exonic and intergenic regions suggests that there is DNA contamination.
+> * Ribosomal RNA (rRNA) constitutes a large majority of the RNA species in any total RNA preparation. Despite depletion methods, you can never achieve complete rRNA removal. Even with Poly-A enrichment a small percentage of ribosomal RNA can stick to the enrichment beads non-specifically. Excess ribosomal content (> 2%) will normally have to be filtered out so that differences in rRNA mapped reads across samples do not affect alignment rates and skew subsequent normalization of the data.
+
+
+#### Transcript coverage profile
+The profile provides ratios between mean coverage at the 5’ region, the 3’ region and the whole transcript. 
+
+* **5’ bias**: the ratio between mean coverage at the 5’ region and the whole transcript
+* **3’ bias**: is the ratio between mean coverage at the 3’ region and the whole transcript
+* **5’-3’ bias**: is the ratio between both biases.
+
+To compute these values for each transcript mean coverage along with mean coverage in first 100 bp (5’ region) and last 100 bp (3’region) are calculated and collected. Afterwards, the collected values are sorted and median is selected from each array to compute the ratios.
+
+<img src="../img/qualimap_transcript_coverage.png" width="500">
+
+> * In a perfect sequencing experiment you would hope to see a 5'-3' bias ratio of 1; with low coverage at both ends of the transcript, this would suggest ni bias present.
+> * It is well-documented fact that libraries prepared with polyA selection can lead to high expression in 3' region (3' bias).  
+> * If reads primarily accumulate at the 3’ end of transcripts in poly(A)-selected samples, this might indicate low RNA quality in the starting material.
 
 
 
