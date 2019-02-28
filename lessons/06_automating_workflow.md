@@ -29,7 +29,7 @@ $ srun --pty -p interactive -t 0-12:00 -c 6 --mem 2G --reservation=HBC /bin/bash
 
 ### Using "scratch space"
 
-Before we get started, let's how data are stored on O2. O2, like many sclusters has several different storage options, each of which has different amounts of space available, and differently backed up. One file system is the `/n/scratch2/` space. This directory has a lot of shared disk space available, but the files are not backed up and they will be deleted if left "untouched" for more than 30 days.
+Before we get started, let's talk a little bit about how data are stored on O2. O2, like many clusters, has several different storage options; each of which has different amounts of space available, and is differently backed up. One filesystem is the `/n/scratch2/` space. This directory has a lot of shared disk space available but, the files are not backed up and they will be deleted if left "untouched" for more than 30 days.
 
 By design `/n/scratch2/` is to be used for intermediate files that are created during any analysis. An example is in the schematic below. 
 
