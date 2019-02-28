@@ -22,7 +22,7 @@ After running Salmon, we now have transcript-level abundance estimates for each 
 
 ## Alignment file format: SAM/BAM
 
-BAM is a binary, compressed version of the SAM file, also known as **Sequence Alignment Map format**. The SAM file is **a tab-delimited text file that contains all information from the FASTQ file, with additional alignment information for each read**. Specifically, we can obtain the genomic coordinates of where each read maps to in the genome and the quality of that mapping. The paper by [Heng Li et al](http://bioinformatics.oxfordjournals.org/content/25/16/2078.full) provides a lot more detail on the specification.
+The **Sequence Alignment Map format** (SAM) file is **a tab-delimited text file that contains all information from the FASTQ file, with additional fields containing alignment information for each read**. Specifically, we can obtain the genomic coordinates of where each read maps to in the genome and the quality of that mapping. A **BAM file is the binary, compressed version of the SAM file**. It is significantly smaller in size and is usually the file format requested for by downstream tools that require alignment data as input. The paper by [Heng Li et al](http://bioinformatics.oxfordjournals.org/content/25/16/2078.full) provides a lot more detail on the specification.
 
 ![SAM1](../img/sam_bam.png)
 
