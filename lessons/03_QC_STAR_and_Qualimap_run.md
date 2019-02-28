@@ -250,12 +250,12 @@ The profile provides ratios between mean coverage at the 5’ region, the 3’ r
 * **5’-3’ bias**: is the ratio between both biases.
 
 
-<img src="../img/qualimap_transcript_coverage.png" width="500">
+<img src="../img/qualimap_transcript_coverage.png" width="700">
 
-<img src="../img/qualimap_coverage_profile.png" width="500">
+<img src="../img/qualimap_coverage_profile.png" width="700">
 
 > * In a perfect sequencing experiment you would expect to see a 5'-3' bias ratio of 1 with low coverage at both ends of the transcript. This would suggest no bias is present.
-> * It is well-documented that libraries prepared with polyA selection can lead to high expression in 3' region (3' bias). 
+> * It is well-documented that libraries prepared with polyA selection can lead to high expression in 3' region (3' bias). At least [one study](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-6-r86) shows the reverse effect for rRNA removal. 
 > * If reads primarily accumulate at the 3’ end of transcripts in poly(A)-selected samples, this might indicate low RNA quality in the starting material.
 
 #### **Junction Analysis**
@@ -266,7 +266,11 @@ Qualimap also reports the total number of reads mapping to splice junctions and 
 * Partly known represents alignments where only one junction side is known. 
 * All other alignments with junctions are marked as Novel.
 
-<img src="../img/qualimap_junctions.png" width="500">
+<img src="../img/qualimap_junctions.png" width="700">
+
+Other tools like [RNASeQC](https://software.broadinstitute.org/cancer/cga/rna-seqc) will plot figures that can help evaluate **GC content bias**. This is also an important aspect of QC, as low/high GC content regions will tend to have low coverage.
+
+Taken together, these metrics give us some insight into the quality of our samples and help us in identifying any biases present in our data. The conclusions derived from these QC results may indicate that we need to correct for these biases and so you may want to go back and modify the parameters for Salmon (mapping) accordingly.
 
 
 
