@@ -42,7 +42,9 @@ Today, we are going to learn how to use `/n/scratch2/` as we work on automating 
 To get started, let's create a folder for ourselves in `/n/scratch2/` and within that a folder for this RNA-seq analysis.
 
 ```bash
-mkdir -p /n/scratch2/$USER/rnaseq_hbc-workshop/
+# mkdir -p /n/scratch2/$USER/rnaseq_hbc-workshop/
+
+mkdir -p ~/rnaseq_automation/
 ```
 
 When we create our script, we will make sure that all of the analysis output gets saved in the `/n/scratch2/$USER/rnaseq_hbc-workshop/` folder.
@@ -87,6 +89,7 @@ $ vim rnaseq_analysis_on_input_file.sh
 
 # change directories to /n/scratch2/ so that all the analysis is stored there.
 # cd /n/scratch2/$USER/rnaseq_hbc-workshop/
+cd ~/rnaseq_automation/
 
 # initialize a variable with an intuitive name to store the name of the input fastq file
 
