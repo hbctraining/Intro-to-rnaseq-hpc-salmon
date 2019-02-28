@@ -86,7 +86,7 @@ $ vim rnaseq_analysis_on_input_file.sh
 #!/bin/bash/
 
 # change directories to /n/scratch2/ so that all the analysis is stored there.
-cd /n/scratch2/$USER/rnaseq_hbc-workshop/
+# cd /n/scratch2/$USER/rnaseq_hbc-workshop/
 
 # initialize a variable with an intuitive name to store the name of the input fastq file
 
