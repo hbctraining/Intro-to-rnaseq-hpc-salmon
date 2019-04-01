@@ -1,6 +1,7 @@
 
 # Workshop Schedule
 
+**Note:** The *Basic Data Skills* [Introduction to the command-line interface](https://hbctraining.github.io/Intro-to-Shell/schedule/) workshop is a prerequisite.
 
 ## Day 1
 
