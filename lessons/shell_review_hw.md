@@ -6,6 +6,7 @@ date: "February 2019"
 
 ## Learning Objectives
 - Review shell commands and concepts
+- Review HPC terminology and commands
 
 ## Setting up
 
@@ -96,22 +97,52 @@ We are going to start this review with some exercises that cover the basics. Rem
       * Dump out the first 40 lines into a new file that will be saved in `~/unix_lesson/shell_review/`
 15. Place the above `for` loop into a shell script using `vim` and run it.
 
-**Permissions** (rephrase as a thought question?)
 
-16. List `/n/groups/hbctraining/intro_rnaseq_hpc/` directory in long listing format
+****
+
+
+### Resources on O2 and asking Slurm for them
+
+Finally, let's review some of the information for O2 and slurm in [these slides](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lectures/HPC_intro_O2_review.pdf)
+
+
+*** 
+
+**Exercises**
+
+**Permissions** 
+
+16. You are working on the cluster and are accessing files in the `/n/groups/hbctraining/intro_rnaseq_hpc/` directory in long listing format:
+
+```bash
+
+$ ls -l /n/groups/hbctraining/
+
+drwxrwsr-x  4 mm573 hbctraining 831 Feb 29  2016 bcbio-rnaseq
+drwxrwsr-x 12 mm573 hbctraining 318 May 24 11:13 chip-seq
+-rw-r--r--  1 root  hbctraining   0 Apr  5  2015 copy_me.txt
+drwxrwsr-x  3 rsk27 hbctraining 201 Apr  5  2015 exercises
+drwxrwsr-x  6 rsk27 hbctraining 293 Oct 27 09:40 for_chipseq
+drwxrwsr-x  4 mp298 hbctraining  51 Dec  6  2016 mep-data
+drwxrwsr-x  4 rsk27 hbctraining  53 Jun  2 15:57 ngs_course
+drwxrwsr-x  4 rsk27 hbctraining  53 Nov  2  2016 ngs-course_backup_Nov1-2016
+drwxrwsr-x  6 mm573 hbctraining 107 Mar 24  2016 ngs-data-analysis2016
+
+```
+
+Answer the following questions based on information provided above:
+
       * How many owners have files in this folder?
       * How many groups?
       * Are there any executable *files* in this folder?
-      * What kind of access do you have to the `full_dataset/` directory?
-      * What could user `mm573` do to take away your ability to look inside the `full_dataset/` directory?
+      * What could user `mm573` do to take away your ability to look inside the `chip-seq/` directory?
 
-**Environment variables** (rephrase as a thought question?)
+**Environment variables** 
 
-17. Display the contents of the `$HOME` variable.
-18. Use the `which` command to check where the executable file for the `pwd` command lives in the directory structure.
-19. How does shell know where to find the executable file for the `pwd` command?
-20. Display the contents of the variable that stores the various paths to folders containing executable command files.
-21. Can you run the `bowtie2` command? What do you think you might need to do to run this command?
+17. What is the importance of the `$HOME` variable?
+18. How does shell know where to find the executable file for the `pwd` command?
+19. Display the contents of the variable that stores the various paths to folders containing executable command files.
+
 
 **LMOD system** (rephrase as a thought question?)
 
@@ -122,10 +153,6 @@ We are going to start this review with some exercises that cover the basics. Rem
 
 ****
 
-
-### Resources on O2 and asking Slurm for them
-
-Finally, let's review some of the information for O2 and slurm in [these slides](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lectures/HPC_intro_O2_review.pdf)
 
 ****
 
