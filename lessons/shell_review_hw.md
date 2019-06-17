@@ -9,81 +9,61 @@ date: "February 2019"
 
 ## Setting up
 
-### Connecting to a *login* node on O2
+**With Macs**
 
-Type in the following command with your username to login:
+Macs have a utility application called "**Terminal**" for performing tasks on the command line (shell). We can open this utility to access the shell.
 
-```bash
-ssh username@o2.hms.harvard.edu
-```
+**With Windows**
 
-You will receive a prompt for your password, and you should type in your associated password; note that the cursor will *not move* as you type in your password.
+By default, there is no terminal for the bash shell available in the Windows OS, so you have to use a downloaded program, "**Git BASH**". Git BASH is part of the [Git for Windows](https://git-for-windows.github.io/) download, and is a shell (bash) emulator.
 
-A warning might pop up the first time you try to connect to a remote machine, type "Yes" or "Y". 
+#### Command prompt
 
-Once logged in, you should see the O2 icon, some news, and the command prompt: 
-
-```
-[rc_training10@login01 ~]$ 
-```
-
-> `ssh` stands for secure shell. All of the information (like your password) going between your computer and the O2 login computer is encrypted when using `ssh`.
->
-> A "node" on a cluster is essentially a computer in the cluster of computers.
-
-**A login node's only function is to enable users to log in to a cluster, it is not meant to be used for any actual work/computing.**
-
-### Connecting to a *compute* node on O2
-
-There are multiple ways to connect with, and do work on, a compute node; a compute node is where all work should be performed. To connect to a compute node, users have to interact with a job scheduler like *slurm* using commands like `srun` or `sbatch`, and by specifying what resources they require.
-
-1. The `srun` command with a few mandatory parameters will create an "interactive session" on O2. This is essentially a way for us to do work on the compute node directly from the terminal. If the connectivity to the cluster is lost in the middle of a command being run that work will be lost in an interactive session.
-
-2. The `sbatch` command with a few mandatory parameters + a specialized shell script will result in the script being run on a compute node. This "job" will not be accessible directly from the Terminal and will run in the background. Users do not need to remain connected to the cluster when such a "batch job" is running.
-
-You will get practice with running batch jobs, for now we are going to start an interactive session on O2 using `srun`. 
+Once you have opened the shell, you should see the command prompt ending with `$`. It will have some characters before the `$`, something like `[MacBook-Pro-5:~]`, this is telling you what the name of the computer you are working on is. 
 
 ```bash
-$ srun --pty -p interactive -t 0-8:00 --mem 1G --reservation=HBC /bin/bash
+[MacBook-Pro-5:~]$ 
 ```
 
-In the above command the parameters we are using are requesting specific resources:
-* `--pty` - Start an interactive session
-* `-p interactive` - on the "partition" called "interactive" (a partition is a group of computers dedicated to certain types of jobs, interactive, long, short, high-memory, etc.)
-* `-t 0-8:00` - time needed for this work: 0 days, 8 hours, 0 minutes.
-* `--mem 1G` - memory needed - 1 gigabyte
-* `--reservation=HBC` - *this is only for this workshop, make sure you don't use it in the future with your own accounts*
-* `/bin/bash` - You want to interact with the compute node using the *bash* shell
+### Downloading data
 
-> These resources are listed slightly differently in the specialized script that is submitted directly using `sbatch`. We will be reviewing the arguments above and what that specialized script looks like at the end of this lesson.
-
-Make sure that your command prompt is now preceded by a character string that contains the word "compute":
-
-```
-[rc_training10@compute-a-16-163 ~]$
-```
-
-### Copying example data folder
-
-Your accounts were erased after the command-line workshop, so we are starting fresh this time, let's copy over the same data folder we worked with in the shell workshop to our home directories:
+In order to go through the exercises and review some commands and concepts, we will be working with some RNA-Seq data. We need to **download the data to our current folder** using the link below. To know what folder we are currently inside, we can use the 'print working directory' command:
 
 ```bash
-$ cp -r /n/groups/hbctraining/unix_lesson/ .
+$ pwd
 ```
 
-****
+On a **Mac** your current folder should be something starting with `/Users/`, like `/Users/marypiper/`.
 
-**Exercise**
+On a **Windows** machine, our current folder should be something starting with `/c/Users/marypiper`. To find this in your File explorer try clicking on PC and navigating to that path.
 
-1. In the above command, what does the `.` at the end mean? Is it essential?
-2. Why did we have to run the `cp` command with `-r`?
-3. Is the path to the `unix_lesson/` directory a "full" path or a "relative" path?
+Once you have identified which folder you are in, this is where we will be downloading your data. Right click on the link below, and be sure to **Save link as**. You will be prompted to choose a folder within a Finder/File Explorer window. Navigate to the directory that was listed when running `pwd`.
 
-****
+**Download RNA-Seq data to your working directory:** right-click [here](https://github.com/hbctraining/Training-modules/blob/master/Intro_shell/data/unix_lesson.zip?raw=true) and choose **Save link as**.
+
+If you have downloaded the file to the correct location, type the 'list' command:
+
+```bash
+$ ls
+```
+
+You should see `unix_lesson.zip` as part of the output to the screen.
+
+Finally, to decompress the folder, we can use the `unzip` command:
+
+```bash
+$ unzip unix_lesson.zip 
+```
+
+You should see output stating the contents of the folder are being decompressed or inflated; this is good. Now when you run the `ls` command again you should see a folder called `unix_lesson`.
+
+```bash
+$ ls
+```
 
 ## Reviewing shell commands
 
-We are going to start this review with more exercises, this time hands on! Remember, there are likely multiple ways to do the same thing and we will try to cover at least a few.
+We are going to start this review with some exercises that cover the basics. Remember, there are likely multiple ways to do the same thing!
 
 ****
 
@@ -92,50 +72,48 @@ We are going to start this review with more exercises, this time hands on! Remem
 **Shell basics**
 
 1. Change directory into the `unix_lesson/` directory.
-2. Use the `tree` command to get a directory structure of `unix_lesson/`.
-3. Take a quick look at the `Mov10_oe_1.subset.fq` file using `less` from `unix_lesson/`, without changing directories.
-4. Move up to your home directory (parent of `unix_lesson/`).
-5. With a single command change directories to the `raw_fastq/` folder.
-6. With a shortest possible command change directories back to the home directory.
-7. What does the `~` in the command prompt mean?
-8. What is the full path to your home directory?
-9. List, in long listing format, the contents of `/n/groups/hbctraining/intro_rnaseq_hpc/full_dataset/` **using tab completion**.
-10. Modify the above command using the `*` wildcard to only list those files that have "oe" in their names.
-11. How many and which commands have you run so far today?
+2. Take a quick look at the `Mov10_oe_1.subset.fq` file using `less` from `unix_lesson/`, without changing directories.
+3. Move up to your home directory (parent of `unix_lesson/`).
+4. With a single command change directories to the `raw_fastq/` folder.
+5. With a shortest possible command change directories back to the home directory.
+6. What does the `~` in the command prompt mean?
+7. What is the full path to your home directory?
+8. Use the `*` wildcard to only list those files in `raw_fastq/` that have "oe" in their names.
+9. List the last 10 commands have you run so far today.
 
 **Searching and redirection**
 
-12. Create a new directory called `shell_review/` within the `unix_lesson/` directory.
-13. Grab the lines in `~/unix_lesson/reference_data/chr1-hg19_genes.gtf` with the string "MOV10" in them and save the output in the `shell_review/` directory with a new name - "Mov10_hg19.gtf".
-14. Use `vim` to open the newly created file `~/unix_lesson/shell_review/Mov10_hg19.gtf` and add a comment at the top specifying how this file was created and the source of the content. Save the modified file and quit `vim`.
-15. How many lines in the new file have the word "exon" in them?
+10. Create a new directory called `shell_review/` within the `unix_lesson/` directory.
+11. Grab the lines in `~/unix_lesson/reference_data/chr1-hg19_genes.gtf` with the string "MOV10" in them and save the output in the `shell_review/` directory with a new name - "Mov10_hg19.gtf".
+12. Use `vim` to open the newly created file `~/unix_lesson/shell_review/Mov10_hg19.gtf` and add a comment at the top specifying how this file was created and the source of the content. Save the modified file and quit `vim`.
+13. How many lines in the new file have the word "exon" in them?
 
 **Loops and shell scripts**
 
-16. Use the `for` loop to iterate over each FASTQ file in `~/unix_lesson/raw_fastq/` and do the following:
+14. Use the `for` loop to iterate over each FASTQ file in `~/unix_lesson/raw_fastq/` and do the following:
       * Generate a prefix to use for naming our output files
       * Print the name of the current file
       * Dump out the first 40 lines into a new file that will be saved in `~/unix_lesson/shell_review/`
-17. Place the above `for` loop into a shell script using `vim` and run it.
+15. Place the above `for` loop into a shell script using `vim` and run it.
 
-**Permissions**
+**Permissions** (rephrase as a thought question?)
 
-18. List `/n/groups/hbctraining/intro_rnaseq_hpc/` directory in long listing format
+16. List `/n/groups/hbctraining/intro_rnaseq_hpc/` directory in long listing format
       * How many owners have files in this folder?
       * How many groups?
       * Are there any executable *files* in this folder?
       * What kind of access do you have to the `full_dataset/` directory?
       * What could user `mm573` do to take away your ability to look inside the `full_dataset/` directory?
 
-**Environment variables**
+**Environment variables** (rephrase as a thought question?)
 
-19. Display the contents of the `$HOME` variable.
-20. Use the `which` command to check where the executable file for the `pwd` command lives in the directory structure.
-21. How does shell know where to find the executable file for the `pwd` command?
-22. Display the contents of the variable that stores the various paths to folders containing executable command files.
-23. Can you run the `bowtie2` command? What do you think you might need to do to run this command?
+17. Display the contents of the `$HOME` variable.
+18. Use the `which` command to check where the executable file for the `pwd` command lives in the directory structure.
+19. How does shell know where to find the executable file for the `pwd` command?
+20. Display the contents of the variable that stores the various paths to folders containing executable command files.
+21. Can you run the `bowtie2` command? What do you think you might need to do to run this command?
 
-**LMOD system**
+**LMOD system** (rephrase as a thought question?)
 
 24. Load the `gcc/6.2.0` module.
 25. Has `$PATH` changed? 
@@ -144,15 +122,6 @@ We are going to start this review with more exercises, this time hands on! Remem
 
 ****
 
-## Some setting up for the rest of the workshop
-
-### Add a path to `$PATH`
-
-We need to use one tool that is unavailable as a module on O2, but it is available in a folder on O2, so we are going to add it to our $PATH. If we just add it using the `export` command, it will only be available to us in this specific interactive session. However, if we place that export command in a script that is run everytime a new interactive session is started, it is more efficient.
-
-* Use `vim` to open `~/.bashrc`
-* Add the following line at the end of the file `export PATH=/n/app/bcbio/tools/bin:$PATH`
-* Save and quit out of `vim`
 
 ### Resources on O2 and asking Slurm for them
 
