@@ -78,30 +78,29 @@ Below are some questions that you can work on to review your knowledge of bash. 
 6. What does the `~` in the command prompt mean?
 7. What is the full path to your home directory?
 8. Use the `*` wildcard to only list those files in `raw_fastq/` that have "oe" in their names.
-9. List the last 10 commands have you run so far today.
+9. List the last 10 commands you have run so far in this lesson.
 
 **Searching and redirection**
 
-10. Create a new directory called `shell_review/` within the `unix_lesson/` directory.
-11. Grab the lines in `~/unix_lesson/reference_data/chr1-hg19_genes.gtf` with the string "MOV10" in them and save the output in the `shell_review/` directory with a new name - "Mov10_hg19.gtf".
-12. Use `vim` to open the newly created file `~/unix_lesson/shell_review/Mov10_hg19.gtf` and add a comment at the top specifying how this file was created and the source of the content. Save the modified file and quit `vim`.
+10. Move back in to the `unix_lesson/` directory. Create a new directory called `shell_review/` within the `unix_lesson/` directory.
+11. Grab the lines in `reference_data/chr1-hg19_genes.gtf` with the string "MOV10" in them and save the output in the `shell_review/` directory with a new name - "Mov10_hg19.gtf".
+12. Use `vim` to open the newly created file `unix_lesson/shell_review/Mov10_hg19.gtf` and add a comment at the top specifying how this file was created and the source of the content. Save the modified file and quit `vim`.
 13. How many lines in the new file have the word "exon" in them?
 
 **Loops and shell scripts**
 
-14. Use the `for` loop to iterate over each FASTQ file in `~/unix_lesson/raw_fastq/` and do the following:
+14. Use the `for` loop to iterate over each FASTQ file in `raw_fastq/` and do the following:
       * Generate a prefix to use for naming our output files
       * Print the name of the current file
-      * Dump out the first 40 lines into a new file that will be saved in `~/unix_lesson/shell_review/`
+      * Dump out the first 40 lines into a new file that will be saved in `~shell_review/`
 15. Place the above `for` loop into a shell script using `vim` and run it.
 
 
 **Permissions** 
 
-16. You are working on the cluster and are accessing files in the `/n/groups/hbctraining/intro_rnaseq_hpc/` directory in long listing format:
+16. You are working on the cluster and are accessing files in the `/n/groups/hbctraining/` directory in long listing format:
 
 ```bash
-
 $ ls -l /n/groups/hbctraining/
 
 drwxrwsr-x  4 mm573 hbctraining 831 Feb 29  2016 bcbio-rnaseq
@@ -113,15 +112,14 @@ drwxrwsr-x  4 mp298 hbctraining  51 Dec  6  2016 mep-data
 drwxrwsr-x  4 rsk27 hbctraining  53 Jun  2 15:57 ngs_course
 drwxrwsr-x  4 rsk27 hbctraining  53 Nov  2  2016 ngs-course_backup_Nov1-2016
 drwxrwsr-x  6 mm573 hbctraining 107 Mar 24  2016 ngs-data-analysis2016
-
 ```
 
 Answer the following questions based on information provided above:
 
-      * How many owners have files in this folder?
-      * How many groups?
-      * Are there any executable *files* in this folder?
-      * What could user `mm573` do to take away your ability to look inside the `chip-seq/` directory?
+* How many owners have files in this folder?
+* How many groups?
+* Are there any executable *files* in this folder?
+* What could user `mm573` do to take away your ability to look inside the `chip-seq/` directory?
 
 **Environment variables** 
 
