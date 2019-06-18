@@ -64,11 +64,9 @@ $ ls
 
 ## Reviewing shell commands
 
-We are going to start this review with some exercises that cover the basics. Remember, there are likely multiple ways to do the same thing!
+Below are some questions that you can work on to review your knowledge of bash. Remember, there are likely multiple ways to do the same thing!
 
 ****
-
-**Exercises**
 
 **Shell basics**
 
