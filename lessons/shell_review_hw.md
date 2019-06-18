@@ -98,18 +98,6 @@ We are going to start this review with some exercises that cover the basics. Rem
 15. Place the above `for` loop into a shell script using `vim` and run it.
 
 
-****
-
-
-### Resources on O2 and asking Slurm for them
-
-Finally, let's review some of the information for O2 and slurm in [these slides](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lectures/HPC_intro_O2_review.pdf)
-
-
-*** 
-
-**Exercises**
-
 **Permissions** 
 
 16. You are working on the cluster and are accessing files in the `/n/groups/hbctraining/intro_rnaseq_hpc/` directory in long listing format:
