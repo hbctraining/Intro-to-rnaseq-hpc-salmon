@@ -143,17 +143,6 @@ Answer the following questions based on information provided above:
 18. How does shell know where to find the executable file for the `pwd` command?
 19. Display the contents of the variable that stores the various paths to folders containing executable command files.
 
-
-**LMOD system** (rephrase as a thought question?)
-
-24. Load the `gcc/6.2.0` module.
-25. Has `$PATH` changed? 
-26. Load the `bowtie2/2.3.4.3` module.
-27. List the modules that are loaded.
-
-****
-
-
 ****
 
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
