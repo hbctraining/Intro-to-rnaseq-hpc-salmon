@@ -92,7 +92,7 @@ Below are some questions that you can work on to review your knowledge of bash. 
 14. Use the `for` loop to iterate over each FASTQ file in `raw_fastq/` and do the following:
       * Generate a prefix to use for naming our output files
       * Print the name of the current file
-      * Dump out the first 40 lines into a new file that will be saved in `~shell_review/`
+      * Dump out the first 40 lines into a new file that will be saved in `~/shell_review/`
 15. Place the above `for` loop into a shell script using `vim` and run it.
 
 
