@@ -1,7 +1,7 @@
 ---
 title: "Experimental design considerations"
 author: "Mary Piper, Meeta Mistry, Radhika Khetani"
-date: "Monday, February 25, 2019"
+date: "Thursday, June 20, 2019"
 ---
 
 Approximate time: 50 minutes
@@ -58,6 +58,8 @@ Replicates are almost always preferred to greater sequencing depth for bulk RNA-
   - 15 million reads per sample is often sufficient, if there are a good number of replicates (>3). 
 
   - Spend money on more biological replicates, if possible.
+  
+  - Read length >50 bases
 
 - **Gene-level differential expression with detection of lowly-expressed genes:**
   
