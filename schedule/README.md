@@ -11,7 +11,7 @@
 |9:15 - 9:45 | [Introduction to RNA-seq](../lessons/Intro-to-RNAseq.md) | Meeta |
 |9:45 - 9:55 | Break | |
 |9:55 - 10:55 | [Experimental design considerations](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/experimental_planning_considerations.html) | Mary |
-|10:55 - 11:40 | [Unix review]() | Meeta |
+|10:55 - 11:40 | [Unix review](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/shell_review_hw.html) | Meeta |
 |11:40 - 12:10 | [Working in an HPC environment]() | Radhika |
 |12:10 - 1:10 | Lunch | |
 |1:10 - 1:50 | [Project Organization and Best Practices in Data Management](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/01_data_organization.html) | Meeta |
