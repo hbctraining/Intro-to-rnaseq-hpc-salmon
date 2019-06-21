@@ -31,6 +31,8 @@ Common to all of these tools is that **base-to-base alignment of the reads is av
 
 The "quasi-mapping" approach utilized by Salmon **requires a reference index** to determine the position and orientation information for where the fragments best map prior to quantification [[2](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985/RapMap-a-rapid-sensitive-and-accurate-tool-for)]. The reference index essentially provides the transcriptome in a format that is **easily and rapidly searchable**. Therefore, it will allow us to quickly find the positions in the transcriptome where each of the reads originated.
 
+> **NOTE:** Since we are searching against the transcriptome, Salmon would not be the appropriate tool to use if trying to detect **novel genes or isoforms, intron retention events, or other methods that require annotations not present in the transcriptome**.
+
 <p align="center">
 <img src="../img/salmon_workflow_subset.png" width="300">
 </p>
