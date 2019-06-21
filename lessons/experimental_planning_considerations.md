@@ -62,6 +62,8 @@ Replicates are almost always preferred to greater sequencing depth for bulk RNA-
   - Spend money on more biological replicates, if possible.
   
   - Generally recommended to have read length >= 50 bp
+  
+  > **NOTE:** The factor used to estimate the depth of sequencing for genomes is "coverage" - how many times do the number nucleotides sequenced "cover" the genome. This metric is not exact for genomes, but it works okay. It **does not work for transcriptomes** because expression of the genes depend on the condition being studied.
 
 - **Gene-level differential expression with detection of lowly-expressed genes:**
   
@@ -92,10 +94,6 @@ Replicates are almost always preferred to greater sequencing depth for bulk RNA-
 > **Sample pooling:** Try to avoid pooling of individuals/experiments, if possible; however, if absolutely necessary, then each pooled set of samples would count as a **single replicate**. To ensure similar amounts of variation between replicates, you would want to pool the **same number of individuals** for each pooled set of samples. 
 >
 > For example, if you need at least 3 individuals to get enough material for your `control` replicate and at least 5 individuals to get enough material for your `treatment` replicate, you would pool 5 individuals for the `control` and 5 individuals for the `treatment` conditions. You would also make sure that the individuals that are pooled in both conditions are similar in sex, age, etc.
-
-> **Coverage:** The factor used to estimate the depth of sequencing for genomes is "coverage" - how many times do the number nucleotides sequenced "cover" the genome. This metric is not exact for genomes, but it works okay. It **does not work for transcriptomes** because expression of the genes depend on the condition being studied.
-
-
 
 ## Confounding
   
