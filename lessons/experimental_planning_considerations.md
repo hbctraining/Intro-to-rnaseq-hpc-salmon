@@ -59,13 +59,15 @@ Replicates are almost always preferred to greater sequencing depth for bulk RNA-
 
   - Spend money on more biological replicates, if possible.
   
-  - Read length >50 bases
+  - Read length >= 50 bp
 
 - **Gene-level differential expression with detection of lowly-expressed genes:**
   
   - Similarly benefits from replicates more than sequencing depth.
 
   - Sequence deeper with at least 30-60 million reads depending on level of expression (start with 30 million with a good number of replicates). 
+  
+  - Read length >= 50 bp
   
 - **Isoform-level differential expression:**
 
@@ -74,6 +76,8 @@ Replicates are almost always preferred to greater sequencing depth for bulk RNA-
   - Of novel isoforms should have more depth (> 60 million reads per sample).
 
   - Choose biological replicates over paired/deeper sequencing.
+  
+  - Read length >= 50 bp, but longer is better as the reads will be more likely to cross exon junctions
 
   - Perform careful QC of RNA quality. Be careful to use high quality preparation methods and restrict analysis to high quality RIN # samples.  
   
