@@ -73,6 +73,8 @@ Exit `vim` and re-read the `.bashrc` file using the `source` command:
 
 ```bash
 $ source ~/.bashrc
+
+$ echo $PATH
 ```
 
 Now, we could create the index using the `salmon index` command as detailed below; however, we are not going to run this in class as it can take a few minutes to run. 
