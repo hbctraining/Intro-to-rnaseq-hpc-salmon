@@ -36,7 +36,9 @@ Experimental replicates can be performed as **technical replicates** or **biolog
 
 - **Biological replicates** use different biological samples of the same condition to measure the biological variation between samples. 
 
-For mice or rats, this might be easy to determine what constitutes a different biological sample, but it's a bit **more difficult to determine for cell lines**. When using cell lines it's best to include as much variation between samples as possible, and [this article](http://paasp.net/accurate-design-of-in-vitro-experiments-why-does-it-matter/) gives some great recommendations for cell line replicates.
+For mice or rats, this might be easy to determine what constitutes a different biological sample, but it's a bit **more difficult to determine for cell lines**. When using cell lines it's best to include as much independence of replicate sample preparation as possible, and [this article](http://paasp.net/accurate-design-of-in-vitro-experiments-why-does-it-matter/) gives some great recommendations for cell line replicates.
+
+> *The sample preparation of replicates "should be performed as independently as possible, meaning that cell culture media should be prepared freshly for each experiment, different frozen cell stocks and growth factor batches, etc. should be used." However, preparation across all conditions should be performed at the same time.
 
 In the days of microarrays, technical replicates were considered a necessity; however, with the current RNA-Seq technologies, technical variation is much lower than biological variation and **technical replicates are unneccessary**.
 
@@ -59,7 +61,7 @@ Replicates are almost always preferred to greater sequencing depth for bulk RNA-
 
   - Spend money on more biological replicates, if possible.
   
-  - Read length >= 50 bp
+  - Generally recommended to have read length >= 50 bp
 
 - **Gene-level differential expression with detection of lowly-expressed genes:**
   
@@ -67,7 +69,7 @@ Replicates are almost always preferred to greater sequencing depth for bulk RNA-
 
   - Sequence deeper with at least 30-60 million reads depending on level of expression (start with 30 million with a good number of replicates). 
   
-  - Read length >= 50 bp
+  - Generally recommended to have read length >= 50 bp
   
 - **Isoform-level differential expression:**
 
@@ -77,7 +79,7 @@ Replicates are almost always preferred to greater sequencing depth for bulk RNA-
 
   - Choose biological replicates over paired/deeper sequencing.
   
-  - Read length >= 50 bp, but longer is better as the reads will be more likely to cross exon junctions
+  - Generally recommended to have read length >= 50 bp, but longer is better as the reads will be more likely to cross exon junctions
 
   - Perform careful QC of RNA quality. Be careful to use high quality preparation methods and restrict analysis to high quality RIN # samples.  
   
@@ -147,7 +149,7 @@ If *any* of the answers is **‘No’**, then you have batches.
 
     *Image credit: [Hicks SC, et al., bioRxiv (2015)](https://www.biorxiv.org/content/early/2015/08/25/025528)*
     
-  - **DO** include batch information in your **experimental metadata**. During the analysis, we can regress out the variation due to batch so it doesn’t affect our results if we have that information.
+  - **DO** include batch information in your **experimental metadata**. During the analysis, we can regress out the variation due to batch if not confounded so it doesn’t affect our results if we have that information.
 
     <img src="../img/metadata_batch.png" width="300">
     
