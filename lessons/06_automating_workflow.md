@@ -215,6 +215,7 @@ qualimap rnaseq \
 echo "Starting Salmon run for $base"
 
 salmon quant -i $transcriptome \
+-p $cores \
 -l A \
 -r $fq \
 -o $salmon_out \
