@@ -56,7 +56,24 @@ $ mkdir ~/rnaseq/results/salmon
 $ cd ~/rnaseq/results/salmon
 ```   
 
-> Salmon is not available as a module on O2, but it is installed as part of the bcbio pipeline. Since we already have the appropriate path (`/n/app/bcbio/tools/bin/`) in our `$PATH` variable we can use it by simply typing in `salmon`.     
+Salmon is not available as a module on O2, but it is installed as part of the bcbio pipeline. Therefore, we need to add the appropriate path (`/n/app/bcbio/tools/bin/`) in our `$PATH` variable so that we can use it by simply typing in `salmon`. This directory contains executables for many tools useful for NGS analysis. We can add this location by including an `export` command to do this at the end of the `.bashrc` file, this will make it so that when you start a new shell session the location will always be in your path. 
+
+Open the `.bashrc` file using `vim` and at the end of the file add the export command that adds a specific location to the list in `$PATH`. 
+
+```bash
+$ vim ~/.bashrc
+
+# at the end of the file type in the following:
+export PATH=/n/app/bcbio/tools/bin:$PATH
+
+# Don't forget the ":" between the full path and the "$PATH"!
+```
+
+Exit `vim` and re-read the `.bashrc` file using the `source` command:
+
+```bash
+$ source ~/.bashrc
+```
 
 Now, we could create the index using the `salmon index` command as detailed below; however, we are not going to run this in class as it can take a few minutes to run. 
 The parameters for the indexing step are as follows:
