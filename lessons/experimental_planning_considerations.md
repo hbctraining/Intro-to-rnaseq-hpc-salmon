@@ -154,7 +154,7 @@ If *any* of the answers is **‘No’**, then you have batches.
 
     <img src="../img/metadata_batch.png" width="300">
     
- > **NOTE:** *The sample preparation of cell line "biological" replicates "should be performed as independently as possible" (as batches), "meaning that cell culture media should be prepared freshly for each experiment, different frozen cell stocks and growth factor batches, etc. should be used." However, preparation across all conditions should be performed at the same time [[2](http://paasp.net/accurate-design-of-in-vitro-experiments-why-does-it-matter/)].*
+ > **NOTE:** *The sample preparation of cell line "biological" replicates "should be performed as independently as possible" (as batches), "meaning that cell culture media should be prepared freshly for each experiment, different frozen cell stocks and growth factor batches, etc. should be used [[2](http://paasp.net/accurate-design-of-in-vitro-experiments-why-does-it-matter/)]." However, preparation across all conditions should be performed at the same time.*
     
  ***
  **Exercise**
