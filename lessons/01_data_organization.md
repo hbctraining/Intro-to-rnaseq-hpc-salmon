@@ -46,7 +46,7 @@ Every computational analysis you do is going to spawn many files, and inevitabil
 We will start by creating a directory that we can use for the rest of the RNA-seq session. Log into O2 using `ssh` if you are not already in and start an interactive session on the cluster:
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 --mem 1G --reservation=HBC /bin/bash
+$ srun --pty -p interactive -t 0-12:00 --mem 1G --reservation=HBC1 /bin/bash
 ```
 
 Next, let's make sure that you are in your home directory.
