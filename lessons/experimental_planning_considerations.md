@@ -42,7 +42,7 @@ In the days of microarrays, technical replicates were considered a necessity; ho
 
 In contrast, **biological replicates are absolutely essential**. For differential expression analysis, the more biological replicates, the better the estimates of biological variation and the more precise our estimates of the mean expression levels. This leads to more accurate modeling of our data and identification of more differentially expressed genes.
 
-<img src="../img/de_replicates_img.png" width="500">
+<img src="../img/de_replicates_img2.png" width="500">
 
 *Image credit: [Liu, Y., et al., Bioinformatics (2014) **30**(3): 301–304](https://doi.org/10.1093/bioinformatics/btt688)*
 
