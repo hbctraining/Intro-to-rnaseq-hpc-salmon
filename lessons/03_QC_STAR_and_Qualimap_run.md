@@ -223,7 +223,7 @@ The Qualimap report should be present in our `results/qualimap` directory. To vi
 
 #### **Read alignment summary**
 
-The first few numbers listed here are similar to what we find in the mapping statistics log file from STAR. Qualimap also computes counts by assigning reads to genes and reports associated statistics. For example, the number of reads aligned to genes, number of ambiguous alignments (belong to several genes) and number of alignments without any feature (intronic and intergenic).
+The first few numbers listed here are similar to what we find in the mapping statistics log file from STAR. Qualimap also computes counts by assigning reads to genes and [reports associated statistics](http://qualimap.bioinfo.cipf.es/doc_html/analysis.html#id7). For example, the number of reads aligned to genes, number of ambiguous alignments (belong to several genes) and number of alignments without any feature (intronic and intergenic).
 
 <img src="../img/qualimap_read_alignment.png" width="700">
 
