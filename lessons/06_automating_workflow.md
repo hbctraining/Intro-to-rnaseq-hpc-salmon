@@ -324,10 +324,10 @@ $ sh rnaseq_analysis_on_allfiles_for-slurm.sh
 
 What you should see on the output of your screen would be the jobIDs that are returned from the scheduler for each of the jobs that your script submitted.
 
-You can use `O2squeue` to check progress. And we can check if there are any additional files in our analysis folder.
+You can use `O2sacct` to check progress. And we can check if there are any additional files in our analysis folder.
 
 ```bash
-$ O2squeue
+$ O2sacct
 
 $ ls -l /n/scratch2/$USER/rnaseq_hbc-workshop/
 ```
