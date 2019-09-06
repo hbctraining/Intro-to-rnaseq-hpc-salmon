@@ -170,7 +170,7 @@ The quasi-mapping approach estimates where the reads best map to on the transcri
 	To run the quantification step on a single sample we have the command provided below. Let's try running it on our subset sample for `Mov10_oe_1.subset.fq`:
 
 	```bash
-	$ salmon quant -i /n/groups/hbctraining/rna-seq_2019_02/reference_data/salmon.ensembl38.idx \
+	$ salmon quant -i /n/groups/hbctraining/rna-seq_2019_02/reference_data/salmon.ensembl38.idx.09-06-2019 \
 	 -l A \
  	-r ~/rnaseq/raw_data/Mov10_oe_1.subset.fq \
  	-o Mov10_oe_1.subset.salmon \
@@ -264,7 +264,7 @@ do
 base=`basename $fq .fq`
 
 # run salmon
-salmon quant -i /n/groups/hbctraining/rna-seq_2019_02/reference_data/salmon.ensembl38.idx \
+salmon quant -i /n/groups/hbctraining/rna-seq_2019_02/reference_data/salmon.ensembl38.idx.09-06-2019 \
  -l A \
  -r $fq \
  -p 6 \
