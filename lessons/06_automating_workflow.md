@@ -128,7 +128,7 @@ Next we'll initialize 2 more variables named `genome` and `gtf`, these will cont
 # directory with the genome and transcriptome index files + name of the gene annotation file
 
 genome=/n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/ensembl38_STAR_index
-transcriptome=/n/groups/hbctraining/ngs-data-analysis-longcourse/rnaseq/salmon.ensembl38.idx
+transcriptome=/n/groups/hbctraining/rna-seq_2019_02/reference_data/salmon.ensembl38.idx.09-06-2019
 gtf=/n/groups/hbctraining/intro_rnaseq_hpc/reference_data_ensembl38/Homo_sapiens.GRCh38.92.1.gtf
 ```
 
