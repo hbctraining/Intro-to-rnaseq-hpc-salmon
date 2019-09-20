@@ -169,7 +169,7 @@ $ mv *fastqc* ~/rnaseq/results/fastqc/
 ```
 
 ### Performing quality assessment using job submission scripts
-So far in our FASTQC analysis, we have been directly submitting commands to O2 using an interactive session (ie. `srun --pty -n 6 -p short -t 0-12:00 --mem 8G bash`). However, there are many more partitions available on O2 than just the interactive partition. We can submit commands or series of commands to these partitions using job submission scripts. 
+So far in our FASTQC analysis, we have been directly submitting commands to O2 using an interactive session (ie. `srun --pty -c 6 -p interactive -t 0-12:00 --mem 6G --reservation=HBC1 /bin/bash`). However, there are many more partitions available on O2 than just the interactive partition. We can submit commands or series of commands to these partitions using job submission scripts. 
 
 **Job submission scripts** for O2 are just regular scripts, but contain the slurm **options/directives** for job submission, such as *number of cores, name of partition, runtime limit, etc*. We can submit these scripts to whichever partition we specify in the script using the `sbatch` command as follows:
 
