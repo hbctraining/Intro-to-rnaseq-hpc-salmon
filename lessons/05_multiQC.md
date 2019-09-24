@@ -116,8 +116,10 @@ Generally in a good library, we expect over 60% of reads to map to exons for mou
 
 The auxiliary directory generated from Salmon will contain a file called `fld.gz`. This file contains an approximation of the observed fragment length distribution. This is more meaningful for paired-end data where the length can be estimated based on the fact that we have reads from both ends of the fragment. These plots can be compared to what we expect based on our knowledge of the size selection step performed during the library preparation stage.
 
-> **NOTEZ:** For single end data (as we have), Salmon reports a fixed insert length distribution assumption and so the values are identical for all samples. When values are identical then the plot will only be possible to get a tooltip for the topmost plotted sample, hence the reason we only observe one of the Mov10_oe samples.
+> **NOTE:** For single end data (as we have), Salmon reports a fixed insert length distribution assumption and so the values are identical for all samples. When values are identical then the plot will only be possible to get a tooltip for the topmost plotted sample, hence the reason we only observe one of the Mov10_oe samples.
 
 <img src="../img/salmon_plot_multiqc.png" width="600">
+
+
 ---
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
