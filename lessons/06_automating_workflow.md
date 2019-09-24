@@ -122,7 +122,7 @@ Next we want to specify how many cores the script should use to run the analysis
 
 cores=6
 ```
-Next we'll initialize 2 more variables named `genome` and `gtf`, these will contain the paths to where the reference files are stored. This makes it easier to modify the script for when you want to use a different genome, i.e. you'll just have to change the contents of these variable at the beginning of the script.
+Next we'll initialize 3 more variables named `genome`, `transcriptome` and `gtf`, these will contain the paths to where the reference files are stored. This makes it easier to modify the script for when you want to use a different genome, i.e. you'll just have to change the contents of these variable at the beginning of the script.
 
 ```
 # directory with the genome and transcriptome index files + name of the gene annotation file
