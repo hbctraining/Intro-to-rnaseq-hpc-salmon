@@ -23,8 +23,7 @@ This repository has teaching materials for a 2-day Introduction to RNA-sequencin
 
 ***All:***
 
-* [FileZilla](https://filezilla-project.org/download.php?type=client) (make sure you get ‘FileZilla Client')
-* [Integrative Genomics Viewer (IGV)](http://software.broadinstitute.org/software/igv/) (scroll down on the page for Download options). If you have trouble opening IGV after installing it, you may need to install [Java](https://www.java.com/en/download/).
+* [FileZilla Client](https://filezilla-project.org/download.php?type=client) (make sure you get ‘FileZilla Client')
 
 ***Mac users:***
 
