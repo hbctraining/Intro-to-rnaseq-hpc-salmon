@@ -233,8 +233,9 @@ Since Salmon is only able to take a single file as input, one way in which we ca
 
 Let's start by opening up a script in `vim`:
 
-	$ vim salmon_all_samples.sbatch
-
+```
+$ vim salmon_all_samples.sbatch
+```
 
 Let's start our script with a **shebang line followed by SBATCH directives which describe the resources we are requesting from O2**. We will ask for 6 cores and take advantage of Salmon's multi-threading capabilities. 
 
@@ -252,7 +253,7 @@ The final script is shown below:
 #SBATCH --job-name salmon_in_serial 
 #SBATCH -o %j.out 
 #SBATCH -e %j.err
-#SBATCH --reservation=HBC1
+#SBATCH --reservation=HBC
 
 cd ~/rnaseq/results/salmon
 
@@ -279,15 +280,10 @@ done
 
 Save and close the script. This is now ready to run.
 
-	$ sbatch salmon_all_samples.sbatch
-
-
+```
+$ sbatch salmon_all_samples.sbatch
+```
 
 ---
 
 *This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
-
-
-
-
-
