@@ -281,7 +281,7 @@ Save and close the script. This is now ready to run.
 
 	$ sbatch salmon_all_samples.sbatch
 
-> **NOTE: PC users** will want to add the `--auxDir` parameter to the Salmon command and provide an alternate name for the directory. By default it will be named `aux` which interferes with the decompressing process when bringing files over locally to run differential gene expression analysis in R.  
+
 
 ---
 
