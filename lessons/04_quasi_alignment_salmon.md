@@ -51,7 +51,7 @@ This step involves creating an index to evaluate the sequences for all possible 
 To create the transcriptome index with Salmon, let's start an interactive session and create a new directory in our `results` folder for the Salmon output:
 
 ```bash
-$ srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=HBC1 /bin/bash
+$ srun --pty -p interactive -t 0-12:00 --mem 8G --reservation=HBC /bin/bash
 
 $ mkdir ~/rnaseq/results/salmon
 
