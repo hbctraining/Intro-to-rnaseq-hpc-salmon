@@ -162,9 +162,10 @@ The quasi-mapping approach estimates where the reads best map to on the transcri
 	* `-i`: specify the location of the index directory; for us it is `/n/groups/hbctraining/rna-seq_2019_02/reference_data/salmon.ensembl38.idx.09-06-2019`
 	* `-l A`: Format string describing the library. `A` will automatically infer the most likely library type (more info available [here](http://salmon.readthedocs.io/en/latest/salmon.html#what-s-this-libtype))
 	* `-r`: sample file
-	* `--useVBOpt`: use variational Bayesian EM algorithm rather than the ‘standard EM’ to optimize abundance estimates (more accurate) 
 	* `-o`: output quantification file name
-	* `--seqBias` will enable it to learn and correct for sequence-specific biases in the input data.
+	* `--useVBOpt`: use variational Bayesian EM algorithm rather than the ‘standard EM’ to optimize abundance estimates (more accurate) 
+	* `--seqBias` will enable it to learn and correct for sequence-specific biases in the input data
+	* `--validateMappings`: developed for finding and scoring the potential mapping loci of a read by performing base-by-base alignment of the reads to the potential loci, scoring the loci, and removing loci falling below a threshold score. This option improves the sensitivity and specificity of the mapping.
 
 
 	To run the quantification step on a single sample we have the command provided below. Let's try running it on our subset sample for `Mov10_oe_1.subset.fq`:
@@ -174,8 +175,9 @@ The quasi-mapping approach estimates where the reads best map to on the transcri
 	 -l A \
  	-r ~/rnaseq/raw_data/Mov10_oe_1.subset.fq \
  	-o Mov10_oe_1.subset.salmon \
- 	--seqBias \
- 	--useVBOpt 
+ 	--useVBOpt \
+	--seqBias \
+	--validateMappings
 	```
 	
 	> **NOTE:** You may see the following output by salmon: "It appears you are running salmon without the `--validateMappings` option. Mapping validation can generally improve both the sensitivity and specificity of mapping, with only a moderate increase in use of computational resources. Unless there is a specific reason to do this (e.g. testing on clean simulated data), `--validateMappings` is generally recommended." This is fine, we will explore this option for future salmon runs.
@@ -277,6 +279,9 @@ salmon quant -i /n/groups/hbctraining/rna-seq_2019_02/reference_data/salmon.ense
 done
 
 ```
+> _**NOTE:** `--numBootstraps` is necessary if performing **isoform-level differential expression analysis** with Sleuth, but not for gene-level differential expression analysis. Due to the statistical procedure required to assign reads to gene isoforms, in addition to the random processes underlying RNA-Seq, there will be **technical variability in the abundance estimates** output from the pseudo-alignment tool [[2](https://rawgit.com/pachterlab/sleuth/master/inst/doc/intro.html), [3](https://www.nature.com/articles/nmeth.4324)]. Therefore, **we would need technical replicates to distinguish technical variability from the biological variability**.
+>
+> The bootstraps estimate technical variation per gene by calculating the abundance estimates for all genes using a different sub-sample of reads during each round of bootstrapping. The variation in the abundance estimates output from each round of bootstrapping is used for the estimation of the technical variance for each gene. 
 
 Save and close the script. This is now ready to run.
 
