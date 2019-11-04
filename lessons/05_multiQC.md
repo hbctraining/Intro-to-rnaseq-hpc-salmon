@@ -42,7 +42,7 @@ Next, we are going to run multiQC on the following 4 outputs from our workflow:
 * `.qualimap` files from Qualimap
 * `.salmon` directories from salmon
 
-Generally we run multiQC to explore our samples and compare metrics across samples. So far, we have only run FastQC, STAR, Qualimap, and salmon on the single `Mov10_oe_1` file. Therefore, to accurately compare QC metrics across samples, we ran these tools on the FASTQ files for the full dataset for each of our samples. We will show you how to do this quickly and efficiently a bit later, but for now we are just going to share these files with you to generate the report.
+Generally we run multiQC to explore our samples and compare metrics across samples. So far, we have only run FastQC, STAR, Qualimap, and salmon on the single `Mov10_oe_1` file. Therefore, to accurately compare QC metrics across samples, we ran these tools on the FASTQ files for the full dataset for each of our samples. 
 
 
 Now, let's run multiQC!
