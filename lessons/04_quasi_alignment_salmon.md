@@ -180,7 +180,7 @@ The quasi-mapping approach estimates where the reads best map to on the transcri
 	--validateMappings
 	```
 	
-	> **NOTE:** The `--validateMappings` option (mapping validation) can generally improve both the sensitivity and specificity of mapping, with only a moderate increase in use of computational resources. Unless there is a specific reason to do this (e.g. testing on clean simulated data), `--validateMappings` is generally recommended.
+	> **NOTE:** Mapping validation can generally improve both the sensitivity and specificity of mapping, with only a moderate increase in use of computational resources. Unless there is a specific reason to do this (e.g. testing on clean simulated data), `--validateMappings` is generally recommended.
 
 	> **Paired-end data:** If using paired-end reads, then the command would require both sets of reads to be given:
 `salmon quant -i transcripts_index -l A -1 reads1.fq -2 reads2.fq -o transcripts_quant`
@@ -274,7 +274,8 @@ salmon quant -i /n/groups/hbctraining/rna-seq_2019_02/reference_data/salmon.ense
  -o $base.salmon \
  --seqBias \
  --useVBOpt \
- --numBootstraps 30
+ --numBootstraps 30 \
+ --validateMappings
 
 done
 
