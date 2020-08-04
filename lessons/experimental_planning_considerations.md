@@ -90,7 +90,7 @@ Replicates are almost always preferred to greater sequencing depth for bulk RNA-
   
   - Almost always more biological replicates are better!
   
-> **NOTE:** The factor used to estimate the depth of sequencing for genomes is "coverage" - how many times do the number nucleotides sequenced "cover" the genome. This metric is not exact for genomes, but it works okay. It **does not work for transcriptomes** because expression of the genes depend on the condition being studied.
+> **NOTE:** The factor used to estimate the depth of sequencing for genomes is "coverage" - how many times do the number of nucleotides sequenced "cover" the genome. This metric is not exact for genomes (whole genome sequencing), but it is good enough and is used extensively. However, the metric **does not work for transcriptomes** because even though you may know what % of the genome has trancriptional activity, the expression of the genes is highly variable.
   
 ## Confounding
   
